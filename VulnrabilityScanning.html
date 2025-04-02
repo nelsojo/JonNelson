@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Basic Vulnerability Scanning Using Captured Packets</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+        <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
+    </nav>
+    
+    <div class="content">
+        <h1>Basic Vulnerability Scanning Using Captured Packets</h1>
+
+        <section>
+            <h2>Introduction</h2>
+            <p>
+                Analyzing network traffic is essential for identifying security vulnerabilities and unauthorized activity within an organization.
+                My goal was to demonstrate how simple tools can be created using built-in or easily accessible libraries to scan and filter packet capture (pcap) files.
+                These files, recorded at network borders, provide valuable insights into protocol usage, traffic routing, and potential security risks.
+                By leveraging packet captures from online sources and my home network, I developed a series of scripts that utilize the <code>tshark</code> API to analyze network traffic efficiently.
+            </p>
+            <p>
+                Since <code>tshark</code> uses the same filtering syntax as Wireshark’s GUI, I chose it for its familiarity and ease of use in extracting critical packet information.
+                My tool was designed in two formats: a single script that performs all necessary tasks in one run and a modular version consisting of four separate scripts, each addressing a specific security concern.
+                This modular approach allows for more focused analysis, helping security professionals pinpoint potential risks such as outdated protocols, unauthorized scans, or unexpected port activity.
+            </p>
+        </section>
+        
+        <h2>Network Traffic Analysis & Security Tools</h2>
+        <p>I developed several BASH-based network scanning tools leveraging the tshark API to analyze packet capture files for security insights. These tools demonstrate my proficiency in scripting, network security analysis, and protocol filtering.</p>
+        
+        <h3>1. Protocol-Specific Packet Scanner</h3>
+        <p>Built <code>scan1.sh</code> to filter traffic by protocol (FTP, Telnet, SSL) from packet capture files.</p>
+        <ul>
+            <li>Validated outputs against Wireshark’s GUI and predefined capture files.</li>
+            <li>Used Wireshark display filters and tshark commands for accurate filtering.</li>
+        </ul>
+
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/vuln_Scannerp1_1.png" alt="Image 1">
+                <img src="img/vuln_Scannerp1_2.png" alt="Image 2">
+                <img src="img/vuln_Scannerp1_3.png" alt="Image 3">
+                <img src="img/vuln_Scannerp1_4.png" alt="Image 4">
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+
+        <p><strong>Security Applications:</strong></p>
+        <ul>
+            <li><strong>For Security Engineers:</strong> Identifies outdated or insecure protocols.</li>
+            <li><strong>For Hackers:</strong> Helps locate exploitable network protocols.</li>
+        </ul>
+        
+        <h3>2. Port-Protocol Mismatch Detector</h3>
+        <p>Developed <code>scan2.sh</code> to detect unexpected traffic on well-known ports (22, 80, 53).</p>
+        <ul>
+            <li>Tested using Packet Sender and validated results with Wireshark.</li>
+            <li>To demonstrate the tool will find packets to ports 22, 80, and 53 that are not of the type SSH, HTTP, or DNS I needed a 
+                capture file that contains traffic where a connection to the ports mentioned is attempted for traffic of a different type 
+                then is expected at that port.</li>
+            <li>Revealed security misconfigurations and potential exploit entry points.</li>
+        </ul>
+
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/vuln_Scannerp2_1.png" alt="Image 5">
+                <img src="img/vuln_Scannerp2_2.png" alt="Image 6">
+                <img src="img/vuln_Scannerp2_3.png" alt="Image 7">
+                <img src="img/vuln_Scannerp2_4.png" alt="Image 8">
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+        <p><strong>Security Applications:</strong></p>
+        <ul>
+            <li><strong>For Security Engineers:</strong> Identifies misconfigurations.</li>
+            <li><strong>For Hackers:</strong> Uncovers potential attack vectors.</li>
+        </ul>
+        
+        <h2> 3: TLS Version Detection</h2>
+        <p><code>scan3.sh</code> is a BASH tool that identifies TLS 1.0 and 1.1 usage in a network capture file.</p>
+        <ul>
+            <li>Filters packets to report outdated TLS versions while ignoring TLS 1.2 and 1.3.</li>
+            <li>Observed cases where packets mislabeled as TLS 1.3 actually used TLS 1.0.</li>
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="img/vuln_Scannerp3_1.png" alt="Image 9">
+                    <img src="img/vuln_Scannerp3_2.png" alt="Image 10">
+                    <img src="img/vuln_Scannerp3_3.png" alt="Image 11">
+                    <img src="img/vuln_Scannerp3_4.png" alt="Image 12">
+                    <img src="img/vuln_Scannerp3_5.png" alt="Image 13">
+                    <img src="img/vuln_Scannerp3_6.png" alt="Image 14">
+                </div>
+                <button class="prev">Previous</button>
+                <button class="next">Next</button>
+            </div>
+
+            <li>Simulated a TLS 1.1 packet by manually editing hex values in a pcap file.</li>
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="img/vuln_Scannerp3_7.png" alt="Image 15">
+                    <img src="img/vuln_Scannerp3_8.png" alt="Image 16">
+                    <img src="img/vuln_Scannerp3_9.png" alt="Image 17">
+                    <img src="img/vuln_Scannerp3_10.png" alt="Image 18">
+                    <img src="img/vuln_Scannerp3_11.png" alt="Image 19">
+                    <img src="img/vuln_Scannerp3_12.png" alt="Image 20">
+                    <img src="img/vuln_Scannerp3_13.png" alt="Image 21">
+                </div>
+                <button class="prev">Previous</button>
+                <button class="next">Next</button>
+            </div>
+        </ul>
+        <p><strong>Security Applications:</strong></p>
+        <ul>
+            <li><strong>For Security Engineers:</strong> Detects outdated TLS usage.</li>
+            <li><strong>For Hackers:</strong> Identifies servers vulnerable to weak encryption exploits.</li>
+        </ul>
+        
+        <h2> 4: ARP Request Detection</h2>
+        <p><code>scan4.sh</code> analyzes ARP traffic to detect network scanning activity.</p>
+        <p>Obviously, Wireshark detects 
+            when a device sends an ARP request in a packet, and with arp-scan I was sending an ARP request to every device on the 
+            network. Often, many times in a row. So, I thought it would be useful to have a tool that counts the number of ARP 
+            requests that are being sent from each IP address on a network because high counts would indicate someone (like me) is 
+            scanning the network.</p>
+        <ul>
+            <li>Counts ARP requests from each IP and flags those exceeding 100 requests.</li>
+            <li>Demonstrated high ARP traffic when running <code>arp-scan</code> in a Kali VM.</li>
+        </ul>
+
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/vuln_Scannerp4_1.png" alt="Image 22">
+                <img src="img/vuln_Scannerp4_2.png" alt="Image 23">
+                <img src="img/vuln_Scannerp4_3.png" alt="Image 24">
+               
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+        <p><strong>Security Applications:</strong></p>
+        <ul>
+            <li><strong>For Security Engineers:</strong> Detects network reconnaissance attempts.</li>
+            <li><strong>For Hackers:</strong> Identifies scanning activity from other attackers.</li>
+        </ul>
+
+
+        
+        
+        <section>
+            <h2>Conclusion</h2>
+            <p>
+                Here we explored various techniques for analyzing open ports, identifying running services, and detecting insecure traffic on a network.
+                Building on these foundational skills, I demonstrated how attackers can exploit misconfigurations, such as services running on unexpected ports or outdated protocols, to gain unauthorized access.
+                A key takeaway is that moving services to uncommon ports is not a robust security measure but rather an obscurity tactic that provides minimal protection.
+            </p>
+            <p>
+                The combination of open port scanning and packet filtering highlights how easily an insider or an attacker can gather intelligence on a network’s infrastructure.
+                While using non-standard ports may indicate a hardened system, it can also introduce unintended security risks if not properly configured.
+                The insights gained from this project reinforce the importance of proactive network monitoring and the need for layered security beyond simple port manipulation.
+            </p>
+        </section>
+
+
+    </div>
+    <script src="carousel.js"></script>
+</body>
+</html>

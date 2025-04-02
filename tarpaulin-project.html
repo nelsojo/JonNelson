@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarpaulin Project - Cloud Application Development</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+        <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
+    </nav>
+    <header>
+        <h1>Tarpaulin: A Cloud-Based Course Management API</h1>
+       
+    </header>
+    
+    <main>
+        <section>
+            <h2>Project Overview</h2>
+            <p>As part of my Cloud Application Development course (CS 493/599), I worked on a team-based final project to design and implement a scalable, 
+                RESTful API for a course management system called <a href="https://github.com/nelsojo/final-project-team-42" target="_blank">Tarpaulin</a>—an alternative to Canvas. This project required us to build a fully containerized cloud-based backend that supports user authentication, course and assignment management, file storage, and access control.
+
+               </p>
+        </section>
+        
+        <section>
+            <h3> Through this project, I gained hands-on experience in cloud development, covering key concepts such as:</h3>
+            <ul>
+                <li><strong>API Development & Design:</strong>In this project, I created a RESTful API to manage courses with full CRUD (Create, Read, Update, Delete) capabilities. The API utilizes Express and Sequelize ORM to interact with a database and ensures role-based access control for actions like creating, updating, and deleting courses.
+                    <ul>
+                        <li>Get List of Courses (with Pagination):
+                            <pre><code>router.get('/', async (req, res, next) => {
+                                let page = parseInt(req.query.page) || 1;
+                                page = page < 1 ? 1 : page;
+                                const numPerPage = 10;
+                                const offset = (page - 1) * numPerPage;
+                              
+                                try {
+                                  const result = await Course.findAndCountAll({
+                                    limit: numPerPage,
+                                    offset: offset,
+                                  });
+                              
+                                  const lastPage = Math.ceil(result.count / numPerPage);
+                                  const links = {};
+                                  if (page < lastPage) {
+                                    links.nextPage = `/businesses?page=${page + 1}`;
+                                    links.lastPage = `/businesses?page=${lastPage}`;
+                                  }
+                                  if (page > 1) {
+                                    links.prevPage = `/businesses?page=${page - 1}`;
+                                    links.firstPage = '/businesses?page=1';
+                                  }
+                              
+                                  res.status(200).send({
+                                    courses: result.rows,
+                                    pageNumber: page,
+                                    totalPages: lastPage,
+                                    pageSize: numPerPage,
+                                    totalCount: result.count,
+                                    links: links,
+                                  });
+                                } catch (e) {
+                                  next(e);
+                                }
+                              });
+                              </code></pre>
+                        </li>
+                        <li>
+                            Create a New Course: This endpoint allows admins to create new courses. It also ensures data validation and handles foreign key constraint errors for related data (like the instructor).
+                            <code><pre>
+                                router.post('/', decodeToken, async (req, res, next) => {
+                                    if (req.user.role !== 'admin') {
+                                      return res.status(403).send({ error: "Unauthorized. Only admins can create courses." });
+                                    }
+                                  
+                                    try {
+                                      const course = await Course.create(req.body, {
+                                        fields: CourseClientFields, // Ensures only client-specified fields are allowed for safety
+                                      });
+                                  
+                                      res.status(201).send(course); // Return the created course
+                                    } catch (e) {
+                                      if (e instanceof ValidationError) {
+                                        res.status(400).send({ error: e.message });
+                                      } else if(e instanceof ForeignKeyConstraintError) {
+                                        res.status(400).send({ error: "The instructorId provided doesn't exist" });
+                                      } else {
+                                        next(e);
+                                      }
+                                    }
+                                  });
+                                  
+                            </pre></code>
+                        </li>
+                        <li>
+                            Update a Course: This endpoint allows for course updates by admins or the instructors who own the course. It checks user roles and validates course existence.
+                            <code><pre>
+                                router.patch('/:courseId', decodeToken, async (req, res, next) => {
+                                    const courseId = parseInt(req.params.courseId);
+                                  
+                                    let course;
+                                    try {
+                                      course = await Course.findByPk(courseId);
+                                      if (!course) {
+                                        return res.status(404).send({ error: "Course not found." });
+                                      }
+                                    } catch (e) {
+                                      return next(e);
+                                    }
+                                  
+                                    if (req.user.role !== 'admin' && (req.user.role !== 'instructor' || req.user.sub !== course.instructorId)) {
+                                      return res.status(403).send({ error: "Unauthorized. You must be an admin or the course's instructor to update this course." });
+                                    }
+                                  
+                                    try {
+                                      const result = await Course.update(req.body, {
+                                        where: { courseId: courseId },
+                                        fields: CourseClientFields.filter(field => field != 'courseId' && field != 'instructorId'),
+                                      });
+                                  
+                                      if (result[0] > 0) {
+                                        res.status(200).send();
+                                      } else {
+                                        return res.status(404).send({ error: "No updates made. Course not found or data invalid." });
+                                      }
+                                    } catch (e) {
+                                      if (e instanceof ForeignKeyConstraintError) {
+                                        return res.status(400).send({ error: "The instructorId provided doesn't exist" });
+                                      }
+                                  
+                                      next(e);
+                                    }
+                                  });
+                                  
+                            </pre></code>
+                        </li>
+                        <li>Delete a Course: This endpoint allows admins to delete courses, enforcing role-based access control to ensure only authorized users can perform deletions.
+                            <code><pre>
+                                router.delete('/:courseId', decodeToken, async (req, res, next) => {
+                                    if (req.user.role !== 'admin') {
+                                      return res.status(403).send({ error: "Unauthorized. Only admins can delete courses." });
+                                    }
+                                  
+                                    const courseId = parseInt(req.params.courseId);
+                                  
+                                    try {
+                                      const result = await Course.destroy({ where: { courseId: courseId }});
+                                      if (result > 0) {
+                                        res.status(204).send();
+                                      } else {
+                                        next(); // Course not found
+                                      }
+                                    } catch (e) {
+                                      next(e);
+                                    }
+                                  });
+                                  
+                            </pre></code>
+                        </li>
+                    </ul>
+        </li>
+                <li><strong>Authentication:</strong> Implemented JWT-based authentication and role-based access control (RBAC) to manage users.
+                <ul>
+                    <li>
+                        In courses.js, the decodeToken middleware handles the JWT verification and assigns the decoded user information to the request object (req.user), which can be used by subsequent route handlers to check the user's identity and role.
+                        RBAC is implemented by checking the user's role (extracted from the JWT payload) to determine if they have permission to perform certain actions. 
+                        For example, only users with the admin role are allowed to create or delete courses, as shown in the following route:
+                        
+                        <code><pre>
+                            router.post('/', decodeToken, async (req, res, next) => {
+                                if (req.user.role !== 'admin') {
+                                  return res.status(403).send({ error: "Unauthorized. Only admins can create courses." });
+                                }
+                              
+                                try {
+                                  const course = await Course.create(req.body, {
+                                    fields: CourseClientFields // Ensures only client-specified fields are allowed for safety
+                                  });
+                              
+                                  // Instead of just sending the id, send the complete course object.
+                                  // This assumes that the course object returned from `Course.create()` contains all the relevant data.
+                                  res.status(201).send(course); // Adjust here to return the entire course object
+                                } catch (e) {
+                                  if (e instanceof ValidationError) {
+                                    res.status(400).send({ error: e.message });
+                                  } else if(e instanceof ForeignKeyConstraintError) {
+                                    res.status(400).send({ error: "The instructorId provided doesn't exist" })
+                                  } else {
+                                    next(e);
+                                  }
+                                }
+                              });
+                        </pre></code>
+                        This function ensures that the request includes a valid JWT token in the Authorization header, which is then decoded. If the token is invalid or expired, a 403 or 401 error is returned, respectively.
+                        <code><pre>
+                            function decodeToken(req, res, next) {
+                                const authHeader = req.headers.authorization;
+                                if (authHeader) {
+                                  const token = authHeader.split(' ')[1];
+                                  jwt.verify(token, secretKey, (err, user) => {
+                                    if (err) {
+                                      return res.status(403).json({ error: "Unauthorized access" });
+                                    }
+                                    req.user = user; // Attach decoded user to request object
+                                    next();
+                                  });
+                                } else {
+                                  res.status(401).send({ error: 'No token provided' });
+                                }
+                              }
+                              
+                        </pre></code>
+                    </li>
+
+                    <li>
+                        The auth.js file contains a function generateAuthToken which creates a JWT when a user logs in. The JWT contains the user's sub (ID), name, email, and role, which are used to authenticate and authorize the user. Example of JWT generation:
+                        <code><pre>
+
+                            async function generateAuthToken(email) {
+                                const user = await getUserByEmail(email);
+                                const payload = {
+                                    sub: user.userId,
+                                    name: user.name,
+                                    email: user.email,
+                                    role: user.role
+                                };
+                                return jwt.sign(payload, secretKey, { expiresIn: '24h' });
+                            }
+                            
+                        </pre></code>
+
+                        The verifyAdmin function checks if the user has an admin role. This is useful for routes where only admins should have access, like deleting courses or managing users. Example of admin verification:
+                        <code><pre>
+                            async function verifyAdmin(req, res) {
+                                const authHeader = req.get('Authorization') || '';
+                                const token = authHeader.split(' ')[1];
+                                try {
+                                    const payload = jwt.verify(token, secretKey);
+                                    const user = await getUserByEmail(payload.email);
+                                    if (user.role !== 'admin') {
+                                        return false;
+                                    } else {
+                                        return true;
+                                    }
+                                } catch (e) {
+                                    return false;
+                                }
+                            }
+                            
+
+                        </pre></code>
+                        The requireAuthentication middleware ensures that the user is authenticated by verifying their JWT token on each protected route. The user's sub (ID) and role are then made available to the route handler for further checks.
+
+                        <code><pre>
+
+                            function requireAuthentication(req, res, next) {
+                                const authHeader = req.get('Authorization') || '';
+                                const token = authHeader.split(' ')[1];
+                                try {
+                                    const payload = jwt.verify(token, secretKey);
+                                    req.user = payload.sub; // Attach the user ID to the request
+                                    req.role = payload.role; // Attach the user role to the request
+                                    next();
+                                } catch (e) {
+                                    res.status(401).json({
+                                      error: "Invalid authentication token provided."
+                                    });
+                                }
+                            }
+                            
+                        </pre></code>
+                    </li>
+                </ul>
+                
+                </li>
+                <li><strong>Rate Limiting:</strong> Applied IP-based and user-based request limits using middleware.
+                Consider the code below:
+                <code><pre>
+                    const redisClient = require('./redis')
+
+                    const { verifyToken } = require('./auth')
+                    const { hash } = require('bcryptjs')
+                    
+                    const rateLimitWindowMs = 60000
+                    const tierOneMaxRequests = 10   // for requests without a valid JWT
+                    const tierTwoMaxRequests = 30   // for requests with a valid JWT
+                    
+                    async function rateLimit (req, res, next) {
+                        const ip = req.ip
+                        let rateLimitMaxReqs
+                        let rateLimitBasis
+                        const userId = await verifyToken(req, res, next)
+                        if (userId) {
+                            rateLimitMaxReqs = tierTwoMaxRequests
+                            rateLimitBasis = userId.toString()
+                        } else {
+                            rateLimitMaxReqs = tierOneMaxRequests
+                            rateLimitBasis = ip
+                        }
+                        console.log("== Rate limit max requests: ", rateLimitMaxReqs)
+                    
+                        let tokenBucket
+                        try {
+                            tokenBucket = await redisClient.hGetAll(rateLimitBasis)
+                        } catch (e) {
+                            console.error("== Error: ", e)
+                            next()
+                            return
+                        }
+                    
+                        tokenBucket = {
+                            tokens: parseFloat(tokenBucket.tokens) || rateLimitMaxReqs,
+                            last: parseInt(tokenBucket.last) || Date.now()
+                        }
+                    
+                        const timestamp = Date.now()
+                        const elapsedMiliseconds = timestamp - tokenBucket.last
+                        const refreshRate = rateLimitMaxReqs / rateLimitWindowMs
+                        tokenBucket.tokens += elapsedMiliseconds * refreshRate
+                        tokenBucket.tokens = Math.min(rateLimitMaxReqs, tokenBucket.tokens)
+                        tokenBucket.last = timestamp
+                    
+                        console.log("== Tokens: ", tokenBucket.tokens)
+                    
+                        if (tokenBucket.tokens >= 1) {
+                            tokenBucket.tokens -= 1
+                            // Save the updated token bucket
+                            await redisClient.hSet(rateLimitBasis, [
+                                ['tokens', tokenBucket.tokens],
+                                ['last', tokenBucket.last]
+                            ])
+                            next()
+                        } else {
+                            // Save the updated token bucket
+                            await redisClient.hSet(rateLimitBasis, [
+                                ['tokens', tokenBucket.tokens],
+                                ['last', tokenBucket.last]
+                            ])
+                            res.status(429).send({
+                                error: "Rate limit exceeded. Try again later."
+                            })
+                        }
+                    }
+                    module.exports = rateLimit
+
+                </pre></code>
+                This code demonstrates rate limiting by applying IP-based and user-based request limits using middleware. It manages requests differently depending on whether a user is authenticated or not, by utilizing Redis for tracking request counts with the token bucket algorithm.
+                The middleware checks if the user is authenticated using `verifyToken`. It applies user-based rate limiting for authenticated users and IP-based rate limiting for unauthenticated ones. The token bucket state (tokens and last request timestamp) is fetched from Redis using `hGetAll`. 
+                If the bucket doesn't exist, it's initialized with the maximum allowed tokens and the current timestamp. Tokens are refreshed based on the time elapsed since the last request. If there are tokens left, 1 token is deducted, and the request proceeds. If no tokens are left, a `429` error is returned.
+                The updated token bucket state is saved back to Redis after each request.
+                </li>
+                <li><strong>SQL Database Integration:</strong> Used PostgreSQL to store course, assignment, and user data.
+                <ul>
+                    <li>Database Setup: The sequelize instance is created, configured to connect to a MySQL database. The database connection settings are pulled from environment variables (e.g., MYSQL_HOST, MYSQL_PORT, MYSQL_DB, etc.).
+                        <code><pre>
+                            const { Sequelize } = require('sequelize')
+
+                            const sequelize = new Sequelize({
+                              dialect: 'mysql',
+                              host: process.env.MYSQL_HOST || 'localhost',
+                              port: process.env.MYSQL_PORT || 3306,
+                              database: process.env.MYSQL_DB,
+                              username: process.env.MYSQL_USER,
+                              password: process.env.MYSQL_PASS
+                            })
+                            
+                            module.exports = sequelize
+                        </pre></code>
+                    </li>
+                    <li>User Model: The User model defines the schema for the user table. Each user has an auto-incrementing userId, a name, email, password (hashed using bcryptjs), and a role.
+                        <code><pre>
+                            const { DataTypes } = require('sequelize')
+
+const sequelize = require('../lib/sequelize')
+const { Course } = require('./course')
+const { Submission } = require('./submission')
+
+const bcrypt = require('bcryptjs')
+
+const User = sequelize.define('user', {
+  userId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
+  name: { type: DataTypes.STRING, allowNull: false },
+  email: { type: DataTypes.STRING, allowNull: false, unique: true },
+  password: { 
+    type: DataTypes.STRING,
+    allowNull: false,
+    set(value) {
+      this.setDataValue('password', bcrypt.hashSync(value, 10))
+    }
+  },
+  role: { type: DataTypes.STRING, allowNull: false }
+})
+
+User.hasMany(Course, { foreignKey: 'instructorId', allowNull: false })
+Course.belongsTo(User, { foreignKey: 'instructorId', allowNull: false })
+
+User.hasMany(Submission, { foreignKey: 'studentId', allowNull: false })
+Submission.belongsTo(User, { foreignKey: 'studentId', allowNull: false })
+
+exports.User = User
+
+exports.UserClientFields = [
+  "name",
+  "email",
+  "password",
+  "role"
+]
+
+/**
+ * Fetch a user from the DB based on user ID.
+ */
+async function getUserById (id) {
+  const excludeAttributes = ['password', 'admin']
+  const user = await User.findByPk(id, {
+      attributes: {
+          exclude: excludeAttributes,
+      },
+      // include: includeOptions
+  })
+
+  if (user === null) {
+    return null
+  }
+
+  if (user.role === 'instructor') {
+    const courses = await user.getCourses()
+    user.dataValues.courses = courses
+  } else if (user.role === 'student') {
+    const enrollments = await user.getEnrollments()
+    user.dataValues.enrollments = enrollments
+  }
+
+  return user
+}
+exports.getUserById = getUserById
+
+/**
+ * Fetch a user from the DB based on user email.
+ */
+async function getUserByEmail (email) {
+  const user = await User.findOne({
+      where: {
+          email: email
+      }
+  })
+  if (user === null) {
+      return null
+  } else {
+      return user
+  }
+}
+exports.getUserByEmail = getUserByEmail
+
+/**
+ * Validate the user credentials.
+ */
+exports.validateCredentials = async function (id, password) {
+  const user = await getUserByEmail(id)
+  return user && await bcrypt.compare(password, user.password)
+}
+                        </pre></code>
+                        Helper Functions: getUserById(id) Fetches a user by their ID, excluding sensitive data (like password). It also fetches courses or enrollments based on the user's role. getUserByEmail(email): Fetches a user by their email. validateCredentials(id, password): Validates the user's credentials by comparing the provided password with the stored hashed password.
+                    </li>
+                    <li>Course Model: The Course model defines the schema for the course table, including fields like subject, number, title, term, and instructorId.
+                        <code><pre>
+                            const { DataTypes } = require('sequelize')
+
+const sequelize = require('../lib/sequelize')
+const { Assignment } = require('./assignment')
+
+const Course = sequelize.define('course', {
+  courseId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
+  subject: { type: DataTypes.STRING, allowNull: false },
+  number: { type: DataTypes.STRING, allowNull: false },
+  title: { type: DataTypes.STRING, allowNull: false },
+  term: { type: DataTypes.STRING, allowNull: false },
+  instructorId: { type: DataTypes.INTEGER } // Add this line
+})
+
+Course.hasMany(Assignment, { foreignKey: 'courseId', allowNull: false })
+Assignment.belongsTo(Course, { foreignKey: 'courseId', allowNull: false })
+
+exports.Course = Course
+
+exports.CourseClientFields = [
+  "subject",
+  "number",
+  "title",
+  "term",
+  "instructorId"
+]
+                        </pre></code>
+                    </li>
+                </ul>
+                
+                </li>
+                <li><strong>File Management:</strong> Enabled secure file uploads and retrievals for student assignment submissions.
+                <ul>
+                    <li>File Upload Handling: The assignments.js file uses Multer, a middleware for handling multipart/form-data (i.e., file uploads). The storage configuration specifies where to save the files (./media/submissions), and it ensures the file has a unique name by appending a timestamp to the original filename.
+                        <code><pre>
+                            /**
+ * Create file structure in format of:
+ * ./media/submissions/{submission_name}
+ */
+const storage = multer.diskStorage({
+    // Set destination directory for file uploads
+    destination: function (req, file, cb) {
+        const submissionsDir = path.join(__dirname, '..', 'media', 'submissions')
+        // Ensure the directory exists, creating it if needed
+        fs.mkdir(submissionsDir, { recursive: true }, e => {
+            if (e) {
+                cb(e)
+            } else {
+                cb(null, submissionsDir)
+            }
+        })
+    },
+    // Create a new filename using the original name, timestamp, and the file extension
+    filename: function (req, file, cb) {
+        const extension = file.mimetype.split('/')[1]
+        const originalName = file.originalname.replace(/\.[^/.]+$/, "")
+        const timestamp = Date.now()
+        const filename = `${originalName}_${timestamp}.${extension}`
+        cb(null, filename)
+    }
+})
+
+const upload = multer({ storage: storage })
+                        </pre></code>
+                    </li>
+                    <li>The POST /:id/submissions endpoint creates a submission for a specific assignment. It verifies that the user is authorized (i.e., a student enrolled in the course), uploads the file, and stores it in the appropriate directory. Once uploaded, a URL to the file is generated and returned in the response.
+                        <code><pre>
+                            router.post('/:id/submissions', requireAuthentication, upload.single('file'), async (req, res, next) => {
+                                if (!req.file) {
+                                    return res.status(400).send({ error: 'No file uploaded' })
+                                }
+                            
+                                try {
+                                    // Assigning file path
+                                    const filePath = path.join('media', 'submissions', req.file.filename)
+                                    const fileUrl = `http://localhost:8000/${filePath}`
+                            
+                                    // Create submission
+                                    const newSubmission = await Submission.create({
+                                        assignmentId: req.params.id,
+                                        studentId: req.user,
+                                        timestamp: new Date(),
+                                        file: filePath,
+                                        grade: null
+                                    })
+                            
+                                    res.status(201).json({
+                                        timestamp: newSubmission.timestamp,
+                                        grade: newSubmission.grade,
+                                        file: newSubmission.file,
+                                        assignmentId: newSubmission.assignmentId,
+                                        studentId: newSubmission.studentId,
+                                        fileUrl: fileUrl
+                                    })
+                                } catch (e) {
+                                    next(e)
+                                }
+                            })
+                             
+                        </pre></code>
+                    </li>
+                    <li> File Retrieval: The media.js file provides a GET /submissions/:filename endpoint, which retrieves the file from the server when a user requests it. It first checks whether the file exists in the media/submissions directory, and if so, it sends the file to the client. If the file does not exist, an error is returned.
+                        <code><pre>
+                            router.get('/submissions/:filename', (req, res, next) => {
+                                const { filename } = req.params
+                                const filePath = path.join(__dirname, '..', 'media', 'submissions', filename)
+                            
+                                fs.access(filePath, fs.constants.F_OK, (e) => {
+                                    if (e) {
+                                        return next(new Error('File not found'))
+                                    }
+                                    res.sendFile(filePath, (e) => {
+                                        if (e) {
+                                            next(e)
+                                        }
+                                    })
+                                })
+                            })
+                            
+                        </pre></code>
+                    </li>
+                    <li> Submission Update Handling: In submissions.js, the PATCH /:id endpoint allows authorized roles (instructors or admins) to update a submission (e.g., adding grades or changing the file). This ensures only authorized users can make modifications to submissions.
+                        <code><pre>
+                            router.patch('/:id', requireAuthentication, async (req, res, next) => {
+                                // Checking if submission exists and authorized role
+                                const submission = await Submission.findByPk(submissionId)
+                                if (!submission) {
+                                    return res.status(404).send('Submission not found')
+                                }
+                            
+                                if (req.role !== 'admin' && req.role !== 'instructor') {
+                                    return res.status(403).send('Not authorized to update this submission')
+                                }
+                            
+                                // Update submission fields
+                                const validFields = ['grade', 'file']
+                                validFields.forEach(field => {
+                                    if (field in updates) {
+                                        submission[field] = updates[field]
+                                    }
+                                })
+                            
+                                await submission.save()
+                            
+                                res.status(200).json({
+                                    message: "Submission updated successfully",
+                                    submission
+                                })
+                            })
+                            
+                        </pre></code>
+                    </li>
+                </ul>
+                
+                </li>
+            </ul>
+        </section>
+        
+    </main>
+    
+    
+</body>
+</html>

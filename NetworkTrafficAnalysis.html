@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Network Traffic Analysis</title>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+        <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
+    </nav>
+    
+    <div class="content">
+        <h1>Network Traffic Analysis</h1>
+
+        <h2>Header Analysis</h2>
+        <p>We often wish to examine network traffic to analyze whether a given network is running correctly, is under attack, has secrets in it we would like to reveal or protect, and so on. There is an engineering tradeoff here. We can’t store and analyze all the data that flies by in the network. So we would like to use a portion of the total data to decide where to look deeper.</p>
+        <p>Often the initial security analysis uses protocol headers or security and application logs.</p>
+        <ul>
+            <li>This information is small, so it can be stored for more traffic over a longer period of time.</li>
+            <li>This information can be determined from packets flying by with a minimum of processing, so it is possible to get the info without either spending a fortune in monitoring hardware or slowing down the network traffic.</li>
+        </ul>
+        <p>There is a perception that the content data is “sensitive” and that header data is “anonymized” or information that people don’t care as much about. If you had time to read the Kieran Healy’s amusing article on “Using Metadata to Find Paul Revere”, you can see that this is not always a valid perception.</p>
+        <p>Let’s see what we can find from the most basic packet header data. The trick here is to rearrange the data in various ways and look for ‘spikes’ in frequency. Then look at what all the frequent items have in common, such as the same protocol, similar IP addresses, etc. To do this well, you need to know about common TCP and UDP services. Fortunately, we have Google to help us with that!</p>
+        
+        <h3>Data Overview</h3>
+        <p>We have two samples of packet data, entitled ‘R’ and ‘O’. The packet data is in order, and covers a brief period of time. For each packet, you get:</p>
+        <ul>
+            <li>Length, IP type, IP Source Address, IP Destination Address</li>
+            <li>TCP: Flags, Source port, Destination Port</li>
+            <li>UDP: Source port, Destination port</li>
+            <li>ICMP: type, code</li>
+        </ul>
+
+        <h3>Analysis Results</h3>
+        <p>The ultimate goal of this assignment is to understand the function of the networks monitored in the R and O data sets. What is their function? We will choose among: work, home, data center, ISP. On the way, we’ll learn as much as we can about these networks from the scanty data that we have.</p>
+        
+        <h4>Protocol Analysis starting point</h4>
+        <img src="img/netAnalysisp1_a.png" class="single-image">
+        <p>IP protocol 1=icmp; 2=igmp; 6=tcp; 17=udp. For example, ICMP (IP Protocol 1) occurs in 7 packets. Each protocol has its own uses, and we can infer network functionality from these details.</p>
+        
+        <h3>Extended Statistics and Comprehensive Network Analysis</h3>
+
+<p><strong>1. Enhancing the Script with Port Statistics:</strong></p>
+<p>To deepen the analysis, the script now includes functionality to count the usage of well-known destination port numbers for TCP and UDP traffic (ports 1–1024) when the <code>-stats</code> flag is enabled. This provides detailed insights into port-specific activity across the R and O datasets.</p>
+<div class="carousel">
+    <div class="carousel-images">
+        <img src="img/netAnalysisp1_1.png" alt="Image 2">
+        <img src="img/netAnalysisp1_2.png" alt="Image 3">
+        
+       
+    </div>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+</div>
+<p><strong>Findings:</strong></p>
+<ul>
+    <li><strong>R.csv Analysis:</strong> 
+        <ul>
+            <li>Significant activity on key ports such as:
+                <ul>
+                    <li><strong>Port 80 (HTTP):</strong> Indicates general web browsing.</li>
+                    <li><strong>Port 110 (POP3):</strong> Suggests frequent email retrieval.</li>
+                    <li><strong>Port 139 (NetBIOS):</strong> Implies file sharing and printer access, typical in a business environment.</li>
+                    <li><strong>Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):</strong> Reflect secure shell and email services commonly seen in workplaces.</li>
+                    <li><strong>UDP Port 53 (DNS):</strong> Consistent with work network traffic.</li>
+                </ul>
+            </li>
+            <li>The traffic patterns strongly suggest a work network environment, with multiple internal services supporting business needs.</li>
+        </ul>
+    </li>
+    <li><strong>O.csv Analysis:</strong> 
+        <ul>
+            <li>High activity across multiple critical internet service ports:
+                <ul>
+                    <li><strong>Port 25 (SMTP):</strong> Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.</li>
+                    <li><strong>Port 80 (HTTP):</strong> 156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.</li>
+                    <li><strong>UDP Port 53 (DNS):</strong> Over 21,000 packets reflect essential DNS services for large-scale environments.</li>
+                    <li><strong>Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):</strong> High activity on management and access ports supports the notion of a data center or ISP managing remote systems.</li>
+                </ul>
+            </li>
+            <li>The scale and nature of the traffic point to a data center or ISP serving a broad user base with diverse services.</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>2. IP Address Analysis:</strong></p>
+
+<div class="carousel">
+    <div class="carousel-images">
+        <img src="img/netAnalysisp2_1.png" alt="Image 4">
+        <img src="img/netAnalysisp2_2.png" alt="Image 5">
+        <img src="img/netAnalysisp2_3.png" alt="Image 6">
+        
+       
+    </div>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+</div>
+<p>With the addition of the <code>-countip</code> flag, the script identifies distinct IP addresses and sorts them by usage count. This reveals valuable insights into network configurations and traffic behavior.</p>
+<ul>
+    <li><strong>R.csv Observations:</strong> 
+        <ul>
+            <li>High-count internal IPs within the private <code>10.x.x.x</code> range suggest central devices such as servers (e.g., <code>10.5.63.230</code> and <code>10.5.63.36</code>).</li>
+            <li>Low-count IPs may represent less frequently accessed devices or other network equipment.</li>
+            <li>Public IPs like <code>199.170.104.36</code> and <code>209.67.181.11</code> indicate external communication points, likely gateways or proxy servers.</li>
+            <li>The presence of subnetting (e.g., <code>10.5.x.x</code>) and external IPs implies a corporate network with logical segmentation and possibly a DMZ (demilitarized zone).</li>
+        </ul>
+    </li>
+    <li><strong>O.csv Observations:</strong> 
+        <ul>
+            <li>High-traffic IPs (e.g., <code>192.245.12.221</code> and <code>192.245.12.242</code>) suggest centralized infrastructure like routers or gateways typical of ISPs.</li>
+            <li>Low-traffic IPs likely correspond to individual client endpoints, such as home users or small businesses.</li>
+            <li>The mix of high-frequency infrastructure IPs and low-frequency client IPs reinforces the classification of this network as an ISP.</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>3. Network Prefix Dominance:</strong></p>
+<p>Using the <code>-countnetwork2</code> and <code>-countnetwork3</code> flags, the dominant network prefixes were identified:</p>
+<ul>
+    <li><strong>R.csv:</strong> The prefix <code>10.5</code> dominates, with <code>10.5.63</code> being the most significant subset (97,289 packets). This indicates segmentation typical of corporate environments.</li>
+    <li><strong>O.csv:</strong> The prefix <code>192.245</code> dominates, with <code>192.245.12</code> being the top subset (414,455 packets). This aligns with large-scale ISP infrastructure.</li>
+</ul>
+<div class="carousel">
+    <div class="carousel-images">
+        <img src="img/netAnalysisp3_1.png" alt="Image 7">
+        <img src="img/netAnalysisp3_2.png" alt="Image 8">
+        <img src="img/netAnalysisp3_3.png" alt="Image 9">
+        
+       
+    </div>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+</div>
+<p><strong>4. Routing and VPN Protocols:</strong></p>
+
+<p>Enhanced filtering for specific protocols (e.g., GRE, IPSEC, OSPF) revealed key insights:</p>
+<ul>
+    <li><strong>R.csv:</strong> No evidence of routing or VPN protocols was found.</li>
+    <li><strong>O.csv:</strong> Significant presence of routing and VPN protocols indicates infrastructure supporting tunneling (GRE), virtual private networks (IPSEC), and dynamic routing (OSPF), further confirming the ISP classification.</li>
+</ul>
+
+<p><strong>5. Additional Features:</strong></p>
+<p>New protocol arguments enable focused analysis of specialized traffic types. The <code>-other</code> flag allows isolated evaluation of unusual or less common protocols, aiding in deeper investigation.</p>
+
+<h3>Additional Insights: Protocol and Network Prefix Analysis</h3>
+
+<p><strong>7. Identifying Associated Network Prefixes:</strong></p>
+<p>Through extended analysis, other network prefixes closely associated with specific protocols have been identified:</p>
+<ul>
+    <li><strong>GRE Protocol:</strong> 
+        <ul>
+            <li>Most frequent IPs:
+                <ul>
+                    <li><strong>209.104.16.215:</strong> 2567 packets.</li>
+                    <li><strong>209.104.16.9:</strong> 2567 packets.</li>
+                </ul>
+            </li>
+            <li>Less frequent IPs:
+                <ul>
+                    <li><strong>209.104.16.58:</strong> 59 packets.</li>
+                    <li><strong>209.104.16.90:</strong> 59 packets.</li>
+                </ul>
+            </li>
+            <li>The <strong>209.104.16</strong> network prefix is strongly associated with GRE protocol traffic.</li>
+        </ul>
+    </li>
+    <li><strong>IPSEC Protocol:</strong> 
+        <ul>
+            <li>Most frequent IP:
+                <ul>
+                    <li><strong>198.182.113.1:</strong> 690 packets.</li>
+                </ul>
+            </li>
+            <li>The <strong>198.182.113</strong> network prefix is a valid grouping for IPSEC protocol usage.</li>
+        </ul>
+    </li>
+    <li><strong>OSPF Protocol:</strong> 
+        <ul>
+            <li>Most frequent IP:
+                <ul>
+                    <li><strong>207.182.35.58:</strong> 16 packets.</li>
+                </ul>
+            </li>
+            <li>Other IPs within the same subnet:
+                <ul>
+                    <li><strong>207.182.35.49:</strong> smaller count.</li>
+                    <li><strong>207.182.35.50:</strong> smaller count.</li>
+                </ul>
+            </li>
+            <li>The <strong>207.182.35</strong> network prefix is valid and associated with OSPF protocol traffic.</li>
+        </ul>
+    </li>
+</ul>
+
+<p><strong>8. Correlation with Network Characteristics:</strong></p>
+<p>Further analysis of the OSPF protocol provides insights into the network types:</p>
+<ul>
+    <li><strong>R.csv (Work Network):</strong> 
+        <ul>
+            <li>No evidence of GRE, IPSEC, or OSPF protocols.</li>
+            <li>Routing and VPN protocols are typically unnecessary for internal communication within corporate networks.</li>
+            <li>Traffic is dominated by application-specific protocols (e.g., HTTP, FTP), reinforcing the classification as a work network.</li>
+        </ul>
+    </li>
+    <li><strong>O.csv (ISP Network):</strong> 
+        <ul>
+            <li>Significant evidence of GRE, IPSEC, and OSPF protocols.</li>
+            <li>These protocols indicate the need for secure tunneling, complex routing mechanisms, and extensive inter-network communication.</li>
+            <li>The presence of such protocols aligns with the characteristics of ISP or data center networks.</li>
+        </ul>
+    </li>
+</ul>
+<div class="carousel">
+    <div class="carousel-images">
+        <img src="img/netAnalysisp4_1.png" alt="Image 10">
+        <img src="img/netAnalysisp4_2.png" alt="Image 11">
+        <img src="img/netAnalysisp4_3.png" alt="Image 12">
+        
+       
+    </div>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+</div>
+<p><strong>9. Counting Packets by Service:</strong></p>
+<p>To further enhance traffic analysis, the script includes a new <code>-connto</code> option. This functionality counts the number of packets sent to each service (ports 1-1024) based on the destination IP address (<code>ipdst</code>) and its associated protocol (<code>proto</code>) and destination port (<code>dport</code>).</p>
+<p><strong>Output Format:</strong></p>
+<ul>
+    <li>The output maps each <code>ipdst</code> to a tuple:
+        <ul>
+            <li><code>(proto, dport):</code> Where <code>proto</code> represents the IP protocol (e.g., TCP or UDP) and <code>dport</code> reflects the destination port number.</li>
+        </ul>
+    </li>
+    <li>This provides clear and organized visibility into service-specific traffic patterns across networks.</li>
+</ul>
+<p>The functionality is seamlessly integrated into the script, ensuring usability for large-scale datasets.</p>
+
+<h3>Advanced Traffic Analysis: Server Identification and Network Roles</h3>
+
+<p><strong>9. The <code>-connto</code> Option:</strong></p>
+<p>An extended script functionality has been developed to count the number of packets sent to each service (ports 1–1024) in the network. This is achieved using a dictionary that maps each destination IP address (<code>ipdst</code>) to a tuple of the protocol (<code>proto</code>) and destination port (<code>dport</code>). For instance:</p>
+<ul>
+    <li><code>(proto, dport):</code> <code>proto</code> represents the IP protocol (e.g., TCP or UDP), and <code>dport</code> reflects the destination port number.</li>
+</ul>
+<p>Data from the <code>-connto</code> output is structured to provide clear insights into service-specific traffic patterns and server roles.</p>
+
+<p><strong>10. Findings:</strong></p>
+<p>When the <code>-connto</code> option is applied to the R and O datasets (excluding broadcast addresses ending in <code>.255</code>), significant server roles are revealed based on port activity:</p>
+
+<ul>
+    <li><strong>Top 20 Servers:</strong></li>
+    <ul>
+        <li>An interesting connection at <code>10.5.63.1/113</code>: Port 113 is known for IRC traffic, which poses security risks and is often blocked by firewalls.</li>
+        <li>Additional servers revealed unique roles:</li>
+        <ul>
+            <li><strong>R.csv Data:</strong>
+                <ul>
+                    <li><code>10.5.63.7</code> and <code>10.5.63.230</code>: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).</li>
+                    <li><code>10.5.63.6</code>: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.</li>
+                    <li>External connections to root DNS servers (<code>128.9.0.107</code> and <code>192.5.5.241</code>) via <code>10.5.63.24</code> indicate outbound DNS handling.</li>
+                    <li>Connections to external mail servers (e.g., <code>216.101.171.2</code> on port 110) highlight infrastructure for external email and domain name resolution.</li>
+                </ul>
+            </li>
+            <li><strong>O.csv Data:</strong>
+                <ul>
+                    <li>Servers with well-defined roles based on port activity:
+                        <ul>
+                            <li>Mail servers (SMTP, port 25): IPs like <code>192.245.12.242</code>, <code>192.245.12.234</code>, and others handle extensive email traffic.</li>
+                            <li>DNS servers (port 53): IPs like <code>192.245.12.56</code> and <code>192.245.12.7</code> process large volumes of DNS queries.</li>
+                            <li>Web servers (HTTP, port 80): High traffic indicates significant web service activity.</li>
+                            <li>Time synchronization servers (NTP, port 123): Activity highlights time server functionality.</li>
+                            <li>Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.</li>
+                        </ul>
+                    </li>
+                    <li>Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises.</li>
+                </ul>
+            </li>
+        </ul>
+    </ul>
+</ul>
+
+       
+    </div>
+
+    <div class="code-container">
+        <h3>Analysis Script</h3>
+        <pre><code>
+            #!/usr/bin/env python3
+            from CSVPacket import Packet, CSVPackets
+            import sys
+            import ipaddress
+            
+            IPProtos = [0 for x in range(256)]
+            numBytes = 0
+            numPackets = 0
+            
+            # Dictionaries to count well-known ports for TCP and UDP
+            tcp_ports = {port: 0 for port in range(1, 1025)}
+            udp_ports = {port: 0 for port in range(1, 1025)}
+            
+            # Flags to control which options are enabled
+            show_stats = '-stats' in sys.argv
+            count_ips = '-countip' in sys.argv
+            count_networks = '-countnetwork' in sys.argv  # Flag to count network prefixes (unused here)
+            count_networks2 = '-countnetwork2' in sys.argv  # Top 10 networks (2-octet network prefix)
+            count_networks3 = '-countnetwork3' in sys.argv  # Top 10 networks (3-octet network prefix)
+            count_other = '-other' in sys.argv  # Flag for GRE, IPSEC, OSPF filtering
+            count_to = '-connto' in sys.argv  # Flag for counting connections to specific ports
+            
+            # Dictionaries to count IP address usage for specific protocols
+            gre_ips = {}
+            ipsec_ips = {}
+            ospf_ips = {}
+            ip_counts = {}
+            network_counts2 = {}  # For 2-octet network prefixes
+            network_counts3 = {}  # For 3-octet network prefixes
+            
+            # Dictionary to track connections to each destination IP address
+            conn_to = {}  # {ipdst: {proto, dport}: set of src-ip-src-port}
+            
+            # Open the CSV file
+            csvfile = open(sys.argv[1], 'r')
+            
+            # Iterate through packets and gather stats
+            for pkt in CSVPackets(csvfile):
+                numBytes += pkt.length
+                numPackets += 1
+                proto = pkt.proto & 0xff
+                IPProtos[proto] += 1
+            
+                # Check if the packet is TCP or UDP and count destination ports
+                if proto == 6:  # TCP
+                    if 1 <= pkt.tcpdport <= 1024:
+                        tcp_ports[pkt.tcpdport] += 1
+                elif proto == 17:  # UDP
+                    if 1 <= pkt.udpdport <= 1024:
+                        udp_ports[pkt.udpdport] += 1
+            
+                # Count IP addresses if '-countip' flag is present
+                if count_ips:
+                    ip_addr = pkt.ipsrc  # Use ipsrc for source IP or ipdst for destination IP
+                    ip_counts[ip_addr] = ip_counts.get(ip_addr, 0) + 1
+            
+                # Count protocol-specific IPs if '-other' flag is present
+                if count_other:
+                    # GRE (protocol 47)
+                    if proto == 47:
+                        gre_ips[pkt.ipsrc] = gre_ips.get(pkt.ipsrc, 0) + 1
+                        gre_ips[pkt.ipdst] = gre_ips.get(pkt.ipdst, 0) + 1
+                    # IPSEC (protocol 50 or 51)
+                    elif proto in [50, 51]:
+                        ipsec_ips[pkt.ipsrc] = ipsec_ips.get(pkt.ipsrc, 0) + 1
+                        ipsec_ips[pkt.ipdst] = ipsec_ips.get(pkt.ipdst, 0) + 1
+                    # OSPF (protocol 89)
+                    elif proto == 89:
+                        ospf_ips[pkt.ipsrc] = ospf_ips.get(pkt.ipsrc, 0) + 1
+                        ospf_ips[pkt.ipdst] = ospf_ips.get(pkt.ipdst, 0) + 1
+            
+                # Count network prefixes based on 2-octet and 3-octet prefixes
+                if count_networks2 or count_networks3:
+                    try:
+                        ip = ipaddress.ip_address(pkt.ipsrc)  # Parse the source IP address
+                        if count_networks2:
+                            network_prefix2 = str(ipaddress.IPv4Network(f"{ip}/16", strict=False).network_address)
+                            network_counts2[network_prefix2] = network_counts2.get(network_prefix2, 0) + 1
+                        if count_networks3:
+                            network_prefix3 = str(ipaddress.IPv4Network(f"{ip}/24", strict=False).network_address)
+                            network_counts3[network_prefix3] = network_counts3.get(network_prefix3, 0) + 1
+                    except ValueError:
+                        # Handle invalid IP address formats if needed
+                        continue
+            
+                # If '-connto' flag is present, track connections by destination IP, protocol, and port
+                if count_to:
+                    if proto == 6:  # TCP
+                        dport = pkt.tcpdport
+                    elif proto == 17:  # UDP
+                        dport = pkt.udpdport
+                    else:
+                        continue  # Skip non-TCP/UDP packets
+                    
+                    if 1 <= dport <= 1024:
+                        key = (pkt.ipdst, proto, dport)
+                        src_key = f"{pkt.ipsrc}-{proto}/{dport}"
+                        if key not in conn_to:
+                            conn_to[key] = set()
+                        conn_to[key].add(src_key)
+            
+            # Print results
+            print("numPackets:%u numBytes:%u" % (numPackets, numBytes))
+            for i in range(256):
+                if IPProtos[i] != 0:
+                    print("%3u: %9u" % (i, IPProtos[i]))
+            
+            # If '-stats' flag is present, print additional TCP/UDP port statistics
+            if show_stats:
+                print("\nTCP Destination Port Counts (1-1024):")
+                print(f"{'Port':<10} {'Count':<10}")  # Column headers
+                print("-" * 20)
+                
+                for port, count in tcp_ports.items():
+                    if count > 0:
+                        print(f"{port:<10} {count:<10}")
+            
+                print("\nUDP Destination Port Counts (1-1024):")
+                print(f"{'Port':<10} {'Count':<10}")  # Column headers
+                print("-" * 20)
+                
+                for port, count in udp_ports.items():
+                    if count > 0:
+                        print(f"{port:<10} {count:<10}")
+            
+            # If '-countip' flag is present, print sorted IP usage counts with pagination
+            if count_ips:
+                print("\nIP Address Usage Counts:")
+                print(f"{'IP Address':<20} {'Count':<10}")
+                print("-" * 30)
+                
+                sorted_ips = sorted(ip_counts.items(), key=lambda x: x[1], reverse=True)
+                
+                # Pagination variables
+                items_per_page = 50  # Number of items to display per page
+                total_items = len(sorted_ips)
+                page = 1  # Starting with the first page
+                
+                while True:
+                    # Calculate the slice of items to display for the current page
+                    start_idx = (page - 1) * items_per_page
+                    end_idx = min(page * items_per_page, total_items)
+                    
+                    # Print the current page's items
+                    for ip, count in sorted_ips[start_idx:end_idx]:
+                        print(f"{ip:<20} {count:<10}")
+                    
+                    # Check if there are more pages to show
+                    if end_idx >= total_items:
+                        print("\nEnd of list.")
+                        break  # Exit if we've displayed all items
+                    
+                    # Ask the user if they want to continue to the next page
+                    user_input = input("\nPress Enter to see more or type 'exit' to quit: ").strip().lower()
+                    if user_input == 'exit':
+                        break
+                    
+                    page += 1  # Go to the next page
+            
+            # If '-other' flag is present, print GRE, IPSEC, and OSPF IP usage counts
+            if count_other:
+                print("\nGRE Protocol IP Address Usage Counts:")
+                print(f"{'IP Address':<20} {'Count':<10}")
+                print("-" * 30)
+                
+                sorted_gre_ips = sorted(gre_ips.items(), key=lambda x: x[1], reverse=True)
+                for ip, count in sorted_gre_ips:
+                    print(f"{ip:<20} {count:<10}")
+            
+                print("\nIPSEC Protocol IP Address Usage Counts:")
+                print(f"{'IP Address':<20} {'Count':<10}")
+                print("-" * 30)
+                
+                sorted_ipsec_ips = sorted(ipsec_ips.items(), key=lambda x: x[1], reverse=True)
+                for ip, count in sorted_ipsec_ips:
+                    print(f"{ip:<20} {count:<10}")
+            
+                print("\nOSPF Protocol IP Address Usage Counts:")
+                print(f"{'IP Address':<20} {'Count':<10}")
+                print("-" * 30)
+                
+                sorted_ospf_ips = sorted(ospf_ips.items(), key=lambda x: x[1], reverse=True)
+                for ip, count in sorted_ospf_ips:
+                    print(f"{ip:<20} {count:<10}")
+            
+            # If '-countnetwork' flag is present, print network prefix counts
+            if count_networks2 or count_networks3:
+                print("\nNetwork Prefix Usage Counts (Top 10):")
+                if count_networks2:
+                    print("\n2-Octet Network Prefixes:")
+                    print(f"{'Network Prefix':<20} {'Count':<10}")
+                    print("-" * 30)
+                    
+                    sorted_network_counts2 = sorted(network_counts2.items(), key=lambda x: x[1], reverse=True)[:10]
+                    for network, count in sorted_network_counts2:
+                        print(f"{network:<20} {count:<10}")
+                
+                if count_networks3:
+                    print("\n3-Octet Network Prefixes:")
+                    print(f"{'Network Prefix':<20} {'Count':<10}")
+                    print("-" * 30)
+                    
+                    sorted_network_counts3 = sorted(network_counts3.items(), key=lambda x: x[1], reverse=True)[:10]
+                    for network, count in sorted_network_counts3:
+                        print(f"{network:<20} {count:<10}")
+            
+            # If '-connto' flag is present, track connections by destination IP, protocol, and port with pagination
+            if count_to:
+                print("\nConnections to Specific Ports (Destination IP, Protocol, Port):")
+                print(f"{'Destination IP':<15} {'Proto':<5} {'Port':<10} {'Source IPs':<30} {'Distinct Source IP-Ports':<20}")
+                print("-" * 70)
+                
+                # Create a list to store the connections along with the count of distinct source IP-port pairs
+                connection_counts = []
+                
+                for (ipdst, proto, dport), src_ips in conn_to.items():
+                    # Count distinct source IP-port combinations
+                    distinct_src_ips = set(src_ips)
+                    distinct_count = len(distinct_src_ips)
+                    
+                    # Store the result along with the distinct count and sort distinct IPs
+                    connection_counts.append((ipdst, proto, dport, distinct_count, sorted(distinct_src_ips)))
+                
+                # Sort the connections by the number of distinct source IP-port pairs in descending order
+                sorted_connections = sorted(connection_counts, key=lambda x: x[3], reverse=True)
+            
+                # Pagination variables
+                items_per_page = 10  # Number of items to display per page
+                total_items = len(sorted_connections)
+                page = 1  # Starting with the first page
+                
+                while True:
+                    # Calculate the slice of items to display for the current page
+                    start_idx = (page - 1) * items_per_page
+                    end_idx = min(page * items_per_page, total_items)
+                    
+                    # Print the current page's items
+                    for ipdst, proto, dport, distinct_count, src_ips_list in sorted_connections[start_idx:end_idx]:
+                        # Display only the first 5 IP-port pairs for distinct source IPs, add ellipses if there are more than 5
+                        limited_src_ips_list = src_ips_list[:5]
+                        src_ips_str = ", ".join(limited_src_ips_list)
+                        if distinct_count > 5:
+                            src_ips_str += ", ..."
+                        print(f"{ipdst:<15} {proto:<5} {dport:<10} {src_ips_str:<30} count: {distinct_count:<20}")
+                    
+                    # Check if there are more pages to show
+                    if end_idx >= total_items:
+                        print("\nEnd of list.")
+                        break  # Exit if we've displayed all items
+                    
+                    # Ask the user if they want to continue to the next page
+                    user_input = input("\nPress Enter to see more or type 'exit' to quit: ").strip().lower()
+                    if user_input == 'exit':
+                        break
+                    
+                    page += 1  # Go to the next page
+            
+        </code></pre>
+    </div>
+    <script src="carousel.js"></script>
+</body>
+</html>
