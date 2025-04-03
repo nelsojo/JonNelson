@@ -309,3 +309,46 @@ body {
 .dark-mode h1, .dark-mode h2 {
     color: #d3d3d3; /* Light gray */
 }
+
+#chat-container { width: 300px; margin: auto; border: 1px solid #ccc; padding: 10px; }
+#chat-box { height: 300px; overflow-y: auto; border-bottom: 1px solid #ccc; padding: 5px; }
+.message { padding: 5px; margin: 5px 0; }
+.user { text-align: right; background: #e0e0e0; }
+.bot { text-align: left; background: #d0f0d0; }
+
+#contact-chat-container {
+    display: flex;
+    justify-content: space-between; /* Space them evenly */
+    align-items: flex-start; /* Align to the top */
+    gap: 20px; /* Add space between form and chatbot */
+}
+
+#contact {
+    flex: 1; /* Make it take up half the space */
+    max-width: 50%; /* Prevent it from growing too large */
+}
+
+#chat-container {
+    flex: 1;
+    max-width: 50%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#chat-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
+
+#user-input {
+    width: calc(100% - 80px); /* Make input take most of the space */
+    padding: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+}

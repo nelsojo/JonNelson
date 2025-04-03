@@ -24,23 +24,35 @@
         <p><a href="https://www.linkedin.com/in/jon-nelson-78ba631a/" target="_blank">My Profile</a></p>
     </div>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <div id="contact-chat-container">
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
     
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
     
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
     
-            <button type="submit">Send Message</button>
-        </form>
-        <p id="form-status"></p>
-    </section>
+                <button type="submit">Send Message</button>
+            </form>
+            <p id="form-status"></p>
+        </section>
+    
+        <div id="chat-container">
+            <h3>Just Another Generic AI Chatbot</h3>
+            <div id="chat-box"></div>
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
+    <script src="chatbot.js"></script>
     <script src = "contact.js"></script>
     <script src = "dark-mode.js"></script>
 </body>
