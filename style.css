@@ -352,3 +352,12 @@ button {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+/* Dark mode h1 and h2 styling */
+.dark-mode .user {
+    text-align: right; background: #797979;
+}
+
+.dark-mode .bot {
+    text-align: left; background: #6c7d6c;
+}
