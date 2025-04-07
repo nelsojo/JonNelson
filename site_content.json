@@ -1,0 +1,734 @@
+[
+  {
+    "filename": "about.html",
+    "title": "About Me - Jon Nelson",
+    "headings": [
+      "About Me",
+      "Full Summary",
+      "Education",
+      "Certifications",
+      "Additional Experiences"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "Oregon State University- B.S. Computer Science, GPA: 3.84",
+        "Glendale Community College- Computer Science (Transfer), GPA: 4.0",
+        "Los Rios Community College- Computer Science (Transfer), GPA: 4.0",
+        "MTI College- AAS IT Network Administration, GPA: 4.0",
+        "College of the Redwoods- Residential Electrician Program, GPA: 4.0"
+      ],
+      [
+        "A+ Certified (701, 702)",
+        "MCITP Certified (70-640, 70-642, 70-646)"
+      ],
+      [
+        "NCAS Program & NASA JPL Rover Competition (2020)Participated in the National Community College Aerospace Scholars (NCAS) program.Collaborated with peers to design and prototype a rover for NASA's JPL competition.Developed teamwork, problem-solving, and technical skills while working on an interdisciplinary team.PreviousNext",
+        "Participated in the National Community College Aerospace Scholars (NCAS) program.",
+        "Collaborated with peers to design and prototype a rover for NASA's JPL competition.",
+        "Developed teamwork, problem-solving, and technical skills while working on an interdisciplinary team."
+      ],
+      [
+        "Participated in the National Community College Aerospace Scholars (NCAS) program.",
+        "Collaborated with peers to design and prototype a rover for NASA's JPL competition.",
+        "Developed teamwork, problem-solving, and technical skills while working on an interdisciplinary team."
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "data-analysis.html",
+    "title": "Data Analysis - Jon Nelson Portfolio",
+    "headings": [
+      "Data Analysis"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "Real-time data visualization",
+        "API integrations with Firebase and Maps",
+        "Historical data trend analysis"
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "experience.html",
+    "title": "Experience - Jon Nelson",
+    "headings": [
+      "Work Experience",
+      "Work Experience Summary",
+      "Web Development & Administration",
+      "Technical Support & IT Maintenance",
+      "Event Production & Electrical Work",
+      "Employment Chronology"
+    ],
+    "paragraphs": [
+      "Experienced IT professional with expertise in web development, technical support, network security, and event production. Skilled in server management, cloud applications, and system security."
+    ],
+    "lists": [
+      [
+        "BusinessCoach.com:Managed payment gateway services and WordPress/Joomla sites.",
+        "AdvancedWellness.com:Migrated static websites to WordPress and maintained social media presence.",
+        "Sierra Sniffing Canines:Maintained and updated a static website."
+      ],
+      [
+        "Re-imaged computers, configured user access, and resolved OS issues.",
+        "Provided technical support for troubleshooting print errors, file association issues, and system concerns."
+      ],
+      [
+        "Set up and maintained lighting and sound equipment for performances.",
+        "Installed wiring, outlets, and lighting in residential homes as an electrician apprentice."
+      ],
+      [
+        "Sierra Sniffing Canines:Website Administrator (2020–2022)",
+        "Advanced Wellness, GCM:Web Developer/Social Media Manager (2013–2022)",
+        "BusinessCoach.com:Web/Network Administrator (2012–2014)",
+        "MTI College:IT Intern (2012)",
+        "College of the Redwoods:Electrician Apprentice (2007–2009)",
+        "Center Arts:Stage Hand (2006–2009)"
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "expoitLab.html",
+    "title": "Windows Exploitation - Stack Overflow",
+    "headings": [
+      "Windows Exploitation - Stack Overflow",
+      "Overview",
+      "Methodology",
+      "Challenges Encountered",
+      "Exploitation Process",
+      "Lessons Learned",
+      "System Improvements",
+      "Conclusion"
+    ],
+    "paragraphs": [
+      "This lab provided hands-on experience in performing advanced buffer overflow exploits, which highlighted critical areas in system security and how to leverage debugging tools to identify and manipulate vulnerabilities. It reinforced my understanding of memory vulnerabilities and security measures necessary for defending against such attacks."
+    ],
+    "lists": [
+      [
+        "Installed and configured the Windows XP VM in VMware Workstation using the provided Box files.",
+        "Used Immunity Debugger with the Mona plugin for debugging and analysis.",
+        "Wrote a Python script to generate the exploit, manipulating the stack buffer to execute arbitrary code.",
+        "Used Immunity Debugger to identify memory locations and control flow.",
+        "Successfully executed a buffer overflow attack, launching calc.exe as the payload."
+      ],
+      [
+        "Initial unfamiliarity with Immunity Debugger and Mona plugin; required studying tutorials to learn basic usage.",
+        "Finding the correct buffer overflow threshold (magic number), which was 26073 characters, was critical for the exploit to work.",
+        "Ensuring the program's control flow could be redirected by manipulating the Instruction Pointer (EIP) via buffer overflow.",
+        "Bypassing security mechanisms like ASLR and DEP by using Mona to filter out vulnerable modules."
+      ],
+      [
+        "Started by feeding the program a series of 'A's to find the point where the buffer would overflow (26073 characters).",
+        "Identified the address where the EIP could be overwritten, then used Mona to search for valid jump-to-ESP instructions.",
+        "Used a jump instruction to redirect the flow of execution to our shellcode, which executed calc.exe.",
+        "Experimented with various DLLs and modules, ensuring compatibility with ASLR and DEP settings to maintain stability of the exploit."
+      ],
+      [
+        "Identify vulnerabilities such as buffer overflows and determine the precise point at which they occur.",
+        "Use debugging tools like Immunity Debugger and Mona to analyze and manipulate the stack during program execution.",
+        "Bypass security mechanisms such as ASLR and DEP, which are designed to protect against these kinds of exploits.",
+        "Understand the importance of using different tools for reverse engineering and exploit development, even if they are unfamiliar."
+      ],
+      [
+        "Implement stack canaries to detect and prevent buffer overflow attempts.",
+        "Enable Data Execution Prevention (DEP) and Address Space Layout Randomization (ASLR) to protect against arbitrary code execution.",
+        "Use modern operating systems with enhanced security features and regularly update software to mitigate known vulnerabilities."
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "index.html",
+    "title": "Jon Nelson Portfolio",
+    "headings": [
+      "Connect with me on Handshake",
+      "Connect with me on LinkedIn",
+      "Contact Me",
+      "Just Another Generic AI Chatbot (coming soon!)"
+    ],
+    "paragraphs": [
+      "Explore my skills, projects, and experience in IT, cybersecurity, and software development."
+    ],
+    "lists": [],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "network-security.html",
+    "title": "Network Security - Jon Nelson Portfolio",
+    "headings": [
+      "Network Security"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "Malware analysis and YARA signatures",
+        "Packet capture and analysis with Wireshark",
+        "Advanced buffer overflow exploits"
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "NetworkTrafficAnalysis.html",
+    "title": "Network Traffic Analysis",
+    "headings": [
+      "Network Traffic Analysis",
+      "Header Analysis",
+      "Data Overview",
+      "Analysis Results",
+      "Protocol Analysis starting point",
+      "Extended Statistics and Comprehensive Network Analysis",
+      "Additional Insights: Protocol and Network Prefix Analysis",
+      "Advanced Traffic Analysis: Server Identification and Network Roles",
+      "Analysis Script"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "This information is small, so it can be stored for more traffic over a longer period of time.",
+        "This information can be determined from packets flying by with a minimum of processing, so it is possible to get the info without either spending a fortune in monitoring hardware or slowing down the network traffic."
+      ],
+      [
+        "Length, IP type, IP Source Address, IP Destination Address",
+        "TCP: Flags, Source port, Destination Port",
+        "UDP: Source port, Destination port",
+        "ICMP: type, code"
+      ],
+      [
+        "R.csv Analysis:Significant activity on key ports such as:Port 80 (HTTP):Indicates general web browsing.Port 110 (POP3):Suggests frequent email retrieval.Port 139 (NetBIOS):Implies file sharing and printer access, typical in a business environment.Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):Reflect secure shell and email services commonly seen in workplaces.UDP Port 53 (DNS):Consistent with work network traffic.The traffic patterns strongly suggest a work network environment, with multiple internal services supporting business needs.",
+        "Significant activity on key ports such as:Port 80 (HTTP):Indicates general web browsing.Port 110 (POP3):Suggests frequent email retrieval.Port 139 (NetBIOS):Implies file sharing and printer access, typical in a business environment.Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):Reflect secure shell and email services commonly seen in workplaces.UDP Port 53 (DNS):Consistent with work network traffic.",
+        "Port 80 (HTTP):Indicates general web browsing.",
+        "Port 110 (POP3):Suggests frequent email retrieval.",
+        "Port 139 (NetBIOS):Implies file sharing and printer access, typical in a business environment.",
+        "Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):Reflect secure shell and email services commonly seen in workplaces.",
+        "UDP Port 53 (DNS):Consistent with work network traffic.",
+        "The traffic patterns strongly suggest a work network environment, with multiple internal services supporting business needs.",
+        "O.csv Analysis:High activity across multiple critical internet service ports:Port 25 (SMTP):Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.Port 80 (HTTP):156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.UDP Port 53 (DNS):Over 21,000 packets reflect essential DNS services for large-scale environments.Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):High activity on management and access ports supports the notion of a data center or ISP managing remote systems.The scale and nature of the traffic point to a data center or ISP serving a broad user base with diverse services.",
+        "High activity across multiple critical internet service ports:Port 25 (SMTP):Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.Port 80 (HTTP):156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.UDP Port 53 (DNS):Over 21,000 packets reflect essential DNS services for large-scale environments.Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):High activity on management and access ports supports the notion of a data center or ISP managing remote systems.",
+        "Port 25 (SMTP):Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.",
+        "Port 80 (HTTP):156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.",
+        "UDP Port 53 (DNS):Over 21,000 packets reflect essential DNS services for large-scale environments.",
+        "Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):High activity on management and access ports supports the notion of a data center or ISP managing remote systems.",
+        "The scale and nature of the traffic point to a data center or ISP serving a broad user base with diverse services."
+      ],
+      [
+        "Significant activity on key ports such as:Port 80 (HTTP):Indicates general web browsing.Port 110 (POP3):Suggests frequent email retrieval.Port 139 (NetBIOS):Implies file sharing and printer access, typical in a business environment.Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):Reflect secure shell and email services commonly seen in workplaces.UDP Port 53 (DNS):Consistent with work network traffic.",
+        "Port 80 (HTTP):Indicates general web browsing.",
+        "Port 110 (POP3):Suggests frequent email retrieval.",
+        "Port 139 (NetBIOS):Implies file sharing and printer access, typical in a business environment.",
+        "Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):Reflect secure shell and email services commonly seen in workplaces.",
+        "UDP Port 53 (DNS):Consistent with work network traffic.",
+        "The traffic patterns strongly suggest a work network environment, with multiple internal services supporting business needs."
+      ],
+      [
+        "Port 80 (HTTP):Indicates general web browsing.",
+        "Port 110 (POP3):Suggests frequent email retrieval.",
+        "Port 139 (NetBIOS):Implies file sharing and printer access, typical in a business environment.",
+        "Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):Reflect secure shell and email services commonly seen in workplaces.",
+        "UDP Port 53 (DNS):Consistent with work network traffic."
+      ],
+      [
+        "High activity across multiple critical internet service ports:Port 25 (SMTP):Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.Port 80 (HTTP):156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.UDP Port 53 (DNS):Over 21,000 packets reflect essential DNS services for large-scale environments.Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):High activity on management and access ports supports the notion of a data center or ISP managing remote systems.",
+        "Port 25 (SMTP):Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.",
+        "Port 80 (HTTP):156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.",
+        "UDP Port 53 (DNS):Over 21,000 packets reflect essential DNS services for large-scale environments.",
+        "Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):High activity on management and access ports supports the notion of a data center or ISP managing remote systems.",
+        "The scale and nature of the traffic point to a data center or ISP serving a broad user base with diverse services."
+      ],
+      [
+        "Port 25 (SMTP):Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.",
+        "Port 80 (HTTP):156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.",
+        "UDP Port 53 (DNS):Over 21,000 packets reflect essential DNS services for large-scale environments.",
+        "Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):High activity on management and access ports supports the notion of a data center or ISP managing remote systems."
+      ],
+      [
+        "R.csv Observations:High-count internal IPs within the private10.x.x.xrange suggest central devices such as servers (e.g.,10.5.63.230and10.5.63.36).Low-count IPs may represent less frequently accessed devices or other network equipment.Public IPs like199.170.104.36and209.67.181.11indicate external communication points, likely gateways or proxy servers.The presence of subnetting (e.g.,10.5.x.x) and external IPs implies a corporate network with logical segmentation and possibly a DMZ (demilitarized zone).",
+        "High-count internal IPs within the private10.x.x.xrange suggest central devices such as servers (e.g.,10.5.63.230and10.5.63.36).",
+        "Low-count IPs may represent less frequently accessed devices or other network equipment.",
+        "Public IPs like199.170.104.36and209.67.181.11indicate external communication points, likely gateways or proxy servers.",
+        "The presence of subnetting (e.g.,10.5.x.x) and external IPs implies a corporate network with logical segmentation and possibly a DMZ (demilitarized zone).",
+        "O.csv Observations:High-traffic IPs (e.g.,192.245.12.221and192.245.12.242) suggest centralized infrastructure like routers or gateways typical of ISPs.Low-traffic IPs likely correspond to individual client endpoints, such as home users or small businesses.The mix of high-frequency infrastructure IPs and low-frequency client IPs reinforces the classification of this network as an ISP.",
+        "High-traffic IPs (e.g.,192.245.12.221and192.245.12.242) suggest centralized infrastructure like routers or gateways typical of ISPs.",
+        "Low-traffic IPs likely correspond to individual client endpoints, such as home users or small businesses.",
+        "The mix of high-frequency infrastructure IPs and low-frequency client IPs reinforces the classification of this network as an ISP."
+      ],
+      [
+        "High-count internal IPs within the private10.x.x.xrange suggest central devices such as servers (e.g.,10.5.63.230and10.5.63.36).",
+        "Low-count IPs may represent less frequently accessed devices or other network equipment.",
+        "Public IPs like199.170.104.36and209.67.181.11indicate external communication points, likely gateways or proxy servers.",
+        "The presence of subnetting (e.g.,10.5.x.x) and external IPs implies a corporate network with logical segmentation and possibly a DMZ (demilitarized zone)."
+      ],
+      [
+        "High-traffic IPs (e.g.,192.245.12.221and192.245.12.242) suggest centralized infrastructure like routers or gateways typical of ISPs.",
+        "Low-traffic IPs likely correspond to individual client endpoints, such as home users or small businesses.",
+        "The mix of high-frequency infrastructure IPs and low-frequency client IPs reinforces the classification of this network as an ISP."
+      ],
+      [
+        "R.csv:The prefix10.5dominates, with10.5.63being the most significant subset (97,289 packets). This indicates segmentation typical of corporate environments.",
+        "O.csv:The prefix192.245dominates, with192.245.12being the top subset (414,455 packets). This aligns with large-scale ISP infrastructure."
+      ],
+      [
+        "R.csv:No evidence of routing or VPN protocols was found.",
+        "O.csv:Significant presence of routing and VPN protocols indicates infrastructure supporting tunneling (GRE), virtual private networks (IPSEC), and dynamic routing (OSPF), further confirming the ISP classification."
+      ],
+      [
+        "GRE Protocol:Most frequent IPs:209.104.16.215:2567 packets.209.104.16.9:2567 packets.Less frequent IPs:209.104.16.58:59 packets.209.104.16.90:59 packets.The209.104.16network prefix is strongly associated with GRE protocol traffic.",
+        "Most frequent IPs:209.104.16.215:2567 packets.209.104.16.9:2567 packets.",
+        "209.104.16.215:2567 packets.",
+        "209.104.16.9:2567 packets.",
+        "Less frequent IPs:209.104.16.58:59 packets.209.104.16.90:59 packets.",
+        "209.104.16.58:59 packets.",
+        "209.104.16.90:59 packets.",
+        "The209.104.16network prefix is strongly associated with GRE protocol traffic.",
+        "IPSEC Protocol:Most frequent IP:198.182.113.1:690 packets.The198.182.113network prefix is a valid grouping for IPSEC protocol usage.",
+        "Most frequent IP:198.182.113.1:690 packets.",
+        "198.182.113.1:690 packets.",
+        "The198.182.113network prefix is a valid grouping for IPSEC protocol usage.",
+        "OSPF Protocol:Most frequent IP:207.182.35.58:16 packets.Other IPs within the same subnet:207.182.35.49:smaller count.207.182.35.50:smaller count.The207.182.35network prefix is valid and associated with OSPF protocol traffic.",
+        "Most frequent IP:207.182.35.58:16 packets.",
+        "207.182.35.58:16 packets.",
+        "Other IPs within the same subnet:207.182.35.49:smaller count.207.182.35.50:smaller count.",
+        "207.182.35.49:smaller count.",
+        "207.182.35.50:smaller count.",
+        "The207.182.35network prefix is valid and associated with OSPF protocol traffic."
+      ],
+      [
+        "Most frequent IPs:209.104.16.215:2567 packets.209.104.16.9:2567 packets.",
+        "209.104.16.215:2567 packets.",
+        "209.104.16.9:2567 packets.",
+        "Less frequent IPs:209.104.16.58:59 packets.209.104.16.90:59 packets.",
+        "209.104.16.58:59 packets.",
+        "209.104.16.90:59 packets.",
+        "The209.104.16network prefix is strongly associated with GRE protocol traffic."
+      ],
+      [
+        "209.104.16.215:2567 packets.",
+        "209.104.16.9:2567 packets."
+      ],
+      [
+        "209.104.16.58:59 packets.",
+        "209.104.16.90:59 packets."
+      ],
+      [
+        "Most frequent IP:198.182.113.1:690 packets.",
+        "198.182.113.1:690 packets.",
+        "The198.182.113network prefix is a valid grouping for IPSEC protocol usage."
+      ],
+      [
+        "198.182.113.1:690 packets."
+      ],
+      [
+        "Most frequent IP:207.182.35.58:16 packets.",
+        "207.182.35.58:16 packets.",
+        "Other IPs within the same subnet:207.182.35.49:smaller count.207.182.35.50:smaller count.",
+        "207.182.35.49:smaller count.",
+        "207.182.35.50:smaller count.",
+        "The207.182.35network prefix is valid and associated with OSPF protocol traffic."
+      ],
+      [
+        "207.182.35.58:16 packets."
+      ],
+      [
+        "207.182.35.49:smaller count.",
+        "207.182.35.50:smaller count."
+      ],
+      [
+        "R.csv (Work Network):No evidence of GRE, IPSEC, or OSPF protocols.Routing and VPN protocols are typically unnecessary for internal communication within corporate networks.Traffic is dominated by application-specific protocols (e.g., HTTP, FTP), reinforcing the classification as a work network.",
+        "No evidence of GRE, IPSEC, or OSPF protocols.",
+        "Routing and VPN protocols are typically unnecessary for internal communication within corporate networks.",
+        "Traffic is dominated by application-specific protocols (e.g., HTTP, FTP), reinforcing the classification as a work network.",
+        "O.csv (ISP Network):Significant evidence of GRE, IPSEC, and OSPF protocols.These protocols indicate the need for secure tunneling, complex routing mechanisms, and extensive inter-network communication.The presence of such protocols aligns with the characteristics of ISP or data center networks.",
+        "Significant evidence of GRE, IPSEC, and OSPF protocols.",
+        "These protocols indicate the need for secure tunneling, complex routing mechanisms, and extensive inter-network communication.",
+        "The presence of such protocols aligns with the characteristics of ISP or data center networks."
+      ],
+      [
+        "No evidence of GRE, IPSEC, or OSPF protocols.",
+        "Routing and VPN protocols are typically unnecessary for internal communication within corporate networks.",
+        "Traffic is dominated by application-specific protocols (e.g., HTTP, FTP), reinforcing the classification as a work network."
+      ],
+      [
+        "Significant evidence of GRE, IPSEC, and OSPF protocols.",
+        "These protocols indicate the need for secure tunneling, complex routing mechanisms, and extensive inter-network communication.",
+        "The presence of such protocols aligns with the characteristics of ISP or data center networks."
+      ],
+      [
+        "The output maps eachipdstto a tuple:(proto, dport):Whereprotorepresents the IP protocol (e.g., TCP or UDP) anddportreflects the destination port number.",
+        "(proto, dport):Whereprotorepresents the IP protocol (e.g., TCP or UDP) anddportreflects the destination port number.",
+        "This provides clear and organized visibility into service-specific traffic patterns across networks."
+      ],
+      [
+        "(proto, dport):Whereprotorepresents the IP protocol (e.g., TCP or UDP) anddportreflects the destination port number."
+      ],
+      [
+        "(proto, dport):protorepresents the IP protocol (e.g., TCP or UDP), anddportreflects the destination port number."
+      ],
+      [
+        "Top 20 Servers:",
+        "An interesting connection at10.5.63.1/113: Port 113 is known for IRC traffic, which poses security risks and is often blocked by firewalls.",
+        "Additional servers revealed unique roles:",
+        "R.csv Data:10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution.",
+        "10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).",
+        "10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.",
+        "External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.",
+        "Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution.",
+        "O.csv Data:Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises.",
+        "Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.",
+        "DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.",
+        "Web servers (HTTP, port 80): High traffic indicates significant web service activity.",
+        "Time synchronization servers (NTP, port 123): Activity highlights time server functionality.",
+        "Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises."
+      ],
+      [
+        "An interesting connection at10.5.63.1/113: Port 113 is known for IRC traffic, which poses security risks and is often blocked by firewalls.",
+        "Additional servers revealed unique roles:",
+        "R.csv Data:10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution.",
+        "10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).",
+        "10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.",
+        "External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.",
+        "Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution.",
+        "O.csv Data:Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises.",
+        "Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.",
+        "DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.",
+        "Web servers (HTTP, port 80): High traffic indicates significant web service activity.",
+        "Time synchronization servers (NTP, port 123): Activity highlights time server functionality.",
+        "Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises."
+      ],
+      [
+        "R.csv Data:10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution.",
+        "10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).",
+        "10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.",
+        "External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.",
+        "Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution.",
+        "O.csv Data:Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises.",
+        "Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.",
+        "DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.",
+        "Web servers (HTTP, port 80): High traffic indicates significant web service activity.",
+        "Time synchronization servers (NTP, port 123): Activity highlights time server functionality.",
+        "Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises."
+      ],
+      [
+        "10.5.63.7and10.5.63.230: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).",
+        "10.5.63.6: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.",
+        "External connections to root DNS servers (128.9.0.107and192.5.5.241) via10.5.63.24indicate outbound DNS handling.",
+        "Connections to external mail servers (e.g.,216.101.171.2on port 110) highlight infrastructure for external email and domain name resolution."
+      ],
+      [
+        "Servers with well-defined roles based on port activity:Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.Web servers (HTTP, port 80): High traffic indicates significant web service activity.Time synchronization servers (NTP, port 123): Activity highlights time server functionality.Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.",
+        "DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.",
+        "Web servers (HTTP, port 80): High traffic indicates significant web service activity.",
+        "Time synchronization servers (NTP, port 123): Activity highlights time server functionality.",
+        "Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.",
+        "Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises."
+      ],
+      [
+        "Mail servers (SMTP, port 25): IPs like192.245.12.242,192.245.12.234, and others handle extensive email traffic.",
+        "DNS servers (port 53): IPs like192.245.12.56and192.245.12.7process large volumes of DNS queries.",
+        "Web servers (HTTP, port 80): High traffic indicates significant web service activity.",
+        "Time synchronization servers (NTP, port 123): Activity highlights time server functionality.",
+        "Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems."
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "projects.html",
+    "title": "Projects - Jon Nelson",
+    "headings": [
+      "Projects",
+      "Senior Project: Bee Ring",
+      "Academic Projects",
+      "Web Development",
+      "Operating Systems Programming (C)",
+      "Cloud Application Development (JavaScript)",
+      "Network Security (Python, BASH)",
+      "Mobile Development"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "Developed a complete Android app that connected to a smart device (beehive sensor) using Viam Robotics.",
+        "Collected and visualized real-time data on temperature, humidity, and power conditions.",
+        "Designed features for viewing historical trends through intuitive graphs and providing alerts.",
+        "Secured user data with Firebase authentication.",
+        "Bee Ring Project"
+      ],
+      [
+        "Implemented cryptographic algorithms in Sage for number theory research.",
+        "Developed a vulnerability scanner using packet capture files and the tshark API.",
+        "Developed a network scanner using packet capture files and Python."
+      ],
+      [
+        "Built dynamic websites using Node.js and Handlebars templating engines.See this site built with node.js and handlebars",
+        "See this site built with node.js and handlebars",
+        "Interfaced with SQL databases using JavaScript Sequelize."
+      ],
+      [
+        "See this site built with node.js and handlebars"
+      ],
+      [
+        "Built a custom shell application with command execution, I/O redirection, and signal handling.",
+        "Designed a producer-consumer pipeline with thread synchronization.",
+        "Developed a simple encryption/decryption system with socket-based IPC."
+      ],
+      [
+        "Designed RESTful APIs using Node.js and Express.",
+        "Implemented authentication, rate limiting, and SQL database integration.",
+        "Tested these systems with Postman."
+      ],
+      [
+        "Developed YARA signatures and conducted automated malware analysis with Cuckoo.",
+        "Performed advanced buffer overflow exploits and suggested system improvements.",
+        "Captured and analyzed packets with Wireshark, explaining firewalls and IDS/IPS usage."
+      ],
+      [
+        "Created mobile apps using Kotlin and Flutter/Dart.",
+        "Implemented Material Design principles and integrated APIs (Maps, sensors).",
+        "Enabled real-time data visualization and offline storage. See Bee-Ring Project Above"
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "smallsh.html",
+    "title": "smallsh Assignment Overview",
+    "headings": [
+      "smallsh: a basic unix shell implementation",
+      "Goal of the Assignment",
+      "Objectives"
+    ],
+    "paragraphs": [
+      "The shell should allow users to run commands, change directories, display exit statuses, and properly handle signals, all while supporting file redirection and background processing. This assignment provides hands-on experience with Unix system calls, process management, and signal handling, which are fundamental to understanding how shells and processes operate in Unix-like environments."
+    ],
+    "lists": [
+      [
+        "Provide a command prompt for the user to input commands.",
+        "Handle special symbols for input/output redirection (<, >) and background execution (&).",
+        "Execute both built-in commands (exit,cd,status) and external commands by forking new processes.",
+        "Implement signal handling forSIGINT(Ctrl+C) andSIGTSTP(Ctrl+Z) to manage foreground and background processes.",
+        "Support variable expansion for the process ID ($$).",
+        "Manage the execution of commands in the foreground and background, ensuring proper control over process execution and termination."
+      ],
+      [
+        "Command Prompt:Implement a command prompt that displays a colon (:) for each new input.Ensure the shell handles blank lines and comments, ignoring lines starting with #.PreviousNext",
+        "Implement a command prompt that displays a colon (:) for each new input.",
+        "Ensure the shell handles blank lines and comments, ignoring lines starting with #.",
+        "Variable Expansion:Expand the variable$$to the process ID of the shell for any command input.",
+        "Expand the variable$$to the process ID of the shell for any command input.",
+        "Built-in Commands:Implement built-in commandsexit,cd, andstatus.PreviousNextEnsureexitterminates the shell and cleans up any child processes.Implementcdto change the current directory, with support for absolute and relative paths.Implementstatusto report the exit status or signal of the last foreground process.",
+        "Implement built-in commandsexit,cd, andstatus.",
+        "Ensureexitterminates the shell and cleans up any child processes.",
+        "Implementcdto change the current directory, with support for absolute and relative paths.",
+        "Implementstatusto report the exit status or signal of the last foreground process.",
+        "Executing Other Commands:Implement process creation usingfork(),exec()(viaexecvp), andwaitpid()for handling external commands.Use thePATHenvironment variable to locate executables for non-built-in commands.PreviousNext",
+        "Implement process creation usingfork(),exec()(viaexecvp), andwaitpid()for handling external commands.",
+        "Use thePATHenvironment variable to locate executables for non-built-in commands.",
+        "Input and Output Redirection:Implement input (<) and output (>) redirection usingdup2(), ensuring files are opened correctly and errors are handled.PreviousNext",
+        "Implement input (<) and output (>) redirection usingdup2(), ensuring files are opened correctly and errors are handled.",
+        "Foreground and Background Execution:Handle commands with & to execute in the background, with process control throughfork().In getALine(), when parsing user input, the program checks if the last token is \"&\". If so, it sets the bg flag to 1, indicating that the command should run in the background.\n                    The global variable allowBG determines whether background execution is enabled. If the user presses CTRL+Z, allowBG toggles between allowing or disallowing background execution.callExec() is responsible for executing external commands.\n                        The program forks a child process using fork(), creating a duplicate process.\n                        The child process (case 0: in switch(spawnPid)) replaces itself with the command using execvp(). If execution fails, it prints an error.For background processes, print the PID and handle termination messages.Background Execution: Parent Continues Without Waiting\n    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.\n    \n    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.Ensure foreground commands wait for completion before displaying the prompt.",
+        "Handle commands with & to execute in the background, with process control throughfork().",
+        "In getALine(), when parsing user input, the program checks if the last token is \"&\". If so, it sets the bg flag to 1, indicating that the command should run in the background.\n                    The global variable allowBG determines whether background execution is enabled. If the user presses CTRL+Z, allowBG toggles between allowing or disallowing background execution.",
+        "callExec() is responsible for executing external commands.\n                        The program forks a child process using fork(), creating a duplicate process.\n                        The child process (case 0: in switch(spawnPid)) replaces itself with the command using execvp(). If execution fails, it prints an error.",
+        "For background processes, print the PID and handle termination messages.Background Execution: Parent Continues Without Waiting\n    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.\n    \n    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.",
+        "Background Execution: Parent Continues Without Waiting\n    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.\n    \n    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.",
+        "If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.",
+        "Ensure foreground commands wait for completion before displaying the prompt.",
+        "Signal Handling (SIGINT, SIGTSTP):Implement signal handling forSIGINT(Ctrl+C) to terminate foreground processes while ignoring it in the shell and background processes.Implement signal handling forSIGTSTP(Ctrl+Z) to toggle between allowing/disallowing background processes, displaying the appropriate messages when switching modes.PreviousNext",
+        "Implement signal handling forSIGINT(Ctrl+C) to terminate foreground processes while ignoring it in the shell and background processes.",
+        "Implement signal handling forSIGTSTP(Ctrl+Z) to toggle between allowing/disallowing background processes, displaying the appropriate messages when switching modes."
+      ],
+      [
+        "Implement a command prompt that displays a colon (:) for each new input.",
+        "Ensure the shell handles blank lines and comments, ignoring lines starting with #."
+      ],
+      [
+        "Expand the variable$$to the process ID of the shell for any command input."
+      ],
+      [
+        "Implement built-in commandsexit,cd, andstatus.",
+        "Ensureexitterminates the shell and cleans up any child processes.",
+        "Implementcdto change the current directory, with support for absolute and relative paths.",
+        "Implementstatusto report the exit status or signal of the last foreground process."
+      ],
+      [
+        "Implement process creation usingfork(),exec()(viaexecvp), andwaitpid()for handling external commands.",
+        "Use thePATHenvironment variable to locate executables for non-built-in commands."
+      ],
+      [
+        "Implement input (<) and output (>) redirection usingdup2(), ensuring files are opened correctly and errors are handled."
+      ],
+      [
+        "Handle commands with & to execute in the background, with process control throughfork().",
+        "In getALine(), when parsing user input, the program checks if the last token is \"&\". If so, it sets the bg flag to 1, indicating that the command should run in the background.\n                    The global variable allowBG determines whether background execution is enabled. If the user presses CTRL+Z, allowBG toggles between allowing or disallowing background execution.",
+        "callExec() is responsible for executing external commands.\n                        The program forks a child process using fork(), creating a duplicate process.\n                        The child process (case 0: in switch(spawnPid)) replaces itself with the command using execvp(). If execution fails, it prints an error.",
+        "For background processes, print the PID and handle termination messages.Background Execution: Parent Continues Without Waiting\n    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.\n    \n    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.",
+        "Background Execution: Parent Continues Without Waiting\n    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.\n    \n    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.",
+        "If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.",
+        "Ensure foreground commands wait for completion before displaying the prompt."
+      ],
+      [
+        "In getALine(), when parsing user input, the program checks if the last token is \"&\". If so, it sets the bg flag to 1, indicating that the command should run in the background.\n                    The global variable allowBG determines whether background execution is enabled. If the user presses CTRL+Z, allowBG toggles between allowing or disallowing background execution.",
+        "callExec() is responsible for executing external commands.\n                        The program forks a child process using fork(), creating a duplicate process.\n                        The child process (case 0: in switch(spawnPid)) replaces itself with the command using execvp(). If execution fails, it prints an error."
+      ],
+      [
+        "Background Execution: Parent Continues Without Waiting\n    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.\n    \n    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.",
+        "If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution."
+      ],
+      [
+        "Implement signal handling forSIGINT(Ctrl+C) to terminate foreground processes while ignoring it in the shell and background processes.",
+        "Implement signal handling forSIGTSTP(Ctrl+Z) to toggle between allowing/disallowing background processes, displaying the appropriate messages when switching modes."
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "tarpaulin-project.html",
+    "title": "Tarpaulin Project - Cloud Application Development",
+    "headings": [
+      "Tarpaulin: A Cloud-Based Course Management API",
+      "Project Overview",
+      "Through this project, I gained hands-on experience in cloud development, covering key concepts such as:"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "API Development & Design:In this project, I created a RESTful API to manage courses with full CRUD (Create, Read, Update, Delete) capabilities. The API utilizes Express and Sequelize ORM to interact with a database and ensures role-based access control for actions like creating, updating, and deleting courses.Get List of Courses (with Pagination):router.get('/', async (req, res, next) => {\n                                let page = parseInt(req.query.page) || 1;\n                                page = page < 1 ? 1 : page;\n                                const numPerPage = 10;\n                                const offset = (page - 1) * numPerPage;\n                              \n                                try {\n                                  const result = await Course.findAndCountAll({\n                                    limit: numPerPage,\n                                    offset: offset,\n                                  });\n                              \n                                  const lastPage = Math.ceil(result.count / numPerPage);\n                                  const links = {};\n                                  if (page < lastPage) {\n                                    links.nextPage = `/businesses?page=${page + 1}`;\n                                    links.lastPage = `/businesses?page=${lastPage}`;\n                                  }\n                                  if (page > 1) {\n                                    links.prevPage = `/businesses?page=${page - 1}`;\n                                    links.firstPage = '/businesses?page=1';\n                                  }\n                              \n                                  res.status(200).send({\n                                    courses: result.rows,\n                                    pageNumber: page,\n                                    totalPages: lastPage,\n                                    pageSize: numPerPage,\n                                    totalCount: result.count,\n                                    links: links,\n                                  });\n                                } catch (e) {\n                                  next(e);\n                                }\n                              });Create a New Course: This endpoint allows admins to create new courses. It also ensures data validation and handles foreign key constraint errors for related data (like the instructor).router.post('/', decodeToken, async (req, res, next) => {\n                                    if (req.user.role !== 'admin') {\n                                      return res.status(403).send({ error: \"Unauthorized. Only admins can create courses.\" });\n                                    }\n                                  \n                                    try {\n                                      const course = await Course.create(req.body, {\n                                        fields: CourseClientFields, // Ensures only client-specified fields are allowed for safety\n                                      });\n                                  \n                                      res.status(201).send(course); // Return the created course\n                                    } catch (e) {\n                                      if (e instanceof ValidationError) {\n                                        res.status(400).send({ error: e.message });\n                                      } else if(e instanceof ForeignKeyConstraintError) {\n                                        res.status(400).send({ error: \"The instructorId provided doesn't exist\" });\n                                      } else {\n                                        next(e);\n                                      }\n                                    }\n                                  });Update a Course: This endpoint allows for course updates by admins or the instructors who own the course. It checks user roles and validates course existence.router.patch('/:courseId', decodeToken, async (req, res, next) => {\n                                    const courseId = parseInt(req.params.courseId);\n                                  \n                                    let course;\n                                    try {\n                                      course = await Course.findByPk(courseId);\n                                      if (!course) {\n                                        return res.status(404).send({ error: \"Course not found.\" });\n                                      }\n                                    } catch (e) {\n                                      return next(e);\n                                    }\n                                  \n                                    if (req.user.role !== 'admin' && (req.user.role !== 'instructor' || req.user.sub !== course.instructorId)) {\n                                      return res.status(403).send({ error: \"Unauthorized. You must be an admin or the course's instructor to update this course.\" });\n                                    }\n                                  \n                                    try {\n                                      const result = await Course.update(req.body, {\n                                        where: { courseId: courseId },\n                                        fields: CourseClientFields.filter(field => field != 'courseId' && field != 'instructorId'),\n                                      });\n                                  \n                                      if (result[0] > 0) {\n                                        res.status(200).send();\n                                      } else {\n                                        return res.status(404).send({ error: \"No updates made. Course not found or data invalid.\" });\n                                      }\n                                    } catch (e) {\n                                      if (e instanceof ForeignKeyConstraintError) {\n                                        return res.status(400).send({ error: \"The instructorId provided doesn't exist\" });\n                                      }\n                                  \n                                      next(e);\n                                    }\n                                  });Delete a Course: This endpoint allows admins to delete courses, enforcing role-based access control to ensure only authorized users can perform deletions.router.delete('/:courseId', decodeToken, async (req, res, next) => {\n                                    if (req.user.role !== 'admin') {\n                                      return res.status(403).send({ error: \"Unauthorized. Only admins can delete courses.\" });\n                                    }\n                                  \n                                    const courseId = parseInt(req.params.courseId);\n                                  \n                                    try {\n                                      const result = await Course.destroy({ where: { courseId: courseId }});\n                                      if (result > 0) {\n                                        res.status(204).send();\n                                      } else {\n                                        next(); // Course not found\n                                      }\n                                    } catch (e) {\n                                      next(e);\n                                    }\n                                  });",
+        "Get List of Courses (with Pagination):router.get('/', async (req, res, next) => {\n                                let page = parseInt(req.query.page) || 1;\n                                page = page < 1 ? 1 : page;\n                                const numPerPage = 10;\n                                const offset = (page - 1) * numPerPage;\n                              \n                                try {\n                                  const result = await Course.findAndCountAll({\n                                    limit: numPerPage,\n                                    offset: offset,\n                                  });\n                              \n                                  const lastPage = Math.ceil(result.count / numPerPage);\n                                  const links = {};\n                                  if (page < lastPage) {\n                                    links.nextPage = `/businesses?page=${page + 1}`;\n                                    links.lastPage = `/businesses?page=${lastPage}`;\n                                  }\n                                  if (page > 1) {\n                                    links.prevPage = `/businesses?page=${page - 1}`;\n                                    links.firstPage = '/businesses?page=1';\n                                  }\n                              \n                                  res.status(200).send({\n                                    courses: result.rows,\n                                    pageNumber: page,\n                                    totalPages: lastPage,\n                                    pageSize: numPerPage,\n                                    totalCount: result.count,\n                                    links: links,\n                                  });\n                                } catch (e) {\n                                  next(e);\n                                }\n                              });",
+        "Create a New Course: This endpoint allows admins to create new courses. It also ensures data validation and handles foreign key constraint errors for related data (like the instructor).router.post('/', decodeToken, async (req, res, next) => {\n                                    if (req.user.role !== 'admin') {\n                                      return res.status(403).send({ error: \"Unauthorized. Only admins can create courses.\" });\n                                    }\n                                  \n                                    try {\n                                      const course = await Course.create(req.body, {\n                                        fields: CourseClientFields, // Ensures only client-specified fields are allowed for safety\n                                      });\n                                  \n                                      res.status(201).send(course); // Return the created course\n                                    } catch (e) {\n                                      if (e instanceof ValidationError) {\n                                        res.status(400).send({ error: e.message });\n                                      } else if(e instanceof ForeignKeyConstraintError) {\n                                        res.status(400).send({ error: \"The instructorId provided doesn't exist\" });\n                                      } else {\n                                        next(e);\n                                      }\n                                    }\n                                  });",
+        "Update a Course: This endpoint allows for course updates by admins or the instructors who own the course. It checks user roles and validates course existence.router.patch('/:courseId', decodeToken, async (req, res, next) => {\n                                    const courseId = parseInt(req.params.courseId);\n                                  \n                                    let course;\n                                    try {\n                                      course = await Course.findByPk(courseId);\n                                      if (!course) {\n                                        return res.status(404).send({ error: \"Course not found.\" });\n                                      }\n                                    } catch (e) {\n                                      return next(e);\n                                    }\n                                  \n                                    if (req.user.role !== 'admin' && (req.user.role !== 'instructor' || req.user.sub !== course.instructorId)) {\n                                      return res.status(403).send({ error: \"Unauthorized. You must be an admin or the course's instructor to update this course.\" });\n                                    }\n                                  \n                                    try {\n                                      const result = await Course.update(req.body, {\n                                        where: { courseId: courseId },\n                                        fields: CourseClientFields.filter(field => field != 'courseId' && field != 'instructorId'),\n                                      });\n                                  \n                                      if (result[0] > 0) {\n                                        res.status(200).send();\n                                      } else {\n                                        return res.status(404).send({ error: \"No updates made. Course not found or data invalid.\" });\n                                      }\n                                    } catch (e) {\n                                      if (e instanceof ForeignKeyConstraintError) {\n                                        return res.status(400).send({ error: \"The instructorId provided doesn't exist\" });\n                                      }\n                                  \n                                      next(e);\n                                    }\n                                  });",
+        "Delete a Course: This endpoint allows admins to delete courses, enforcing role-based access control to ensure only authorized users can perform deletions.router.delete('/:courseId', decodeToken, async (req, res, next) => {\n                                    if (req.user.role !== 'admin') {\n                                      return res.status(403).send({ error: \"Unauthorized. Only admins can delete courses.\" });\n                                    }\n                                  \n                                    const courseId = parseInt(req.params.courseId);\n                                  \n                                    try {\n                                      const result = await Course.destroy({ where: { courseId: courseId }});\n                                      if (result > 0) {\n                                        res.status(204).send();\n                                      } else {\n                                        next(); // Course not found\n                                      }\n                                    } catch (e) {\n                                      next(e);\n                                    }\n                                  });",
+        "Authentication:Implemented JWT-based authentication and role-based access control (RBAC) to manage users.In courses.js, the decodeToken middleware handles the JWT verification and assigns the decoded user information to the request object (req.user), which can be used by subsequent route handlers to check the user's identity and role.\n                        RBAC is implemented by checking the user's role (extracted from the JWT payload) to determine if they have permission to perform certain actions. \n                        For example, only users with the admin role are allowed to create or delete courses, as shown in the following route:router.post('/', decodeToken, async (req, res, next) => {\n                                if (req.user.role !== 'admin') {\n                                  return res.status(403).send({ error: \"Unauthorized. Only admins can create courses.\" });\n                                }\n                              \n                                try {\n                                  const course = await Course.create(req.body, {\n                                    fields: CourseClientFields // Ensures only client-specified fields are allowed for safety\n                                  });\n                              \n                                  // Instead of just sending the id, send the complete course object.\n                                  // This assumes that the course object returned from `Course.create()` contains all the relevant data.\n                                  res.status(201).send(course); // Adjust here to return the entire course object\n                                } catch (e) {\n                                  if (e instanceof ValidationError) {\n                                    res.status(400).send({ error: e.message });\n                                  } else if(e instanceof ForeignKeyConstraintError) {\n                                    res.status(400).send({ error: \"The instructorId provided doesn't exist\" })\n                                  } else {\n                                    next(e);\n                                  }\n                                }\n                              });This function ensures that the request includes a valid JWT token in the Authorization header, which is then decoded. If the token is invalid or expired, a 403 or 401 error is returned, respectively.function decodeToken(req, res, next) {\n                                const authHeader = req.headers.authorization;\n                                if (authHeader) {\n                                  const token = authHeader.split(' ')[1];\n                                  jwt.verify(token, secretKey, (err, user) => {\n                                    if (err) {\n                                      return res.status(403).json({ error: \"Unauthorized access\" });\n                                    }\n                                    req.user = user; // Attach decoded user to request object\n                                    next();\n                                  });\n                                } else {\n                                  res.status(401).send({ error: 'No token provided' });\n                                }\n                              }The auth.js file contains a function generateAuthToken which creates a JWT when a user logs in. The JWT contains the user's sub (ID), name, email, and role, which are used to authenticate and authorize the user. Example of JWT generation:async function generateAuthToken(email) {\n                                const user = await getUserByEmail(email);\n                                const payload = {\n                                    sub: user.userId,\n                                    name: user.name,\n                                    email: user.email,\n                                    role: user.role\n                                };\n                                return jwt.sign(payload, secretKey, { expiresIn: '24h' });\n                            }The verifyAdmin function checks if the user has an admin role. This is useful for routes where only admins should have access, like deleting courses or managing users. Example of admin verification:async function verifyAdmin(req, res) {\n                                const authHeader = req.get('Authorization') || '';\n                                const token = authHeader.split(' ')[1];\n                                try {\n                                    const payload = jwt.verify(token, secretKey);\n                                    const user = await getUserByEmail(payload.email);\n                                    if (user.role !== 'admin') {\n                                        return false;\n                                    } else {\n                                        return true;\n                                    }\n                                } catch (e) {\n                                    return false;\n                                }\n                            }The requireAuthentication middleware ensures that the user is authenticated by verifying their JWT token on each protected route. The user's sub (ID) and role are then made available to the route handler for further checks.function requireAuthentication(req, res, next) {\n                                const authHeader = req.get('Authorization') || '';\n                                const token = authHeader.split(' ')[1];\n                                try {\n                                    const payload = jwt.verify(token, secretKey);\n                                    req.user = payload.sub; // Attach the user ID to the request\n                                    req.role = payload.role; // Attach the user role to the request\n                                    next();\n                                } catch (e) {\n                                    res.status(401).json({\n                                      error: \"Invalid authentication token provided.\"\n                                    });\n                                }\n                            }",
+        "In courses.js, the decodeToken middleware handles the JWT verification and assigns the decoded user information to the request object (req.user), which can be used by subsequent route handlers to check the user's identity and role.\n                        RBAC is implemented by checking the user's role (extracted from the JWT payload) to determine if they have permission to perform certain actions. \n                        For example, only users with the admin role are allowed to create or delete courses, as shown in the following route:router.post('/', decodeToken, async (req, res, next) => {\n                                if (req.user.role !== 'admin') {\n                                  return res.status(403).send({ error: \"Unauthorized. Only admins can create courses.\" });\n                                }\n                              \n                                try {\n                                  const course = await Course.create(req.body, {\n                                    fields: CourseClientFields // Ensures only client-specified fields are allowed for safety\n                                  });\n                              \n                                  // Instead of just sending the id, send the complete course object.\n                                  // This assumes that the course object returned from `Course.create()` contains all the relevant data.\n                                  res.status(201).send(course); // Adjust here to return the entire course object\n                                } catch (e) {\n                                  if (e instanceof ValidationError) {\n                                    res.status(400).send({ error: e.message });\n                                  } else if(e instanceof ForeignKeyConstraintError) {\n                                    res.status(400).send({ error: \"The instructorId provided doesn't exist\" })\n                                  } else {\n                                    next(e);\n                                  }\n                                }\n                              });This function ensures that the request includes a valid JWT token in the Authorization header, which is then decoded. If the token is invalid or expired, a 403 or 401 error is returned, respectively.function decodeToken(req, res, next) {\n                                const authHeader = req.headers.authorization;\n                                if (authHeader) {\n                                  const token = authHeader.split(' ')[1];\n                                  jwt.verify(token, secretKey, (err, user) => {\n                                    if (err) {\n                                      return res.status(403).json({ error: \"Unauthorized access\" });\n                                    }\n                                    req.user = user; // Attach decoded user to request object\n                                    next();\n                                  });\n                                } else {\n                                  res.status(401).send({ error: 'No token provided' });\n                                }\n                              }",
+        "The auth.js file contains a function generateAuthToken which creates a JWT when a user logs in. The JWT contains the user's sub (ID), name, email, and role, which are used to authenticate and authorize the user. Example of JWT generation:async function generateAuthToken(email) {\n                                const user = await getUserByEmail(email);\n                                const payload = {\n                                    sub: user.userId,\n                                    name: user.name,\n                                    email: user.email,\n                                    role: user.role\n                                };\n                                return jwt.sign(payload, secretKey, { expiresIn: '24h' });\n                            }The verifyAdmin function checks if the user has an admin role. This is useful for routes where only admins should have access, like deleting courses or managing users. Example of admin verification:async function verifyAdmin(req, res) {\n                                const authHeader = req.get('Authorization') || '';\n                                const token = authHeader.split(' ')[1];\n                                try {\n                                    const payload = jwt.verify(token, secretKey);\n                                    const user = await getUserByEmail(payload.email);\n                                    if (user.role !== 'admin') {\n                                        return false;\n                                    } else {\n                                        return true;\n                                    }\n                                } catch (e) {\n                                    return false;\n                                }\n                            }The requireAuthentication middleware ensures that the user is authenticated by verifying their JWT token on each protected route. The user's sub (ID) and role are then made available to the route handler for further checks.function requireAuthentication(req, res, next) {\n                                const authHeader = req.get('Authorization') || '';\n                                const token = authHeader.split(' ')[1];\n                                try {\n                                    const payload = jwt.verify(token, secretKey);\n                                    req.user = payload.sub; // Attach the user ID to the request\n                                    req.role = payload.role; // Attach the user role to the request\n                                    next();\n                                } catch (e) {\n                                    res.status(401).json({\n                                      error: \"Invalid authentication token provided.\"\n                                    });\n                                }\n                            }",
+        "Rate Limiting:Applied IP-based and user-based request limits using middleware.\n                Consider the code below:const redisClient = require('./redis')\n\n                    const { verifyToken } = require('./auth')\n                    const { hash } = require('bcryptjs')\n                    \n                    const rateLimitWindowMs = 60000\n                    const tierOneMaxRequests = 10   // for requests without a valid JWT\n                    const tierTwoMaxRequests = 30   // for requests with a valid JWT\n                    \n                    async function rateLimit (req, res, next) {\n                        const ip = req.ip\n                        let rateLimitMaxReqs\n                        let rateLimitBasis\n                        const userId = await verifyToken(req, res, next)\n                        if (userId) {\n                            rateLimitMaxReqs = tierTwoMaxRequests\n                            rateLimitBasis = userId.toString()\n                        } else {\n                            rateLimitMaxReqs = tierOneMaxRequests\n                            rateLimitBasis = ip\n                        }\n                        console.log(\"== Rate limit max requests: \", rateLimitMaxReqs)\n                    \n                        let tokenBucket\n                        try {\n                            tokenBucket = await redisClient.hGetAll(rateLimitBasis)\n                        } catch (e) {\n                            console.error(\"== Error: \", e)\n                            next()\n                            return\n                        }\n                    \n                        tokenBucket = {\n                            tokens: parseFloat(tokenBucket.tokens) || rateLimitMaxReqs,\n                            last: parseInt(tokenBucket.last) || Date.now()\n                        }\n                    \n                        const timestamp = Date.now()\n                        const elapsedMiliseconds = timestamp - tokenBucket.last\n                        const refreshRate = rateLimitMaxReqs / rateLimitWindowMs\n                        tokenBucket.tokens += elapsedMiliseconds * refreshRate\n                        tokenBucket.tokens = Math.min(rateLimitMaxReqs, tokenBucket.tokens)\n                        tokenBucket.last = timestamp\n                    \n                        console.log(\"== Tokens: \", tokenBucket.tokens)\n                    \n                        if (tokenBucket.tokens >= 1) {\n                            tokenBucket.tokens -= 1\n                            // Save the updated token bucket\n                            await redisClient.hSet(rateLimitBasis, [\n                                ['tokens', tokenBucket.tokens],\n                                ['last', tokenBucket.last]\n                            ])\n                            next()\n                        } else {\n                            // Save the updated token bucket\n                            await redisClient.hSet(rateLimitBasis, [\n                                ['tokens', tokenBucket.tokens],\n                                ['last', tokenBucket.last]\n                            ])\n                            res.status(429).send({\n                                error: \"Rate limit exceeded. Try again later.\"\n                            })\n                        }\n                    }\n                    module.exports = rateLimitThis code demonstrates rate limiting by applying IP-based and user-based request limits using middleware. It manages requests differently depending on whether a user is authenticated or not, by utilizing Redis for tracking request counts with the token bucket algorithm.\n                The middleware checks if the user is authenticated using `verifyToken`. It applies user-based rate limiting for authenticated users and IP-based rate limiting for unauthenticated ones. The token bucket state (tokens and last request timestamp) is fetched from Redis using `hGetAll`. \n                If the bucket doesn't exist, it's initialized with the maximum allowed tokens and the current timestamp. Tokens are refreshed based on the time elapsed since the last request. If there are tokens left, 1 token is deducted, and the request proceeds. If no tokens are left, a `429` error is returned.\n                The updated token bucket state is saved back to Redis after each request.",
+        "SQL Database Integration:Used PostgreSQL to store course, assignment, and user data.Database Setup: The sequelize instance is created, configured to connect to a MySQL database. The database connection settings are pulled from environment variables (e.g., MYSQL_HOST, MYSQL_PORT, MYSQL_DB, etc.).const { Sequelize } = require('sequelize')\n\n                            const sequelize = new Sequelize({\n                              dialect: 'mysql',\n                              host: process.env.MYSQL_HOST || 'localhost',\n                              port: process.env.MYSQL_PORT || 3306,\n                              database: process.env.MYSQL_DB,\n                              username: process.env.MYSQL_USER,\n                              password: process.env.MYSQL_PASS\n                            })\n                            \n                            module.exports = sequelizeUser Model: The User model defines the schema for the user table. Each user has an auto-incrementing userId, a name, email, password (hashed using bcryptjs), and a role.const { DataTypes } = require('sequelize')\n\nconst sequelize = require('../lib/sequelize')\nconst { Course } = require('./course')\nconst { Submission } = require('./submission')\n\nconst bcrypt = require('bcryptjs')\n\nconst User = sequelize.define('user', {\n  userId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },\n  name: { type: DataTypes.STRING, allowNull: false },\n  email: { type: DataTypes.STRING, allowNull: false, unique: true },\n  password: { \n    type: DataTypes.STRING,\n    allowNull: false,\n    set(value) {\n      this.setDataValue('password', bcrypt.hashSync(value, 10))\n    }\n  },\n  role: { type: DataTypes.STRING, allowNull: false }\n})\n\nUser.hasMany(Course, { foreignKey: 'instructorId', allowNull: false })\nCourse.belongsTo(User, { foreignKey: 'instructorId', allowNull: false })\n\nUser.hasMany(Submission, { foreignKey: 'studentId', allowNull: false })\nSubmission.belongsTo(User, { foreignKey: 'studentId', allowNull: false })\n\nexports.User = User\n\nexports.UserClientFields = [\n  \"name\",\n  \"email\",\n  \"password\",\n  \"role\"\n]\n\n/**\n * Fetch a user from the DB based on user ID.\n */\nasync function getUserById (id) {\n  const excludeAttributes = ['password', 'admin']\n  const user = await User.findByPk(id, {\n      attributes: {\n          exclude: excludeAttributes,\n      },\n      // include: includeOptions\n  })\n\n  if (user === null) {\n    return null\n  }\n\n  if (user.role === 'instructor') {\n    const courses = await user.getCourses()\n    user.dataValues.courses = courses\n  } else if (user.role === 'student') {\n    const enrollments = await user.getEnrollments()\n    user.dataValues.enrollments = enrollments\n  }\n\n  return user\n}\nexports.getUserById = getUserById\n\n/**\n * Fetch a user from the DB based on user email.\n */\nasync function getUserByEmail (email) {\n  const user = await User.findOne({\n      where: {\n          email: email\n      }\n  })\n  if (user === null) {\n      return null\n  } else {\n      return user\n  }\n}\nexports.getUserByEmail = getUserByEmail\n\n/**\n * Validate the user credentials.\n */\nexports.validateCredentials = async function (id, password) {\n  const user = await getUserByEmail(id)\n  return user && await bcrypt.compare(password, user.password)\n}Helper Functions: getUserById(id) Fetches a user by their ID, excluding sensitive data (like password). It also fetches courses or enrollments based on the user's role. getUserByEmail(email): Fetches a user by their email. validateCredentials(id, password): Validates the user's credentials by comparing the provided password with the stored hashed password.Course Model: The Course model defines the schema for the course table, including fields like subject, number, title, term, and instructorId.const { DataTypes } = require('sequelize')\n\nconst sequelize = require('../lib/sequelize')\nconst { Assignment } = require('./assignment')\n\nconst Course = sequelize.define('course', {\n  courseId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },\n  subject: { type: DataTypes.STRING, allowNull: false },\n  number: { type: DataTypes.STRING, allowNull: false },\n  title: { type: DataTypes.STRING, allowNull: false },\n  term: { type: DataTypes.STRING, allowNull: false },\n  instructorId: { type: DataTypes.INTEGER } // Add this line\n})\n\nCourse.hasMany(Assignment, { foreignKey: 'courseId', allowNull: false })\nAssignment.belongsTo(Course, { foreignKey: 'courseId', allowNull: false })\n\nexports.Course = Course\n\nexports.CourseClientFields = [\n  \"subject\",\n  \"number\",\n  \"title\",\n  \"term\",\n  \"instructorId\"\n]",
+        "Database Setup: The sequelize instance is created, configured to connect to a MySQL database. The database connection settings are pulled from environment variables (e.g., MYSQL_HOST, MYSQL_PORT, MYSQL_DB, etc.).const { Sequelize } = require('sequelize')\n\n                            const sequelize = new Sequelize({\n                              dialect: 'mysql',\n                              host: process.env.MYSQL_HOST || 'localhost',\n                              port: process.env.MYSQL_PORT || 3306,\n                              database: process.env.MYSQL_DB,\n                              username: process.env.MYSQL_USER,\n                              password: process.env.MYSQL_PASS\n                            })\n                            \n                            module.exports = sequelize",
+        "User Model: The User model defines the schema for the user table. Each user has an auto-incrementing userId, a name, email, password (hashed using bcryptjs), and a role.const { DataTypes } = require('sequelize')\n\nconst sequelize = require('../lib/sequelize')\nconst { Course } = require('./course')\nconst { Submission } = require('./submission')\n\nconst bcrypt = require('bcryptjs')\n\nconst User = sequelize.define('user', {\n  userId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },\n  name: { type: DataTypes.STRING, allowNull: false },\n  email: { type: DataTypes.STRING, allowNull: false, unique: true },\n  password: { \n    type: DataTypes.STRING,\n    allowNull: false,\n    set(value) {\n      this.setDataValue('password', bcrypt.hashSync(value, 10))\n    }\n  },\n  role: { type: DataTypes.STRING, allowNull: false }\n})\n\nUser.hasMany(Course, { foreignKey: 'instructorId', allowNull: false })\nCourse.belongsTo(User, { foreignKey: 'instructorId', allowNull: false })\n\nUser.hasMany(Submission, { foreignKey: 'studentId', allowNull: false })\nSubmission.belongsTo(User, { foreignKey: 'studentId', allowNull: false })\n\nexports.User = User\n\nexports.UserClientFields = [\n  \"name\",\n  \"email\",\n  \"password\",\n  \"role\"\n]\n\n/**\n * Fetch a user from the DB based on user ID.\n */\nasync function getUserById (id) {\n  const excludeAttributes = ['password', 'admin']\n  const user = await User.findByPk(id, {\n      attributes: {\n          exclude: excludeAttributes,\n      },\n      // include: includeOptions\n  })\n\n  if (user === null) {\n    return null\n  }\n\n  if (user.role === 'instructor') {\n    const courses = await user.getCourses()\n    user.dataValues.courses = courses\n  } else if (user.role === 'student') {\n    const enrollments = await user.getEnrollments()\n    user.dataValues.enrollments = enrollments\n  }\n\n  return user\n}\nexports.getUserById = getUserById\n\n/**\n * Fetch a user from the DB based on user email.\n */\nasync function getUserByEmail (email) {\n  const user = await User.findOne({\n      where: {\n          email: email\n      }\n  })\n  if (user === null) {\n      return null\n  } else {\n      return user\n  }\n}\nexports.getUserByEmail = getUserByEmail\n\n/**\n * Validate the user credentials.\n */\nexports.validateCredentials = async function (id, password) {\n  const user = await getUserByEmail(id)\n  return user && await bcrypt.compare(password, user.password)\n}Helper Functions: getUserById(id) Fetches a user by their ID, excluding sensitive data (like password). It also fetches courses or enrollments based on the user's role. getUserByEmail(email): Fetches a user by their email. validateCredentials(id, password): Validates the user's credentials by comparing the provided password with the stored hashed password.",
+        "Course Model: The Course model defines the schema for the course table, including fields like subject, number, title, term, and instructorId.const { DataTypes } = require('sequelize')\n\nconst sequelize = require('../lib/sequelize')\nconst { Assignment } = require('./assignment')\n\nconst Course = sequelize.define('course', {\n  courseId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },\n  subject: { type: DataTypes.STRING, allowNull: false },\n  number: { type: DataTypes.STRING, allowNull: false },\n  title: { type: DataTypes.STRING, allowNull: false },\n  term: { type: DataTypes.STRING, allowNull: false },\n  instructorId: { type: DataTypes.INTEGER } // Add this line\n})\n\nCourse.hasMany(Assignment, { foreignKey: 'courseId', allowNull: false })\nAssignment.belongsTo(Course, { foreignKey: 'courseId', allowNull: false })\n\nexports.Course = Course\n\nexports.CourseClientFields = [\n  \"subject\",\n  \"number\",\n  \"title\",\n  \"term\",\n  \"instructorId\"\n]",
+        "File Management:Enabled secure file uploads and retrievals for student assignment submissions.File Upload Handling: The assignments.js file uses Multer, a middleware for handling multipart/form-data (i.e., file uploads). The storage configuration specifies where to save the files (./media/submissions), and it ensures the file has a unique name by appending a timestamp to the original filename./**\n * Create file structure in format of:\n * ./media/submissions/{submission_name}\n */\nconst storage = multer.diskStorage({\n    // Set destination directory for file uploads\n    destination: function (req, file, cb) {\n        const submissionsDir = path.join(__dirname, '..', 'media', 'submissions')\n        // Ensure the directory exists, creating it if needed\n        fs.mkdir(submissionsDir, { recursive: true }, e => {\n            if (e) {\n                cb(e)\n            } else {\n                cb(null, submissionsDir)\n            }\n        })\n    },\n    // Create a new filename using the original name, timestamp, and the file extension\n    filename: function (req, file, cb) {\n        const extension = file.mimetype.split('/')[1]\n        const originalName = file.originalname.replace(/\\.[^/.]+$/, \"\")\n        const timestamp = Date.now()\n        const filename = `${originalName}_${timestamp}.${extension}`\n        cb(null, filename)\n    }\n})\n\nconst upload = multer({ storage: storage })The POST /:id/submissions endpoint creates a submission for a specific assignment. It verifies that the user is authorized (i.e., a student enrolled in the course), uploads the file, and stores it in the appropriate directory. Once uploaded, a URL to the file is generated and returned in the response.router.post('/:id/submissions', requireAuthentication, upload.single('file'), async (req, res, next) => {\n                                if (!req.file) {\n                                    return res.status(400).send({ error: 'No file uploaded' })\n                                }\n                            \n                                try {\n                                    // Assigning file path\n                                    const filePath = path.join('media', 'submissions', req.file.filename)\n                                    const fileUrl = `http://localhost:8000/${filePath}`\n                            \n                                    // Create submission\n                                    const newSubmission = await Submission.create({\n                                        assignmentId: req.params.id,\n                                        studentId: req.user,\n                                        timestamp: new Date(),\n                                        file: filePath,\n                                        grade: null\n                                    })\n                            \n                                    res.status(201).json({\n                                        timestamp: newSubmission.timestamp,\n                                        grade: newSubmission.grade,\n                                        file: newSubmission.file,\n                                        assignmentId: newSubmission.assignmentId,\n                                        studentId: newSubmission.studentId,\n                                        fileUrl: fileUrl\n                                    })\n                                } catch (e) {\n                                    next(e)\n                                }\n                            })File Retrieval: The media.js file provides a GET /submissions/:filename endpoint, which retrieves the file from the server when a user requests it. It first checks whether the file exists in the media/submissions directory, and if so, it sends the file to the client. If the file does not exist, an error is returned.router.get('/submissions/:filename', (req, res, next) => {\n                                const { filename } = req.params\n                                const filePath = path.join(__dirname, '..', 'media', 'submissions', filename)\n                            \n                                fs.access(filePath, fs.constants.F_OK, (e) => {\n                                    if (e) {\n                                        return next(new Error('File not found'))\n                                    }\n                                    res.sendFile(filePath, (e) => {\n                                        if (e) {\n                                            next(e)\n                                        }\n                                    })\n                                })\n                            })Submission Update Handling: In submissions.js, the PATCH /:id endpoint allows authorized roles (instructors or admins) to update a submission (e.g., adding grades or changing the file). This ensures only authorized users can make modifications to submissions.router.patch('/:id', requireAuthentication, async (req, res, next) => {\n                                // Checking if submission exists and authorized role\n                                const submission = await Submission.findByPk(submissionId)\n                                if (!submission) {\n                                    return res.status(404).send('Submission not found')\n                                }\n                            \n                                if (req.role !== 'admin' && req.role !== 'instructor') {\n                                    return res.status(403).send('Not authorized to update this submission')\n                                }\n                            \n                                // Update submission fields\n                                const validFields = ['grade', 'file']\n                                validFields.forEach(field => {\n                                    if (field in updates) {\n                                        submission[field] = updates[field]\n                                    }\n                                })\n                            \n                                await submission.save()\n                            \n                                res.status(200).json({\n                                    message: \"Submission updated successfully\",\n                                    submission\n                                })\n                            })",
+        "File Upload Handling: The assignments.js file uses Multer, a middleware for handling multipart/form-data (i.e., file uploads). The storage configuration specifies where to save the files (./media/submissions), and it ensures the file has a unique name by appending a timestamp to the original filename./**\n * Create file structure in format of:\n * ./media/submissions/{submission_name}\n */\nconst storage = multer.diskStorage({\n    // Set destination directory for file uploads\n    destination: function (req, file, cb) {\n        const submissionsDir = path.join(__dirname, '..', 'media', 'submissions')\n        // Ensure the directory exists, creating it if needed\n        fs.mkdir(submissionsDir, { recursive: true }, e => {\n            if (e) {\n                cb(e)\n            } else {\n                cb(null, submissionsDir)\n            }\n        })\n    },\n    // Create a new filename using the original name, timestamp, and the file extension\n    filename: function (req, file, cb) {\n        const extension = file.mimetype.split('/')[1]\n        const originalName = file.originalname.replace(/\\.[^/.]+$/, \"\")\n        const timestamp = Date.now()\n        const filename = `${originalName}_${timestamp}.${extension}`\n        cb(null, filename)\n    }\n})\n\nconst upload = multer({ storage: storage })",
+        "The POST /:id/submissions endpoint creates a submission for a specific assignment. It verifies that the user is authorized (i.e., a student enrolled in the course), uploads the file, and stores it in the appropriate directory. Once uploaded, a URL to the file is generated and returned in the response.router.post('/:id/submissions', requireAuthentication, upload.single('file'), async (req, res, next) => {\n                                if (!req.file) {\n                                    return res.status(400).send({ error: 'No file uploaded' })\n                                }\n                            \n                                try {\n                                    // Assigning file path\n                                    const filePath = path.join('media', 'submissions', req.file.filename)\n                                    const fileUrl = `http://localhost:8000/${filePath}`\n                            \n                                    // Create submission\n                                    const newSubmission = await Submission.create({\n                                        assignmentId: req.params.id,\n                                        studentId: req.user,\n                                        timestamp: new Date(),\n                                        file: filePath,\n                                        grade: null\n                                    })\n                            \n                                    res.status(201).json({\n                                        timestamp: newSubmission.timestamp,\n                                        grade: newSubmission.grade,\n                                        file: newSubmission.file,\n                                        assignmentId: newSubmission.assignmentId,\n                                        studentId: newSubmission.studentId,\n                                        fileUrl: fileUrl\n                                    })\n                                } catch (e) {\n                                    next(e)\n                                }\n                            })",
+        "File Retrieval: The media.js file provides a GET /submissions/:filename endpoint, which retrieves the file from the server when a user requests it. It first checks whether the file exists in the media/submissions directory, and if so, it sends the file to the client. If the file does not exist, an error is returned.router.get('/submissions/:filename', (req, res, next) => {\n                                const { filename } = req.params\n                                const filePath = path.join(__dirname, '..', 'media', 'submissions', filename)\n                            \n                                fs.access(filePath, fs.constants.F_OK, (e) => {\n                                    if (e) {\n                                        return next(new Error('File not found'))\n                                    }\n                                    res.sendFile(filePath, (e) => {\n                                        if (e) {\n                                            next(e)\n                                        }\n                                    })\n                                })\n                            })",
+        "Submission Update Handling: In submissions.js, the PATCH /:id endpoint allows authorized roles (instructors or admins) to update a submission (e.g., adding grades or changing the file). This ensures only authorized users can make modifications to submissions.router.patch('/:id', requireAuthentication, async (req, res, next) => {\n                                // Checking if submission exists and authorized role\n                                const submission = await Submission.findByPk(submissionId)\n                                if (!submission) {\n                                    return res.status(404).send('Submission not found')\n                                }\n                            \n                                if (req.role !== 'admin' && req.role !== 'instructor') {\n                                    return res.status(403).send('Not authorized to update this submission')\n                                }\n                            \n                                // Update submission fields\n                                const validFields = ['grade', 'file']\n                                validFields.forEach(field => {\n                                    if (field in updates) {\n                                        submission[field] = updates[field]\n                                    }\n                                })\n                            \n                                await submission.save()\n                            \n                                res.status(200).json({\n                                    message: \"Submission updated successfully\",\n                                    submission\n                                })\n                            })"
+      ],
+      [
+        "Get List of Courses (with Pagination):router.get('/', async (req, res, next) => {\n                                let page = parseInt(req.query.page) || 1;\n                                page = page < 1 ? 1 : page;\n                                const numPerPage = 10;\n                                const offset = (page - 1) * numPerPage;\n                              \n                                try {\n                                  const result = await Course.findAndCountAll({\n                                    limit: numPerPage,\n                                    offset: offset,\n                                  });\n                              \n                                  const lastPage = Math.ceil(result.count / numPerPage);\n                                  const links = {};\n                                  if (page < lastPage) {\n                                    links.nextPage = `/businesses?page=${page + 1}`;\n                                    links.lastPage = `/businesses?page=${lastPage}`;\n                                  }\n                                  if (page > 1) {\n                                    links.prevPage = `/businesses?page=${page - 1}`;\n                                    links.firstPage = '/businesses?page=1';\n                                  }\n                              \n                                  res.status(200).send({\n                                    courses: result.rows,\n                                    pageNumber: page,\n                                    totalPages: lastPage,\n                                    pageSize: numPerPage,\n                                    totalCount: result.count,\n                                    links: links,\n                                  });\n                                } catch (e) {\n                                  next(e);\n                                }\n                              });",
+        "Create a New Course: This endpoint allows admins to create new courses. It also ensures data validation and handles foreign key constraint errors for related data (like the instructor).router.post('/', decodeToken, async (req, res, next) => {\n                                    if (req.user.role !== 'admin') {\n                                      return res.status(403).send({ error: \"Unauthorized. Only admins can create courses.\" });\n                                    }\n                                  \n                                    try {\n                                      const course = await Course.create(req.body, {\n                                        fields: CourseClientFields, // Ensures only client-specified fields are allowed for safety\n                                      });\n                                  \n                                      res.status(201).send(course); // Return the created course\n                                    } catch (e) {\n                                      if (e instanceof ValidationError) {\n                                        res.status(400).send({ error: e.message });\n                                      } else if(e instanceof ForeignKeyConstraintError) {\n                                        res.status(400).send({ error: \"The instructorId provided doesn't exist\" });\n                                      } else {\n                                        next(e);\n                                      }\n                                    }\n                                  });",
+        "Update a Course: This endpoint allows for course updates by admins or the instructors who own the course. It checks user roles and validates course existence.router.patch('/:courseId', decodeToken, async (req, res, next) => {\n                                    const courseId = parseInt(req.params.courseId);\n                                  \n                                    let course;\n                                    try {\n                                      course = await Course.findByPk(courseId);\n                                      if (!course) {\n                                        return res.status(404).send({ error: \"Course not found.\" });\n                                      }\n                                    } catch (e) {\n                                      return next(e);\n                                    }\n                                  \n                                    if (req.user.role !== 'admin' && (req.user.role !== 'instructor' || req.user.sub !== course.instructorId)) {\n                                      return res.status(403).send({ error: \"Unauthorized. You must be an admin or the course's instructor to update this course.\" });\n                                    }\n                                  \n                                    try {\n                                      const result = await Course.update(req.body, {\n                                        where: { courseId: courseId },\n                                        fields: CourseClientFields.filter(field => field != 'courseId' && field != 'instructorId'),\n                                      });\n                                  \n                                      if (result[0] > 0) {\n                                        res.status(200).send();\n                                      } else {\n                                        return res.status(404).send({ error: \"No updates made. Course not found or data invalid.\" });\n                                      }\n                                    } catch (e) {\n                                      if (e instanceof ForeignKeyConstraintError) {\n                                        return res.status(400).send({ error: \"The instructorId provided doesn't exist\" });\n                                      }\n                                  \n                                      next(e);\n                                    }\n                                  });",
+        "Delete a Course: This endpoint allows admins to delete courses, enforcing role-based access control to ensure only authorized users can perform deletions.router.delete('/:courseId', decodeToken, async (req, res, next) => {\n                                    if (req.user.role !== 'admin') {\n                                      return res.status(403).send({ error: \"Unauthorized. Only admins can delete courses.\" });\n                                    }\n                                  \n                                    const courseId = parseInt(req.params.courseId);\n                                  \n                                    try {\n                                      const result = await Course.destroy({ where: { courseId: courseId }});\n                                      if (result > 0) {\n                                        res.status(204).send();\n                                      } else {\n                                        next(); // Course not found\n                                      }\n                                    } catch (e) {\n                                      next(e);\n                                    }\n                                  });"
+      ],
+      [
+        "In courses.js, the decodeToken middleware handles the JWT verification and assigns the decoded user information to the request object (req.user), which can be used by subsequent route handlers to check the user's identity and role.\n                        RBAC is implemented by checking the user's role (extracted from the JWT payload) to determine if they have permission to perform certain actions. \n                        For example, only users with the admin role are allowed to create or delete courses, as shown in the following route:router.post('/', decodeToken, async (req, res, next) => {\n                                if (req.user.role !== 'admin') {\n                                  return res.status(403).send({ error: \"Unauthorized. Only admins can create courses.\" });\n                                }\n                              \n                                try {\n                                  const course = await Course.create(req.body, {\n                                    fields: CourseClientFields // Ensures only client-specified fields are allowed for safety\n                                  });\n                              \n                                  // Instead of just sending the id, send the complete course object.\n                                  // This assumes that the course object returned from `Course.create()` contains all the relevant data.\n                                  res.status(201).send(course); // Adjust here to return the entire course object\n                                } catch (e) {\n                                  if (e instanceof ValidationError) {\n                                    res.status(400).send({ error: e.message });\n                                  } else if(e instanceof ForeignKeyConstraintError) {\n                                    res.status(400).send({ error: \"The instructorId provided doesn't exist\" })\n                                  } else {\n                                    next(e);\n                                  }\n                                }\n                              });This function ensures that the request includes a valid JWT token in the Authorization header, which is then decoded. If the token is invalid or expired, a 403 or 401 error is returned, respectively.function decodeToken(req, res, next) {\n                                const authHeader = req.headers.authorization;\n                                if (authHeader) {\n                                  const token = authHeader.split(' ')[1];\n                                  jwt.verify(token, secretKey, (err, user) => {\n                                    if (err) {\n                                      return res.status(403).json({ error: \"Unauthorized access\" });\n                                    }\n                                    req.user = user; // Attach decoded user to request object\n                                    next();\n                                  });\n                                } else {\n                                  res.status(401).send({ error: 'No token provided' });\n                                }\n                              }",
+        "The auth.js file contains a function generateAuthToken which creates a JWT when a user logs in. The JWT contains the user's sub (ID), name, email, and role, which are used to authenticate and authorize the user. Example of JWT generation:async function generateAuthToken(email) {\n                                const user = await getUserByEmail(email);\n                                const payload = {\n                                    sub: user.userId,\n                                    name: user.name,\n                                    email: user.email,\n                                    role: user.role\n                                };\n                                return jwt.sign(payload, secretKey, { expiresIn: '24h' });\n                            }The verifyAdmin function checks if the user has an admin role. This is useful for routes where only admins should have access, like deleting courses or managing users. Example of admin verification:async function verifyAdmin(req, res) {\n                                const authHeader = req.get('Authorization') || '';\n                                const token = authHeader.split(' ')[1];\n                                try {\n                                    const payload = jwt.verify(token, secretKey);\n                                    const user = await getUserByEmail(payload.email);\n                                    if (user.role !== 'admin') {\n                                        return false;\n                                    } else {\n                                        return true;\n                                    }\n                                } catch (e) {\n                                    return false;\n                                }\n                            }The requireAuthentication middleware ensures that the user is authenticated by verifying their JWT token on each protected route. The user's sub (ID) and role are then made available to the route handler for further checks.function requireAuthentication(req, res, next) {\n                                const authHeader = req.get('Authorization') || '';\n                                const token = authHeader.split(' ')[1];\n                                try {\n                                    const payload = jwt.verify(token, secretKey);\n                                    req.user = payload.sub; // Attach the user ID to the request\n                                    req.role = payload.role; // Attach the user role to the request\n                                    next();\n                                } catch (e) {\n                                    res.status(401).json({\n                                      error: \"Invalid authentication token provided.\"\n                                    });\n                                }\n                            }"
+      ],
+      [
+        "Database Setup: The sequelize instance is created, configured to connect to a MySQL database. The database connection settings are pulled from environment variables (e.g., MYSQL_HOST, MYSQL_PORT, MYSQL_DB, etc.).const { Sequelize } = require('sequelize')\n\n                            const sequelize = new Sequelize({\n                              dialect: 'mysql',\n                              host: process.env.MYSQL_HOST || 'localhost',\n                              port: process.env.MYSQL_PORT || 3306,\n                              database: process.env.MYSQL_DB,\n                              username: process.env.MYSQL_USER,\n                              password: process.env.MYSQL_PASS\n                            })\n                            \n                            module.exports = sequelize",
+        "User Model: The User model defines the schema for the user table. Each user has an auto-incrementing userId, a name, email, password (hashed using bcryptjs), and a role.const { DataTypes } = require('sequelize')\n\nconst sequelize = require('../lib/sequelize')\nconst { Course } = require('./course')\nconst { Submission } = require('./submission')\n\nconst bcrypt = require('bcryptjs')\n\nconst User = sequelize.define('user', {\n  userId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },\n  name: { type: DataTypes.STRING, allowNull: false },\n  email: { type: DataTypes.STRING, allowNull: false, unique: true },\n  password: { \n    type: DataTypes.STRING,\n    allowNull: false,\n    set(value) {\n      this.setDataValue('password', bcrypt.hashSync(value, 10))\n    }\n  },\n  role: { type: DataTypes.STRING, allowNull: false }\n})\n\nUser.hasMany(Course, { foreignKey: 'instructorId', allowNull: false })\nCourse.belongsTo(User, { foreignKey: 'instructorId', allowNull: false })\n\nUser.hasMany(Submission, { foreignKey: 'studentId', allowNull: false })\nSubmission.belongsTo(User, { foreignKey: 'studentId', allowNull: false })\n\nexports.User = User\n\nexports.UserClientFields = [\n  \"name\",\n  \"email\",\n  \"password\",\n  \"role\"\n]\n\n/**\n * Fetch a user from the DB based on user ID.\n */\nasync function getUserById (id) {\n  const excludeAttributes = ['password', 'admin']\n  const user = await User.findByPk(id, {\n      attributes: {\n          exclude: excludeAttributes,\n      },\n      // include: includeOptions\n  })\n\n  if (user === null) {\n    return null\n  }\n\n  if (user.role === 'instructor') {\n    const courses = await user.getCourses()\n    user.dataValues.courses = courses\n  } else if (user.role === 'student') {\n    const enrollments = await user.getEnrollments()\n    user.dataValues.enrollments = enrollments\n  }\n\n  return user\n}\nexports.getUserById = getUserById\n\n/**\n * Fetch a user from the DB based on user email.\n */\nasync function getUserByEmail (email) {\n  const user = await User.findOne({\n      where: {\n          email: email\n      }\n  })\n  if (user === null) {\n      return null\n  } else {\n      return user\n  }\n}\nexports.getUserByEmail = getUserByEmail\n\n/**\n * Validate the user credentials.\n */\nexports.validateCredentials = async function (id, password) {\n  const user = await getUserByEmail(id)\n  return user && await bcrypt.compare(password, user.password)\n}Helper Functions: getUserById(id) Fetches a user by their ID, excluding sensitive data (like password). It also fetches courses or enrollments based on the user's role. getUserByEmail(email): Fetches a user by their email. validateCredentials(id, password): Validates the user's credentials by comparing the provided password with the stored hashed password.",
+        "Course Model: The Course model defines the schema for the course table, including fields like subject, number, title, term, and instructorId.const { DataTypes } = require('sequelize')\n\nconst sequelize = require('../lib/sequelize')\nconst { Assignment } = require('./assignment')\n\nconst Course = sequelize.define('course', {\n  courseId: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },\n  subject: { type: DataTypes.STRING, allowNull: false },\n  number: { type: DataTypes.STRING, allowNull: false },\n  title: { type: DataTypes.STRING, allowNull: false },\n  term: { type: DataTypes.STRING, allowNull: false },\n  instructorId: { type: DataTypes.INTEGER } // Add this line\n})\n\nCourse.hasMany(Assignment, { foreignKey: 'courseId', allowNull: false })\nAssignment.belongsTo(Course, { foreignKey: 'courseId', allowNull: false })\n\nexports.Course = Course\n\nexports.CourseClientFields = [\n  \"subject\",\n  \"number\",\n  \"title\",\n  \"term\",\n  \"instructorId\"\n]"
+      ],
+      [
+        "File Upload Handling: The assignments.js file uses Multer, a middleware for handling multipart/form-data (i.e., file uploads). The storage configuration specifies where to save the files (./media/submissions), and it ensures the file has a unique name by appending a timestamp to the original filename./**\n * Create file structure in format of:\n * ./media/submissions/{submission_name}\n */\nconst storage = multer.diskStorage({\n    // Set destination directory for file uploads\n    destination: function (req, file, cb) {\n        const submissionsDir = path.join(__dirname, '..', 'media', 'submissions')\n        // Ensure the directory exists, creating it if needed\n        fs.mkdir(submissionsDir, { recursive: true }, e => {\n            if (e) {\n                cb(e)\n            } else {\n                cb(null, submissionsDir)\n            }\n        })\n    },\n    // Create a new filename using the original name, timestamp, and the file extension\n    filename: function (req, file, cb) {\n        const extension = file.mimetype.split('/')[1]\n        const originalName = file.originalname.replace(/\\.[^/.]+$/, \"\")\n        const timestamp = Date.now()\n        const filename = `${originalName}_${timestamp}.${extension}`\n        cb(null, filename)\n    }\n})\n\nconst upload = multer({ storage: storage })",
+        "The POST /:id/submissions endpoint creates a submission for a specific assignment. It verifies that the user is authorized (i.e., a student enrolled in the course), uploads the file, and stores it in the appropriate directory. Once uploaded, a URL to the file is generated and returned in the response.router.post('/:id/submissions', requireAuthentication, upload.single('file'), async (req, res, next) => {\n                                if (!req.file) {\n                                    return res.status(400).send({ error: 'No file uploaded' })\n                                }\n                            \n                                try {\n                                    // Assigning file path\n                                    const filePath = path.join('media', 'submissions', req.file.filename)\n                                    const fileUrl = `http://localhost:8000/${filePath}`\n                            \n                                    // Create submission\n                                    const newSubmission = await Submission.create({\n                                        assignmentId: req.params.id,\n                                        studentId: req.user,\n                                        timestamp: new Date(),\n                                        file: filePath,\n                                        grade: null\n                                    })\n                            \n                                    res.status(201).json({\n                                        timestamp: newSubmission.timestamp,\n                                        grade: newSubmission.grade,\n                                        file: newSubmission.file,\n                                        assignmentId: newSubmission.assignmentId,\n                                        studentId: newSubmission.studentId,\n                                        fileUrl: fileUrl\n                                    })\n                                } catch (e) {\n                                    next(e)\n                                }\n                            })",
+        "File Retrieval: The media.js file provides a GET /submissions/:filename endpoint, which retrieves the file from the server when a user requests it. It first checks whether the file exists in the media/submissions directory, and if so, it sends the file to the client. If the file does not exist, an error is returned.router.get('/submissions/:filename', (req, res, next) => {\n                                const { filename } = req.params\n                                const filePath = path.join(__dirname, '..', 'media', 'submissions', filename)\n                            \n                                fs.access(filePath, fs.constants.F_OK, (e) => {\n                                    if (e) {\n                                        return next(new Error('File not found'))\n                                    }\n                                    res.sendFile(filePath, (e) => {\n                                        if (e) {\n                                            next(e)\n                                        }\n                                    })\n                                })\n                            })",
+        "Submission Update Handling: In submissions.js, the PATCH /:id endpoint allows authorized roles (instructors or admins) to update a submission (e.g., adding grades or changing the file). This ensures only authorized users can make modifications to submissions.router.patch('/:id', requireAuthentication, async (req, res, next) => {\n                                // Checking if submission exists and authorized role\n                                const submission = await Submission.findByPk(submissionId)\n                                if (!submission) {\n                                    return res.status(404).send('Submission not found')\n                                }\n                            \n                                if (req.role !== 'admin' && req.role !== 'instructor') {\n                                    return res.status(403).send('Not authorized to update this submission')\n                                }\n                            \n                                // Update submission fields\n                                const validFields = ['grade', 'file']\n                                validFields.forEach(field => {\n                                    if (field in updates) {\n                                        submission[field] = updates[field]\n                                    }\n                                })\n                            \n                                await submission.save()\n                            \n                                res.status(200).json({\n                                    message: \"Submission updated successfully\",\n                                    submission\n                                })\n                            })"
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  },
+  {
+    "filename": "VulnrabilityScanning.html",
+    "title": "Basic Vulnerability Scanning Using Captured Packets",
+    "headings": [
+      "Basic Vulnerability Scanning Using Captured Packets",
+      "Introduction",
+      "Network Traffic Analysis & Security Tools",
+      "1. Protocol-Specific Packet Scanner",
+      "2. Port-Protocol Mismatch Detector",
+      "3: TLS Version Detection",
+      "4: ARP Request Detection",
+      "Conclusion"
+    ],
+    "paragraphs": [],
+    "lists": [
+      [
+        "Validated outputs against Wireshark’s GUI and predefined capture files.",
+        "Used Wireshark display filters and tshark commands for accurate filtering."
+      ],
+      [
+        "For Security Engineers:Identifies outdated or insecure protocols.",
+        "For Hackers:Helps locate exploitable network protocols."
+      ],
+      [
+        "Tested using Packet Sender and validated results with Wireshark.",
+        "To demonstrate the tool will find packets to ports 22, 80, and 53 that are not of the type SSH, HTTP, or DNS I needed a \n                capture file that contains traffic where a connection to the ports mentioned is attempted for traffic of a different type \n                then is expected at that port.",
+        "Revealed security misconfigurations and potential exploit entry points."
+      ],
+      [
+        "For Security Engineers:Identifies misconfigurations.",
+        "For Hackers:Uncovers potential attack vectors."
+      ],
+      [
+        "Filters packets to report outdated TLS versions while ignoring TLS 1.2 and 1.3.",
+        "Observed cases where packets mislabeled as TLS 1.3 actually used TLS 1.0.",
+        "Simulated a TLS 1.1 packet by manually editing hex values in a pcap file."
+      ],
+      [
+        "For Security Engineers:Detects outdated TLS usage.",
+        "For Hackers:Identifies servers vulnerable to weak encryption exploits."
+      ],
+      [
+        "Counts ARP requests from each IP and flags those exceeding 100 requests.",
+        "Demonstrated high ARP traffic when runningarp-scanin a Kali VM."
+      ],
+      [
+        "For Security Engineers:Detects network reconnaissance attempts.",
+        "For Hackers:Identifies scanning activity from other attackers."
+      ]
+    ],
+    "links": [
+      "about.html"
+    ],
+    "tables": []
+  }
+]
