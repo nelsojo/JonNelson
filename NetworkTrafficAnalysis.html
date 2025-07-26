@@ -15,278 +15,168 @@
         <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
     </nav>
     
-    <div class="content">
-        <h1>Network Traffic Analysis</h1>
+   <div class="content">
+    <h1>Network Traffic Analysis</h1>
 
+    <!-- Header Analysis -->
+    <div class="card fade-section">
         <h2>Header Analysis</h2>
         <p>We often wish to examine network traffic to analyze whether a given network is running correctly, is under attack, has secrets in it we would like to reveal or protect, and so on. There is an engineering tradeoff here. We can’t store and analyze all the data that flies by in the network. So we would like to use a portion of the total data to decide where to look deeper.</p>
         <p>Often the initial security analysis uses protocol headers or security and application logs.</p>
-        <ul>
+        <ul class="custom-bullets">
             <li>This information is small, so it can be stored for more traffic over a longer period of time.</li>
             <li>This information can be determined from packets flying by with a minimum of processing, so it is possible to get the info without either spending a fortune in monitoring hardware or slowing down the network traffic.</li>
         </ul>
         <p>There is a perception that the content data is “sensitive” and that header data is “anonymized” or information that people don’t care as much about. If you had time to read the Kieran Healy’s amusing article on “Using Metadata to Find Paul Revere”, you can see that this is not always a valid perception.</p>
         <p>Let’s see what we can find from the most basic packet header data. The trick here is to rearrange the data in various ways and look for ‘spikes’ in frequency. Then look at what all the frequent items have in common, such as the same protocol, similar IP addresses, etc. To do this well, you need to know about common TCP and UDP services. Fortunately, we have Google to help us with that!</p>
-        
+    </div>
+
+    <!-- Data Overview -->
+    <div class="card fade-section">
         <h3>Data Overview</h3>
         <p>We have two samples of packet data, entitled ‘R’ and ‘O’. The packet data is in order, and covers a brief period of time. For each packet, you get:</p>
-        <ul>
+        <ul class="custom-bullets">
             <li>Length, IP type, IP Source Address, IP Destination Address</li>
             <li>TCP: Flags, Source port, Destination Port</li>
             <li>UDP: Source port, Destination port</li>
             <li>ICMP: type, code</li>
         </ul>
+    </div>
 
+    <!-- Analysis Results -->
+    <div class="card fade-section">
         <h3>Analysis Results</h3>
         <p>The ultimate goal of this assignment is to understand the function of the networks monitored in the R and O data sets. What is their function? We will choose among: work, home, data center, ISP. On the way, we’ll learn as much as we can about these networks from the scanty data that we have.</p>
-        
-        <h4>Protocol Analysis starting point</h4>
+    </div>
+
+    <!-- Protocol Analysis -->
+    <div class="card fade-section">
+        <h4>Protocol Analysis Starting Point</h4>
         <img src="img/netAnalysisp1_a.png" class="single-image">
         <p>IP protocol 1=icmp; 2=igmp; 6=tcp; 17=udp. For example, ICMP (IP Protocol 1) occurs in 7 packets. Each protocol has its own uses, and we can infer network functionality from these details.</p>
-        
+    </div>
+
+    <!-- Port Statistics -->
+    <div class="card fade-section">
         <h3>Extended Statistics and Comprehensive Network Analysis</h3>
-
-<p><strong>1. Enhancing the Script with Port Statistics:</strong></p>
-<p>To deepen the analysis, the script now includes functionality to count the usage of well-known destination port numbers for TCP and UDP traffic (ports 1–1024) when the <code>-stats</code> flag is enabled. This provides detailed insights into port-specific activity across the R and O datasets.</p>
-<div class="carousel">
-    <div class="carousel-images">
-        <img src="img/netAnalysisp1_1.png" alt="Image 2">
-        <img src="img/netAnalysisp1_2.png" alt="Image 3">
-        
-       
+        <p><strong>1. Enhancing the Script with Port Statistics:</strong></p>
+        <p>To deepen the analysis, the script now includes functionality to count the usage of well-known destination port numbers for TCP and UDP traffic (ports 1–1024) when the <code>-stats</code> flag is enabled. This provides detailed insights into port-specific activity across the R and O datasets.</p>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/netAnalysisp1_1.png" alt="Port Stats 1">
+                <img src="img/netAnalysisp1_2.png" alt="Port Stats 2">
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+        <p><strong>Findings:</strong></p>
+        <ul class="custom-bullets">
+            <li><strong>R.csv Analysis:</strong> Significant activity on ports 80 (HTTP), 110 (POP3), 139 (NetBIOS), 22 (SSH), 23 (Telnet), 25 (SMTP), and 53 (DNS) – consistent with a work network.</li>
+            <li><strong>O.csv Analysis:</strong> Extremely high activity on ports 25 (SMTP), 80 (HTTP), 53 (DNS), 22 (SSH), 445 (SMB), and 135 (RPC) – consistent with ISP or data center activity.</li>
+        </ul>
     </div>
-    <button class="prev">Previous</button>
-    <button class="next">Next</button>
+
+    <!-- IP Address Analysis -->
+    <div class="card fade-section">
+        <h3>2. IP Address Analysis</h3>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/netAnalysisp2_1.png" alt="IP Analysis 1">
+                <img src="img/netAnalysisp2_2.png" alt="IP Analysis 2">
+                <img src="img/netAnalysisp2_3.png" alt="IP Analysis 3">
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+        <p>With the addition of the <code>-countip</code> flag, the script identifies distinct IP addresses and sorts them by usage count. This reveals valuable insights into network configurations and traffic behavior.</p>
+        <ul class="custom-bullets">
+            <li><strong>R.csv:</strong> Internal <code>10.5.x.x</code> IPs dominate; public IPs like <code>199.170.104.36</code> indicate external gateways.</li>
+            <li><strong>O.csv:</strong> <code>192.245.x.x</code> addresses dominate – central ISP infrastructure with client endpoints mixed in.</li>
+        </ul>
+    </div>
+
+    <!-- Network Prefix Dominance -->
+    <div class="card fade-section">
+        <h3>3. Network Prefix Dominance</h3>
+        <p>Using <code>-countnetwork2</code> and <code>-countnetwork3</code> flags, dominant network prefixes were identified:</p>
+        <ul class="custom-bullets">
+            <li><strong>R.csv:</strong> <code>10.5.63</code> subset dominates – typical corporate segmentation.</li>
+            <li><strong>O.csv:</strong> <code>192.245.12</code> subset dominates – indicative of ISP routing structure.</li>
+        </ul>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/netAnalysisp3_1.png" alt="Prefix 1">
+                <img src="img/netAnalysisp3_2.png" alt="Prefix 2">
+                <img src="img/netAnalysisp3_3.png" alt="Prefix 3">
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+    </div>
+
+    <!-- Routing & VPN Protocols -->
+    <div class="card fade-section">
+        <h3>4. Routing and VPN Protocols</h3>
+        <p>Enhanced filtering revealed:</p>
+        <ul class="custom-bullets">
+            <li><strong>R.csv:</strong> No GRE/IPSEC/OSPF – typical of internal work networks.</li>
+            <li><strong>O.csv:</strong> Significant GRE, IPSEC, OSPF traffic – indicates ISP/data center tunneling and dynamic routing.</li>
+        </ul>
+    </div>
+
+    <!-- Associated Prefixes -->
+    <div class="card fade-section">
+        <h3>7. Identifying Associated Network Prefixes</h3>
+        <p>GRE, IPSEC, and OSPF protocols link strongly to specific prefixes:</p>
+        <ul class="custom-bullets">
+            <li><strong>GRE:</strong> <code>209.104.16</code> prefix</li>
+            <li><strong>IPSEC:</strong> <code>198.182.113</code> prefix</li>
+            <li><strong>OSPF:</strong> <code>207.182.35</code> prefix</li>
+        </ul>
+    </div>
+
+    <!-- Correlation with Network Types -->
+    <div class="card fade-section">
+        <h3>8. Correlation with Network Characteristics</h3>
+        <ul class="custom-bullets">
+            <li><strong>R.csv:</strong> No routing/VPN traffic → Work network classification.</li>
+            <li><strong>O.csv:</strong> Heavy routing/VPN protocols → ISP/data center classification.</li>
+        </ul>
+        <div class="carousel">
+            <div class="carousel-images">
+                <img src="img/netAnalysisp4_1.png" alt="Analysis 1">
+                <img src="img/netAnalysisp4_2.png" alt="Analysis 2">
+                <img src="img/netAnalysisp4_3.png" alt="Analysis 3">
+            </div>
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+    </div>
+
+    <!-- -connto Server Roles -->
+    <div class="card fade-section">
+        <h3>9. Counting Packets by Service (-connto Option)</h3>
+        <p>The <code>-connto</code> flag maps each destination IP to <code>(proto, dport)</code>, revealing server roles:</p>
+        <ul class="custom-bullets">
+            <strong>R.csv:</strong> 
+                
+                    <li><code>10.5.63.6</code>: DNS, mail, SSH (multi-role server)</li>
+                    <li><code>10.5.63.7</code> / <code>10.5.63.230</code>: File/print servers (NetBIOS, SMB)</li>
+                    <li>External DNS root servers contacted via <code>10.5.63.24</code></li>
+                
+            
+            <strong>O.csv:</strong>
+                
+                    <li>Mail servers: <code>192.245.12.242</code>, <code>192.245.12.234</code></li>
+                    <li>DNS servers: <code>192.245.12.56</code>, <code>192.245.12.7</code></li>
+                    <li>Web servers: Port 80 traffic dominating</li>
+                    <li>Time sync servers: NTP traffic on port 123</li>
+                
+            
+        </ul>
+    </div>
 </div>
-<p><strong>Findings:</strong></p>
-<ul>
-    <li><strong>R.csv Analysis:</strong> 
-        <ul>
-            <li>Significant activity on key ports such as:
-                <ul>
-                    <li><strong>Port 80 (HTTP):</strong> Indicates general web browsing.</li>
-                    <li><strong>Port 110 (POP3):</strong> Suggests frequent email retrieval.</li>
-                    <li><strong>Port 139 (NetBIOS):</strong> Implies file sharing and printer access, typical in a business environment.</li>
-                    <li><strong>Ports 22 (SSH), 23 (Telnet), and 25 (SMTP):</strong> Reflect secure shell and email services commonly seen in workplaces.</li>
-                    <li><strong>UDP Port 53 (DNS):</strong> Consistent with work network traffic.</li>
-                </ul>
-            </li>
-            <li>The traffic patterns strongly suggest a work network environment, with multiple internal services supporting business needs.</li>
-        </ul>
-    </li>
-    <li><strong>O.csv Analysis:</strong> 
-        <ul>
-            <li>High activity across multiple critical internet service ports:
-                <ul>
-                    <li><strong>Port 25 (SMTP):</strong> Over 211,000 packets indicate extensive email traffic, typical of ISPs or data centers handling bulk email services.</li>
-                    <li><strong>Port 80 (HTTP):</strong> 156,000+ packets signify heavy web traffic, consistent with hosting multiple clients.</li>
-                    <li><strong>UDP Port 53 (DNS):</strong> Over 21,000 packets reflect essential DNS services for large-scale environments.</li>
-                    <li><strong>Ports 22 (SSH), 445 (TCP/IP MS Networking), and 135 (RPC):</strong> High activity on management and access ports supports the notion of a data center or ISP managing remote systems.</li>
-                </ul>
-            </li>
-            <li>The scale and nature of the traffic point to a data center or ISP serving a broad user base with diverse services.</li>
-        </ul>
-    </li>
-</ul>
 
-<p><strong>2. IP Address Analysis:</strong></p>
-
-<div class="carousel">
-    <div class="carousel-images">
-        <img src="img/netAnalysisp2_1.png" alt="Image 4">
-        <img src="img/netAnalysisp2_2.png" alt="Image 5">
-        <img src="img/netAnalysisp2_3.png" alt="Image 6">
-        
-       
-    </div>
-    <button class="prev">Previous</button>
-    <button class="next">Next</button>
-</div>
-<p>With the addition of the <code>-countip</code> flag, the script identifies distinct IP addresses and sorts them by usage count. This reveals valuable insights into network configurations and traffic behavior.</p>
-<ul>
-    <li><strong>R.csv Observations:</strong> 
-        <ul>
-            <li>High-count internal IPs within the private <code>10.x.x.x</code> range suggest central devices such as servers (e.g., <code>10.5.63.230</code> and <code>10.5.63.36</code>).</li>
-            <li>Low-count IPs may represent less frequently accessed devices or other network equipment.</li>
-            <li>Public IPs like <code>199.170.104.36</code> and <code>209.67.181.11</code> indicate external communication points, likely gateways or proxy servers.</li>
-            <li>The presence of subnetting (e.g., <code>10.5.x.x</code>) and external IPs implies a corporate network with logical segmentation and possibly a DMZ (demilitarized zone).</li>
-        </ul>
-    </li>
-    <li><strong>O.csv Observations:</strong> 
-        <ul>
-            <li>High-traffic IPs (e.g., <code>192.245.12.221</code> and <code>192.245.12.242</code>) suggest centralized infrastructure like routers or gateways typical of ISPs.</li>
-            <li>Low-traffic IPs likely correspond to individual client endpoints, such as home users or small businesses.</li>
-            <li>The mix of high-frequency infrastructure IPs and low-frequency client IPs reinforces the classification of this network as an ISP.</li>
-        </ul>
-    </li>
-</ul>
-
-<p><strong>3. Network Prefix Dominance:</strong></p>
-<p>Using the <code>-countnetwork2</code> and <code>-countnetwork3</code> flags, the dominant network prefixes were identified:</p>
-<ul>
-    <li><strong>R.csv:</strong> The prefix <code>10.5</code> dominates, with <code>10.5.63</code> being the most significant subset (97,289 packets). This indicates segmentation typical of corporate environments.</li>
-    <li><strong>O.csv:</strong> The prefix <code>192.245</code> dominates, with <code>192.245.12</code> being the top subset (414,455 packets). This aligns with large-scale ISP infrastructure.</li>
-</ul>
-<div class="carousel">
-    <div class="carousel-images">
-        <img src="img/netAnalysisp3_1.png" alt="Image 7">
-        <img src="img/netAnalysisp3_2.png" alt="Image 8">
-        <img src="img/netAnalysisp3_3.png" alt="Image 9">
-        
-       
-    </div>
-    <button class="prev">Previous</button>
-    <button class="next">Next</button>
-</div>
-<p><strong>4. Routing and VPN Protocols:</strong></p>
-
-<p>Enhanced filtering for specific protocols (e.g., GRE, IPSEC, OSPF) revealed key insights:</p>
-<ul>
-    <li><strong>R.csv:</strong> No evidence of routing or VPN protocols was found.</li>
-    <li><strong>O.csv:</strong> Significant presence of routing and VPN protocols indicates infrastructure supporting tunneling (GRE), virtual private networks (IPSEC), and dynamic routing (OSPF), further confirming the ISP classification.</li>
-</ul>
-
-<p><strong>5. Additional Features:</strong></p>
-<p>New protocol arguments enable focused analysis of specialized traffic types. The <code>-other</code> flag allows isolated evaluation of unusual or less common protocols, aiding in deeper investigation.</p>
-
-<h3>Additional Insights: Protocol and Network Prefix Analysis</h3>
-
-<p><strong>7. Identifying Associated Network Prefixes:</strong></p>
-<p>Through extended analysis, other network prefixes closely associated with specific protocols have been identified:</p>
-<ul>
-    <li><strong>GRE Protocol:</strong> 
-        <ul>
-            <li>Most frequent IPs:
-                <ul>
-                    <li><strong>209.104.16.215:</strong> 2567 packets.</li>
-                    <li><strong>209.104.16.9:</strong> 2567 packets.</li>
-                </ul>
-            </li>
-            <li>Less frequent IPs:
-                <ul>
-                    <li><strong>209.104.16.58:</strong> 59 packets.</li>
-                    <li><strong>209.104.16.90:</strong> 59 packets.</li>
-                </ul>
-            </li>
-            <li>The <strong>209.104.16</strong> network prefix is strongly associated with GRE protocol traffic.</li>
-        </ul>
-    </li>
-    <li><strong>IPSEC Protocol:</strong> 
-        <ul>
-            <li>Most frequent IP:
-                <ul>
-                    <li><strong>198.182.113.1:</strong> 690 packets.</li>
-                </ul>
-            </li>
-            <li>The <strong>198.182.113</strong> network prefix is a valid grouping for IPSEC protocol usage.</li>
-        </ul>
-    </li>
-    <li><strong>OSPF Protocol:</strong> 
-        <ul>
-            <li>Most frequent IP:
-                <ul>
-                    <li><strong>207.182.35.58:</strong> 16 packets.</li>
-                </ul>
-            </li>
-            <li>Other IPs within the same subnet:
-                <ul>
-                    <li><strong>207.182.35.49:</strong> smaller count.</li>
-                    <li><strong>207.182.35.50:</strong> smaller count.</li>
-                </ul>
-            </li>
-            <li>The <strong>207.182.35</strong> network prefix is valid and associated with OSPF protocol traffic.</li>
-        </ul>
-    </li>
-</ul>
-
-<p><strong>8. Correlation with Network Characteristics:</strong></p>
-<p>Further analysis of the OSPF protocol provides insights into the network types:</p>
-<ul>
-    <li><strong>R.csv (Work Network):</strong> 
-        <ul>
-            <li>No evidence of GRE, IPSEC, or OSPF protocols.</li>
-            <li>Routing and VPN protocols are typically unnecessary for internal communication within corporate networks.</li>
-            <li>Traffic is dominated by application-specific protocols (e.g., HTTP, FTP), reinforcing the classification as a work network.</li>
-        </ul>
-    </li>
-    <li><strong>O.csv (ISP Network):</strong> 
-        <ul>
-            <li>Significant evidence of GRE, IPSEC, and OSPF protocols.</li>
-            <li>These protocols indicate the need for secure tunneling, complex routing mechanisms, and extensive inter-network communication.</li>
-            <li>The presence of such protocols aligns with the characteristics of ISP or data center networks.</li>
-        </ul>
-    </li>
-</ul>
-<div class="carousel">
-    <div class="carousel-images">
-        <img src="img/netAnalysisp4_1.png" alt="Image 10">
-        <img src="img/netAnalysisp4_2.png" alt="Image 11">
-        <img src="img/netAnalysisp4_3.png" alt="Image 12">
-        
-       
-    </div>
-    <button class="prev">Previous</button>
-    <button class="next">Next</button>
-</div>
-<p><strong>9. Counting Packets by Service:</strong></p>
-<p>To further enhance traffic analysis, the script includes a new <code>-connto</code> option. This functionality counts the number of packets sent to each service (ports 1-1024) based on the destination IP address (<code>ipdst</code>) and its associated protocol (<code>proto</code>) and destination port (<code>dport</code>).</p>
-<p><strong>Output Format:</strong></p>
-<ul>
-    <li>The output maps each <code>ipdst</code> to a tuple:
-        <ul>
-            <li><code>(proto, dport):</code> Where <code>proto</code> represents the IP protocol (e.g., TCP or UDP) and <code>dport</code> reflects the destination port number.</li>
-        </ul>
-    </li>
-    <li>This provides clear and organized visibility into service-specific traffic patterns across networks.</li>
-</ul>
-<p>The functionality is seamlessly integrated into the script, ensuring usability for large-scale datasets.</p>
-
-<h3>Advanced Traffic Analysis: Server Identification and Network Roles</h3>
-
-<p><strong>9. The <code>-connto</code> Option:</strong></p>
-<p>An extended script functionality has been developed to count the number of packets sent to each service (ports 1–1024) in the network. This is achieved using a dictionary that maps each destination IP address (<code>ipdst</code>) to a tuple of the protocol (<code>proto</code>) and destination port (<code>dport</code>). For instance:</p>
-<ul>
-    <li><code>(proto, dport):</code> <code>proto</code> represents the IP protocol (e.g., TCP or UDP), and <code>dport</code> reflects the destination port number.</li>
-</ul>
-<p>Data from the <code>-connto</code> output is structured to provide clear insights into service-specific traffic patterns and server roles.</p>
-
-<p><strong>10. Findings:</strong></p>
-<p>When the <code>-connto</code> option is applied to the R and O datasets (excluding broadcast addresses ending in <code>.255</code>), significant server roles are revealed based on port activity:</p>
-
-<ul>
-    <li><strong>Top 20 Servers:</strong></li>
-    <ul>
-        <li>An interesting connection at <code>10.5.63.1/113</code>: Port 113 is known for IRC traffic, which poses security risks and is often blocked by firewalls.</li>
-        <li>Additional servers revealed unique roles:</li>
-        <ul>
-            <li><strong>R.csv Data:</strong>
-                <ul>
-                    <li><code>10.5.63.7</code> and <code>10.5.63.230</code>: File or print servers handling NetBIOS and SMB traffic (ports 137, 138, and 139).</li>
-                    <li><code>10.5.63.6</code>: Multi-purpose server supporting DNS queries (port 53), email services (ports 25 and 110), and SSH connections (port 22). Likely functions as DNS resolver, mail server, and management server.</li>
-                    <li>External connections to root DNS servers (<code>128.9.0.107</code> and <code>192.5.5.241</code>) via <code>10.5.63.24</code> indicate outbound DNS handling.</li>
-                    <li>Connections to external mail servers (e.g., <code>216.101.171.2</code> on port 110) highlight infrastructure for external email and domain name resolution.</li>
-                </ul>
-            </li>
-            <li><strong>O.csv Data:</strong>
-                <ul>
-                    <li>Servers with well-defined roles based on port activity:
-                        <ul>
-                            <li>Mail servers (SMTP, port 25): IPs like <code>192.245.12.242</code>, <code>192.245.12.234</code>, and others handle extensive email traffic.</li>
-                            <li>DNS servers (port 53): IPs like <code>192.245.12.56</code> and <code>192.245.12.7</code> process large volumes of DNS queries.</li>
-                            <li>Web servers (HTTP, port 80): High traffic indicates significant web service activity.</li>
-                            <li>Time synchronization servers (NTP, port 123): Activity highlights time server functionality.</li>
-                            <li>Connections to ports like 113 (ident) and 110 (POP3) suggest business-support services and email retrieval systems.</li>
-                        </ul>
-                    </li>
-                    <li>Data indicates mixed roles in infrastructure services (email, DNS, web traffic) typical of large enterprises.</li>
-                </ul>
-            </li>
-        </ul>
-    </ul>
-</ul>
-
-       
-    </div>
 
     <div class="code-container">
         <h3>Analysis Script</h3>
@@ -553,5 +443,6 @@
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
     <script src = "dark-mode.js"></script>
     <script src="carousel.js"></script>
+    <script src="fade-scroll.js"></script>
 </body>
 </html>

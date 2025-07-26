@@ -18,14 +18,29 @@
     <div class="content">
         <h1>About Me</h1>
         
-        <section id="full-summary">
-            <h2>Full Summary</h2>
-            <p>I am a versatile IT professional skilled in web and mobile development, network administration, and cybersecurity. With a strong background in software development, server management, and system security, I specialize in building secure, scalable systems. I am passionate about network security, malware analysis, and data-driven decision-making.</p>
-        </section>
+       <!-- Button to open modal -->
+    <button class="open-modal" data-modal="modal-full-summary">Full Summary</button>
 
+  <!-- Modal container -->
+  <div id="modal-full-summary" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Full Summary</h2>
+      <ul class="custom-bullets">
+        <li>Experienced Web Administrator and IT Specialist focused on efficient, user-centered solutions</li>
+        <li>8+ years managing websites and networks for small offices</li>
+        <li>Led CMS migrations, CRM integrations, and workflow automations improving client engagement</li>
+        <li>Delivered MVP of Bee Ring mobile app in 3 semesters for real-time beekeeping data collection</li>
+        <li>Skilled in boosting productivity and decision-making with Power BI and custom dashboards</li>
+      </ul>
+    </div>
+  </div>
+       
+        
+        <div class = "card fade-section" >
         <section id="education">
             <h2>Education</h2>
-            <ul>
+            <ul class="custom-bullets">
                 <li><strong>Oregon State University</strong> - B.S. Computer Science, GPA: 3.84</li>
                 <li><strong>Glendale Community College</strong> - Computer Science (Transfer), GPA: 4.0</li>
                 <li><strong>Los Rios Community College</strong> - Computer Science (Transfer), GPA: 4.0</li>
@@ -33,20 +48,63 @@
                 <li><strong>College of the Redwoods</strong> - Residential Electrician Program, GPA: 4.0</li>
             </ul>
         </section>
+        </div>
+ <div class="spacer"></div>
+        <div class="scroll-indicator">
+            <h3>(Scroll down)</h3>
+            <img src="img/robotScroll.png" class="robotScroll">
+        </div>
+        <!--spacer of a certain size -->
+        <div class="spacer"></div>
+        <!-- Skills Chart -->
+<div class="card fade-section">
+    <h2>Programming Languages</h2>
+    <canvas id="skillsChart"></canvas>
+</div>
 
+
+
+
+        <div class="card fade-section">
         <section id="certifications">
             <h2>Certifications</h2>
-            <ul>
-                <li>A+ Certified (701, 702)</li>
-                <li>MCITP Certified (70-640, 70-642, 70-646)</li>
-            </ul>
-        </section>
+            <ul class="custom-bullets">
+  <li>
+    <strong>Cybersecurity Fundamentals</strong> — May 2025<br>
+    IBM SkillsBuild<br>
+    Demonstrates foundational understanding of cybersecurity concepts, objectives, and practices.
+  </li>
+  <li>
+    <strong>Fortinet Certified Fundamentals in Cybersecurity</strong> — May 2025<br>
+    Fortinet, Sunnyvale, California<br>
+    Validates technical skills and knowledge required for entry-level roles in cybersecurity.
+  </li>
+  <li>
+    <strong>Information Technology Fundamentals</strong> — May 2025<br>
+    IBM SkillsBuild<br>
+    Covers IT basics, troubleshooting methodologies, professional tools, and simulated remote support experience.
+  </li>
+  <li>
+    <strong>Web Development Fundamentals</strong> — May 2025<br>
+    IBM SkillsBuild<br>
+    Demonstrates understanding of web development concepts, deployment, testing, and use of HTML, CSS, and JavaScript for interactive websites.
+  </li>
+  <li>
+    <strong>MCITP Certified (70-640, 70-642, 70-646)</strong><br>
+    Microsoft Certified IT Professional (retired)<br>
+    Historically validated advanced skills in Windows Server administration, network infrastructure, and enterprise environments.
+  </li>
+</ul>
 
+        </section>
+        </div>
+
+        <div class="card fade-section">
         <section id="additional-experiences">
             <h2>Additional Experiences</h2>
             <ul>
-                <li><strong>NCAS Program & NASA JPL Rover Competition (2020)</strong>
-                    <ul>
+                <strong>NCAS Program & NASA JPL Rover Competition (2020)</strong>
+                    <ul class ="custom-bullets">
                         <li>Participated in the National Community College Aerospace Scholars (NCAS) program.</li>
                         <li>Collaborated with peers to design and prototype a rover for NASA's JPL competition.</li>
                         <li>Developed teamwork, problem-solving, and technical skills while working on an interdisciplinary team.</li>
@@ -67,9 +125,14 @@
                 </li>
             </ul>
         </section>
+        </div>
     </div>
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
     <script src = "dark-mode.js"></script>
      <script src="carousel.js"></script>
+     <script src="modal.js"></script>
+    <script src="fade-scroll.js"></script>
+    <script src="skills-chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

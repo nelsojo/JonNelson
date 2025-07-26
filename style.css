@@ -46,11 +46,12 @@ li {
     position: relative;
     max-width: 800px;
     height: 500px; /* Set a fixed height (adjust as needed) */
-    margin: 0 auto 0 0; /* Align left */
+    margin: 0 auto; /* Align left */
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
+    flex-direction: column;
     align-items: center; /* Center images vertically */
     justify-content: center; /* Center images horizontally */
 }
@@ -361,3 +362,257 @@ button {
 .dark-mode .bot {
     text-align: left; background: #6c7d6c;
 }
+
+.connect-row {
+  display: flex;
+  justify-content: center;      /* center horizontally */
+  gap: 50px;                    /* space between the two items */
+  flex-wrap: wrap;              /* allows stacking on small screens */
+  margin-top: 20px;
+}
+
+.connect-item {
+  text-align: center;
+}
+
+.connect-item h2 {
+  margin-bottom: 5px;
+}
+
+.connect-item a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: rgb(250, 121, 61); /* LinkedIn blue, adjust for Handshake */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.connect-item a:hover {
+  background-color: #b62a00;
+}
+
+/* Start hidden */
+.fade-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When scrolled into view */
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content h2:first-of-type {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;   /* keeps lines readable on big screens */
+}
+.content h3:first-of-type {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;   /* keeps lines readable on big screens */
+}
+
+.content h1:first-of-type {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;   /* keeps lines readable on big screens */
+}
+
+.scroll-indicator {
+  display: grid;
+  align-items: center;   /* vertically center h3 and image */
+  justify-content: center; /* center horizontally on page */
+  gap: 5px;             /* space between text and image */
+  margin: 20px 0;
+}
+
+.scroll-indicator h3 {
+  margin: 0;
+  display: inline-block; /* keep it inline with the image */
+}
+
+.robotScroll {
+  width: 125px;   /* adjust as needed */
+  height: auto;
+  display: inline;;
+}
+
+.custom-bullets {
+  list-style: none;           /* remove default bullets */
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;           /* keeps bullets readable on large screens */
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.custom-bullets li {
+  position: relative;
+  padding-left: 30px;         /* space for custom bullet */
+  margin-bottom: 10px;
+}
+
+.custom-bullets li::before {
+  content: "•";               /* custom bullet symbol */
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #0077b5;             /* accent color (LinkedIn blue) */
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.custom-bullets li:hover {
+  transform: translateX(5px); /* subtle slide on hover */
+  transition: transform 0.2s ease;
+}
+
+#additional-experiences strong {
+  display: block;          /* makes it full-width so text-align works */
+  text-align: center;      /* centers the text */
+  font-size: 1.3rem;       /* optional: make it pop more */
+  margin-bottom: 10px;     /* space below heading */
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+  transition: opacity 0.3s ease;
+}
+
+/* Modal Content Card */
+.modal-content {
+  background-color: rgb(255, 255, 255); /* LinkedIn orange */
+  margin: 10% auto; /* 10% from top, centered horizontally */
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 700px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeInScale 0.3s ease forwards;
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* Modal open animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.open-modal {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  background-color: rgb(250, 121, 61); /* LinkedIn orange */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.open-modal:hover {
+  background-color: #b62a00; /* Darker shade on hover */
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.spacer {
+  height: 15px; /* Adjust height as needed */
+}
+
+/* Dark mode for cards */
+.dark-mode .card {
+  background: #2a2a2a;   /* Dark gray card background */
+  color: #ffffff;        /* White text */
+  border: 1px solid #444; /* Subtle border for separation */
+}
+
+/* Dark mode for modal */
+.dark-mode .modal-content {
+  background: #2a2a2a;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+/* Dark mode for custom bullets */
+.dark-mode .custom-bullets li::before {
+  color: #ff7f50; /* Keep accent color bright in dark mode */
+}
+
+/* Dark mode for tables */
+.dark-mode table {
+  background: #2a2a2a;
+  color: #ffffff;
+}
+
+.dark-mode th {
+  background: #444;
+  color: #ffffff;
+}
+
+.dark-mode tr:nth-child(even) {
+  background: #333;
+}
+
+/* Dark mode links inside cards/modal */
+.dark-mode .card a,
+.dark-mode .modal-content a {
+  color: #ff7f50;
+}
+
+#skillsChart {
+  max-width: 100%;
+  height: 400px;
+  margin-top: 20px;
+}
+

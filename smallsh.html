@@ -16,151 +16,154 @@
         <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
     </nav>
 <header>
+    <div class = "content">
     <h1>smallsh: a basic unix shell implementation</h1>
+    </div>
 </header>
 
 <main>
+
+  <div class="card fade-section">
     <h2>Goal of the Assignment</h2>
     <p>The goal of the <strong>smallsh assignment</strong> is to create a simple Unix shell program in C that mimics basic features of a well-known shell, like Bash. The shell must:</p>
     
     <ul>
         <li>Provide a command prompt for the user to input commands.</li>
-        <li>Handle special symbols for input/output redirection (<, >) and background execution (&).</li>
+        <li>Handle special symbols for input/output redirection (&lt;, &gt;) and background execution (&amp;).</li>
         <li>Execute both built-in commands (<code>exit</code>, <code>cd</code>, <code>status</code>) and external commands by forking new processes.</li>
         <li>Implement signal handling for <code>SIGINT</code> (Ctrl+C) and <code>SIGTSTP</code> (Ctrl+Z) to manage foreground and background processes.</li>
         <li>Support variable expansion for the process ID (<code>$$</code>).</li>
         <li>Manage the execution of commands in the foreground and background, ensuring proper control over process execution and termination.</li>
     </ul>
+  </div>
+  <div class="scroll-indicator">
+            <h3>(Scroll down)</h3>
+            <img src="img/robotScroll.png" class="robotScroll">
+        </div>
 
+  <div class="card fade-section">
     <h3>Objectives</h3>
     <ul>
-        <li><strong>Command Prompt:</strong>
-            <ul>
-                <li>Implement a command prompt that displays a colon (:) for each new input.</li>
-                <li>Ensure the shell handles blank lines and comments, ignoring lines starting with #.</li>
-            </ul>
-           
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="img/smsh1-1.png">
-                    <img src="img/smsh1-2.png">
-                    <img src="img/smsh1-3.png">
-                   
-                </div>
-                <button class="prev">Previous</button>
-                <button class="next">Next</button>
-            </div>
-             
-            
+      <li><strong>Command Prompt:</strong>
+        <ul>
+          <li>Implement a command prompt that displays a colon (:) for each new input.</li>
+          <li>Ensure the shell handles blank lines and comments, ignoring lines starting with #.</li>
+        </ul>
 
-        </li>
-        <li><strong>Variable Expansion:</strong>
-            <ul>
-                <li>Expand the variable <code>$$</code> to the process ID of the shell for any command input.</li>
-            </ul>
-           
-                <img src="img/smsh2.png" class="single-image">
-             
-        </li>
-        <li><strong>Built-in Commands:</strong>
-            <ul>
-                <li>Implement built-in commands <code>exit</code>, <code>cd</code>, and <code>status</code>.</li>
-                <div class="carousel">
-                    <div class="carousel-images">
-                        <img src="img/smsh3.png">
-                        <img src="img/smsh4.png">
-                        <img src="img/smsh5.png">
-                       
-                    </div>
-                    <button class="prev">Previous</button>
-                    <button class="next">Next</button>
-                </div>
+        <div class="carousel">
+          <div class="carousel-images">
+            <img src="img/smsh1-1.png" alt="Command Prompt example 1">
+            <img src="img/smsh1-2.png" alt="Command Prompt example 2">
+            <img src="img/smsh1-3.png" alt="Command Prompt example 3">
+          </div>
+          <button class="prev">Previous</button>
+          <button class="next">Next</button>
+        </div>
+      </li>
 
-                
-                <li>Ensure <code>exit</code> terminates the shell and cleans up any child processes.</li>
-                <li>Implement <code>cd</code> to change the current directory, with support for absolute and relative paths.</li>
-                <li>Implement <code>status</code> to report the exit status or signal of the last foreground process.</li>
-            </ul>
-        </li>
-        <li><strong>Executing Other Commands:</strong>
+      <li><strong>Variable Expansion:</strong>
+        <ul>
+          <li>Expand the variable <code>$$</code> to the process ID of the shell for any command input.</li>
+        </ul>
+        <img src="img/smsh2.png" class="single-image" alt="Variable Expansion example">
+      </li>
+
+      <li><strong>Built-in Commands:</strong>
+        <ul>
+          <li>Implement built-in commands <code>exit</code>, <code>cd</code>, and <code>status</code>.</li>
+          <li>Ensure <code>exit</code> terminates the shell and cleans up any child processes.</li>
+          <li>Implement <code>cd</code> to change the current directory, with support for absolute and relative paths.</li>
+          <li>Implement <code>status</code> to report the exit status or signal of the last foreground process.</li>
+        </ul>
+
+        <div class="carousel">
+          <div class="carousel-images">
+            <img src="img/smsh3.png" alt="Exit command">
+            <img src="img/smsh4.png" alt="CD command">
+            <img src="img/smsh5.png" alt="Status command">
+          </div>
+          <button class="prev">Previous</button>
+          <button class="next">Next</button>
+        </div>
+      </li>
+
+      <li><strong>Executing Other Commands:</strong>
+        <ul>
+          <li>Implement process creation using <code>fork()</code>, <code>exec()</code> (via <code>execvp</code>), and <code>waitpid()</code> for handling external commands.</li>
+          <li>Use the <code>PATH</code> environment variable to locate executables for non-built-in commands.</li>
+        </ul>
+
+        <div class="carousel">
+          <div class="carousel-images">
+            <img src="img/smsh6.png" alt="Fork exec example 1">
+            <img src="img/smsh7.png" alt="Fork exec example 2">
+            <img src="img/smsh8.png" alt="Fork exec example 3">
+          </div>
+          <button class="prev">Previous</button>
+          <button class="next">Next</button>
+        </div>
+      </li>
+
+      <li><strong>Input and Output Redirection:</strong>
+        <ul>
+          <li>Implement input (&lt;) and output (&gt;) redirection using <code>dup2()</code>, ensuring files are opened correctly and errors are handled.</li>
+        </ul>
+
+        <div class="carousel">
+          <div class="carousel-images">
+            <img src="img/smsh9-1.png" alt="Input redirection">
+            <img src="img/smsh9-2.png" alt="Output redirection">
+            <img src="img/smsh9-3.png" alt="Redirection handling">
+          </div>
+          <button class="prev">Previous</button>
+          <button class="next">Next</button>
+        </div>
+      </li>
+
+      <li><strong>Foreground and Background Execution:</strong>
+        <ul>
+          <li>Handle commands with &amp; to execute in the background, with process control through <code>fork()</code>.</li>
+          <ul>
+            <li>In getALine(), when parsing user input, the program checks if the last token is "&amp;". If so, it sets the bg flag to 1, indicating that the command should run in the background. The global variable allowBG determines whether background execution is enabled. If the user presses CTRL+Z, allowBG toggles between allowing or disallowing background execution.</li>
+            <li>callExec() is responsible for executing external commands. The program forks a child process using fork(), creating a duplicate process. The child process (case 0: in switch(spawnPid)) replaces itself with the command using execvp(). If execution fails, it prints an error.</li>
+          </ul>
+          <li>For background processes, print the PID and handle termination messages.
             <ul>
-                <li>Implement process creation using <code>fork()</code>, <code>exec()</code> (via <code>execvp</code>), and <code>waitpid()</code> for handling external commands.</li>
-                <li>Use the <code>PATH</code> environment variable to locate executables for non-built-in commands.</li>
+              <li>Background Execution: Parent Continues Without Waiting — If bg == 1 and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt. Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.</li>
+              <li>If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.</li>
             </ul>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="img/smsh6.png">
-                    <img src="img/smsh7.png">
-                    <img src="img/smsh8.png">
-                   
-                </div>
-                <button class="prev">Previous</button>
-                <button class="next">Next</button>
-            </div>
-        </li>
-        <li><strong>Input and Output Redirection:</strong>
-            <ul>
-                <li>Implement input (<) and output (>) redirection using <code>dup2()</code>, ensuring files are opened correctly and errors are handled.</li>
-            </ul>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="img/smsh9-1.png">
-                    <img src="img/smsh9-2.png">
-                    <img src="img/smsh9-3.png">
-                   
-                </div>
-                <button class="prev">Previous</button>
-                <button class="next">Next</button>
-            </div>
-        </li>
-        <li><strong>Foreground and Background Execution:</strong>
-            <ul>
-                <li>Handle commands with & to execute in the background, with process control through <code>fork()</code>.</li>
-                <ul><li>
-                    In getALine(), when parsing user input, the program checks if the last token is "&". If so, it sets the bg flag to 1, indicating that the command should run in the background.
-                    The global variable allowBG determines whether background execution is enabled. If the user presses CTRL+Z, allowBG toggles between allowing or disallowing background execution.</li>
-                    <li> 
-                        callExec() is responsible for executing external commands.
-                        The program forks a child process using fork(), creating a duplicate process.
-                        The child process (case 0: in switch(spawnPid)) replaces itself with the command using execvp(). If execution fails, it prints an error.</li>
-                </ul>
-                <li>For background processes, print the PID and handle termination messages.
-                    <ul><li>
-                        Background Execution: Parent Continues Without Waiting
-    If bg == 1 (background execution requested) and allowBG == 1, the shell prints the child process ID (spawnPid) and immediately returns to the prompt.
-    
-    Instead of blocking, waitpid(spawnPid, childExitStatus, WNOHANG) is used, allowing the parent process to continue execution while the child runs in the background.
-                    </li>
-                    <li>
-                        If the command is a foreground process (bg == 0), the parent waits for the child process to complete using waitpid(spawnPid, childExitStatus, 0). This ensures that the shell does not display a new prompt until the command has finished execution.
-                    </li>
-                </ul>
-                </li>
-                
-                <li>Ensure foreground commands wait for completion before displaying the prompt.</li>
-                <img src="img/smsh10.png" class="single-image">
-            </ul>
-        </li>
-        <li><strong>Signal Handling (SIGINT, SIGTSTP):</strong>
-            <ul>
-                <li>Implement signal handling for <code>SIGINT</code> (Ctrl+C) to terminate foreground processes while ignoring it in the shell and background processes.</li>
-                <li>Implement signal handling for <code>SIGTSTP</code> (Ctrl+Z) to toggle between allowing/disallowing background processes, displaying the appropriate messages when switching modes.</li>
-            </ul>
-            <div class="carousel">
-                <div class="carousel-images">
-                    <img src="img/smsh11-1.png">
-                    <img src="img/smsh11-2.png">
-                    <img src="img/smsh11-3.png">
-                   
-                </div>
-                <button class="prev">Previous</button>
-                <button class="next">Next</button>
-            </div>
-        </li>
+          </li>
+          <li>Ensure foreground commands wait for completion before displaying the prompt.</li>
+        </ul>
+        <img src="img/smsh10.png" class="single-image" alt="Foreground and background execution">
+      </li>
+
+      <li><strong>Signal Handling (SIGINT, SIGTSTP):</strong>
+        <ul>
+          <li>Implement signal handling for <code>SIGINT</code> (Ctrl+C) to terminate foreground processes while ignoring it in the shell and background processes.</li>
+          <li>Implement signal handling for <code>SIGTSTP</code> (Ctrl+Z) to toggle between allowing/disallowing background processes, displaying the appropriate messages when switching modes.</li>
+        </ul>
+
+        <div class="carousel">
+          <div class="carousel-images">
+            <img src="img/smsh11-1.png" alt="SIGINT handling">
+            <img src="img/smsh11-2.png" alt="SIGTSTP on">
+            <img src="img/smsh11-3.png" alt="SIGTSTP off">
+          </div>
+          <button class="prev">Previous</button>
+          <button class="next">Next</button>
+        </div>
+      </li>
     </ul>
+  </div>
 
-    <p>The shell should allow users to run commands, change directories, display exit statuses, and properly handle signals, all while supporting file redirection and background processing. This assignment provides hands-on experience with Unix system calls, process management, and signal handling, which are fundamental to understanding how shells and processes operate in Unix-like environments.</p>
-    <code><pre>
+</main>
+
+
+<div class="card fade-section">
+<p>The shell should allow users to run commands, change directories, display exit statuses, and properly handle signals, all while supporting file redirection and background processing. This assignment provides hands-on experience with Unix system calls, process management, and signal handling, which are fundamental to understanding how shells and processes operate in Unix-like environments.</p>
+</div>
+<code><pre>
         /***************************************************************
  * Filename: smallsh.c
  * smallsh runs bash commands in a a terminal. smallsh changes directories,
@@ -585,9 +588,10 @@ return 0;
 
 
     </pre></code>
-</main>
+
 <button id="dark-mode-toggle">🌙 Dark Mode</button>
     <script src = "dark-mode.js"></script>
 <script src="carousel.js"></script>
+<script src="fade-scroll.js"></script>
 </body>
 </html>

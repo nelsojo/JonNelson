@@ -84,7 +84,9 @@ async function sendMessage() {
         const topMatches = await searchKnowledgeBase(userEmbedding);
 
         // Ensure that the topMatches is properly structured and map over them
-        const context = topMatches.map(item => `${item.metadata.title} - ${item.text}`).join("\n");
+        const context = topMatches
+  .map(m => `[${m.metadata.title} > ${m.metadata.heading || "Section"}](${m.metadata.url}): ${m.text}`)
+  .join("\n\n");
 
         // Log the context being sent to the API
         console.log("Context being sent to model:", context);

@@ -15,11 +15,13 @@
         <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
     </nav>
     <header>
+      <div class = "content">
         <h1>Tarpaulin: A Cloud-Based Course Management API</h1>
-       
+      </div>
     </header>
     
     <main>
+      <div class="card fade-section">
         <section>
             <h2>Project Overview</h2>
             <p>As part of my Cloud Application Development course (CS 493/599), I worked on a team-based final project to design and implement a scalable, 
@@ -27,13 +29,16 @@
 
                </p>
         </section>
-        
+      </div>
+        <div class="card fade-section">
         <section>
             <h3> Through this project, I gained hands-on experience in cloud development, covering key concepts such as:</h3>
             <ul>
                 <li><strong>API Development & Design:</strong>In this project, I created a RESTful API to manage courses with full CRUD (Create, Read, Update, Delete) capabilities. The API utilizes Express and Sequelize ORM to interact with a database and ensures role-based access control for actions like creating, updating, and deleting courses.
-                    <ul>
+                  </div>  
+                  <ul>  <div class="card fade-section">
                         <li>Get List of Courses (with Pagination):
+                          </div>
                             <pre><code>router.get('/', async (req, res, next) => {
                                 let page = parseInt(req.query.page) || 1;
                                 page = page < 1 ? 1 : page;
@@ -71,8 +76,10 @@
                               });
                               </code></pre>
                         </li>
-                        <li>
+                        
+                          <div class="card fade-section">
                             Create a New Course: This endpoint allows admins to create new courses. It also ensures data validation and handles foreign key constraint errors for related data (like the instructor).
+                           </div>
                             <code><pre>
                                 router.post('/', decodeToken, async (req, res, next) => {
                                     if (req.user.role !== 'admin') {
@@ -97,9 +104,11 @@
                                   });
                                   
                             </pre></code>
-                        </li>
-                        <li>
+                        
+                        
+                          <div class="card fade-section">
                             Update a Course: This endpoint allows for course updates by admins or the instructors who own the course. It checks user roles and validates course existence.
+                            </div>
                             <code><pre>
                                 router.patch('/:courseId', decodeToken, async (req, res, next) => {
                                     const courseId = parseInt(req.params.courseId);
@@ -139,9 +148,11 @@
                                   });
                                   
                             </pre></code>
-                        </li>
+                        
+                        <div class="card fade-section">
                         <li>Delete a Course: This endpoint allows admins to delete courses, enforcing role-based access control to ensure only authorized users can perform deletions.
-                            <code><pre>
+                          </div>  
+                          <code><pre>
                                 router.delete('/:courseId', decodeToken, async (req, res, next) => {
                                     if (req.user.role !== 'admin') {
                                       return res.status(403).send({ error: "Unauthorized. Only admins can delete courses." });
@@ -165,13 +176,14 @@
                         </li>
                     </ul>
         </li>
+                <div class="card fade-section">
                 <li><strong>Authentication:</strong> Implemented JWT-based authentication and role-based access control (RBAC) to manage users.
                 <ul>
                     <li>
                         In courses.js, the decodeToken middleware handles the JWT verification and assigns the decoded user information to the request object (req.user), which can be used by subsequent route handlers to check the user's identity and role.
                         RBAC is implemented by checking the user's role (extracted from the JWT payload) to determine if they have permission to perform certain actions. 
                         For example, only users with the admin role are allowed to create or delete courses, as shown in the following route:
-                        
+                    </div>
                         <code><pre>
                             router.post('/', decodeToken, async (req, res, next) => {
                                 if (req.user.role !== 'admin') {
@@ -197,7 +209,9 @@
                                 }
                               });
                         </pre></code>
+                         <div class="card fade-section">
                         This function ensures that the request includes a valid JWT token in the Authorization header, which is then decoded. If the token is invalid or expired, a 403 or 401 error is returned, respectively.
+                        </div>
                         <code><pre>
                             function decodeToken(req, res, next) {
                                 const authHeader = req.headers.authorization;
@@ -218,8 +232,10 @@
                         </pre></code>
                     </li>
 
-                    <li>
+                    
+                      <div class="card fade-section">
                         The auth.js file contains a function generateAuthToken which creates a JWT when a user logs in. The JWT contains the user's sub (ID), name, email, and role, which are used to authenticate and authorize the user. Example of JWT generation:
+                        </div>
                         <code><pre>
 
                             async function generateAuthToken(email) {
@@ -234,8 +250,9 @@
                             }
                             
                         </pre></code>
-
+                          <div class="card fade-section">
                         The verifyAdmin function checks if the user has an admin role. This is useful for routes where only admins should have access, like deleting courses or managing users. Example of admin verification:
+                        </div>
                         <code><pre>
                             async function verifyAdmin(req, res) {
                                 const authHeader = req.get('Authorization') || '';
@@ -255,8 +272,9 @@
                             
 
                         </pre></code>
+                        <div class="card fade-section">
                         The requireAuthentication middleware ensures that the user is authenticated by verifying their JWT token on each protected route. The user's sub (ID) and role are then made available to the route handler for further checks.
-
+                            </div>
                         <code><pre>
 
                             function requireAuthentication(req, res, next) {
@@ -275,12 +293,12 @@
                             }
                             
                         </pre></code>
-                    </li>
-                </ul>
-                
+                    
                 </li>
+                 <div class="card fade-section">
                 <li><strong>Rate Limiting:</strong> Applied IP-based and user-based request limits using middleware.
                 Consider the code below:
+                </div>
                 <code><pre>
                     const redisClient = require('./redis')
 
@@ -350,15 +368,19 @@
                     module.exports = rateLimit
 
                 </pre></code>
+                <div class="card fade-section">
                 This code demonstrates rate limiting by applying IP-based and user-based request limits using middleware. It manages requests differently depending on whether a user is authenticated or not, by utilizing Redis for tracking request counts with the token bucket algorithm.
                 The middleware checks if the user is authenticated using `verifyToken`. It applies user-based rate limiting for authenticated users and IP-based rate limiting for unauthenticated ones. The token bucket state (tokens and last request timestamp) is fetched from Redis using `hGetAll`. 
                 If the bucket doesn't exist, it's initialized with the maximum allowed tokens and the current timestamp. Tokens are refreshed based on the time elapsed since the last request. If there are tokens left, 1 token is deducted, and the request proceeds. If no tokens are left, a `429` error is returned.
                 The updated token bucket state is saved back to Redis after each request.
                 </li>
+                <div class="card fade-section">
                 <li><strong>SQL Database Integration:</strong> Used PostgreSQL to store course, assignment, and user data.
                 <ul>
+                  </div>
                     <li>Database Setup: The sequelize instance is created, configured to connect to a MySQL database. The database connection settings are pulled from environment variables (e.g., MYSQL_HOST, MYSQL_PORT, MYSQL_DB, etc.).
-                        <code><pre>
+                      </div>  
+                      <code><pre>
                             const { Sequelize } = require('sequelize')
 
                             const sequelize = new Sequelize({
@@ -373,8 +395,10 @@
                             module.exports = sequelize
                         </pre></code>
                     </li>
+                    <div class="card fade-section">
                     <li>User Model: The User model defines the schema for the user table. Each user has an auto-incrementing userId, a name, email, password (hashed using bcryptjs), and a role.
-                        <code><pre>
+                      </div>  
+                      <code><pre>
                             const { DataTypes } = require('sequelize')
 
 const sequelize = require('../lib/sequelize')
@@ -465,10 +489,12 @@ exports.validateCredentials = async function (id, password) {
   return user && await bcrypt.compare(password, user.password)
 }
                         </pre></code>
+                        <div class="card fade-section">
                         Helper Functions: getUserById(id) Fetches a user by their ID, excluding sensitive data (like password). It also fetches courses or enrollments based on the user's role. getUserByEmail(email): Fetches a user by their email. validateCredentials(id, password): Validates the user's credentials by comparing the provided password with the stored hashed password.
-                    </li>
+                    </li><div class="card fade-section">
                     <li>Course Model: The Course model defines the schema for the course table, including fields like subject, number, title, term, and instructorId.
-                        <code><pre>
+                    </div></div>  
+                      <code><pre>
                             const { DataTypes } = require('sequelize')
 
 const sequelize = require('../lib/sequelize')
@@ -499,11 +525,12 @@ exports.CourseClientFields = [
                     </li>
                 </ul>
                 
-                </li>
+                </li> <div class="card fade-section">
                 <li><strong>File Management:</strong> Enabled secure file uploads and retrievals for student assignment submissions.
                 <ul>
                     <li>File Upload Handling: The assignments.js file uses Multer, a middleware for handling multipart/form-data (i.e., file uploads). The storage configuration specifies where to save the files (./media/submissions), and it ensures the file has a unique name by appending a timestamp to the original filename.
-                        <code><pre>
+                      </div>  
+                      <code><pre>
                             /**
  * Create file structure in format of:
  * ./media/submissions/{submission_name}
@@ -533,9 +560,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage })
                         </pre></code>
-                    </li>
+                    </li><div class="card fade-section">
                     <li>The POST /:id/submissions endpoint creates a submission for a specific assignment. It verifies that the user is authorized (i.e., a student enrolled in the course), uploads the file, and stores it in the appropriate directory. Once uploaded, a URL to the file is generated and returned in the response.
-                        <code><pre>
+                      </div>  
+                      <code><pre>
                             router.post('/:id/submissions', requireAuthentication, upload.single('file'), async (req, res, next) => {
                                 if (!req.file) {
                                     return res.status(400).send({ error: 'No file uploaded' })
@@ -570,8 +598,10 @@ const upload = multer({ storage: storage })
                              
                         </pre></code>
                     </li>
+                    <div class="card fade-section">
                     <li> File Retrieval: The media.js file provides a GET /submissions/:filename endpoint, which retrieves the file from the server when a user requests it. It first checks whether the file exists in the media/submissions directory, and if so, it sends the file to the client. If the file does not exist, an error is returned.
-                        <code><pre>
+                      </div>  
+                      <code><pre>
                             router.get('/submissions/:filename', (req, res, next) => {
                                 const { filename } = req.params
                                 const filePath = path.join(__dirname, '..', 'media', 'submissions', filename)
@@ -589,9 +619,10 @@ const upload = multer({ storage: storage })
                             })
                             
                         </pre></code>
-                    </li>
+                    </li><div class="card fade-section">
                     <li> Submission Update Handling: In submissions.js, the PATCH /:id endpoint allows authorized roles (instructors or admins) to update a submission (e.g., adding grades or changing the file). This ensures only authorized users can make modifications to submissions.
-                        <code><pre>
+                    </div>  
+                      <code><pre>
                             router.patch('/:id', requireAuthentication, async (req, res, next) => {
                                 // Checking if submission exists and authorized role
                                 const submission = await Submission.findByPk(submissionId)
@@ -630,6 +661,8 @@ const upload = multer({ storage: storage })
     </main>
     
     <button id="dark-mode-toggle">🌙 Dark Mode</button>
-    <script src = "dark-mode.js"></script>    
+    <script src = "dark-mode.js"></script> 
+    <script src="carousel.js"></script>
+    <script src="fade-scroll.js"></script>   
 </body>
 </html>
