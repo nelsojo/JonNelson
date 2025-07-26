@@ -311,7 +311,8 @@ body {
     color: #d3d3d3; /* Light gray */
 }
 
-#chat-container { width: 300px; margin: auto; border: 1px solid #ccc; padding: 10px; }
+
+
 #chat-box { height: 300px; overflow-y: auto; border-bottom: 1px solid #ccc; padding: 5px; }
 .message { padding: 5px; margin: 5px 0; }
 .user { text-align: right; background: #e0e0e0; }
@@ -334,6 +335,7 @@ body {
     max-width: 50%;
     border: 1px solid #ccc;
     padding: 10px;
+    margin: auto;
     border-radius: 5px;
 }
 
