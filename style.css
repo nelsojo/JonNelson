@@ -289,7 +289,7 @@ body {
 
 #dark-mode-toggle {
     position: fixed; /* Keeps the button in place while scrolling */
-    top: 55px; /* Distance from the top */
+    bottom: 55px; /* Distance from the top */
     right: 10px; /* Distance from the right */
     background-color: #ff7f50;
     color: white;
