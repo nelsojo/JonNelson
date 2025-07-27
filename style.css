@@ -657,3 +657,198 @@ body.dark-mode::before {
 }
 
 
+/* Hide delete button by default */
+.signature-item .delete-btn {
+  visibility: hidden;
+  opacity: 0;
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ff4d4d;
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+/* Show on hover */
+.signature-item:hover .delete-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Signature wall container */
+#signature-wall {
+  margin: 2rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Signature form */
+#signature-form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#signature-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 200px;
+  transition: border 0.2s ease;
+}
+
+#signature-form input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+#signature-form button {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  background-color: rgb(250, 121, 61);;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#signature-form button:hover {
+  background-color: #e67340;
+}
+
+/* Signature list as flex bubbles */
+#signatures-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.signature-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.signature-item:hover {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Dark mode adjustment */
+body.dark-mode .signature-item {
+  background-color: rgba(30, 30, 30, 0.8);
+  border: 1px solid #555;
+  color: #f0f0f0;
+}
+
+body.dark-mode .signature-item:hover {
+  background-color: rgba(40, 40, 40, 0.95);
+}
+
+/* Delete button styling (from earlier) */
+.signature-item .delete-btn {
+  visibility: hidden;
+  opacity: 0;
+  margin-left: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ff4d4d;
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
+}
+
+.signature-item:hover .delete-btn {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Pop-in animation for new signatures */
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.signature-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  animation: popIn 0.3s ease forwards;
+}
+
+#signatures-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.signature-item {
+  position: relative;
+  background: var(--card-bg, #e0f7fa);
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+body.dark-mode .signature-item {
+  background: #333;
+  color: #fff;
+}
+
+.signature-item:hover {
+  transform: translateY(-3px);
+}
+
+/* Delete button hidden until hover */
+.delete-btn {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.signature-item:hover .delete-btn {
+  opacity: 1;
+}
+

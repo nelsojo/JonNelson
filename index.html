@@ -54,7 +54,7 @@
 
     <div id="contact-chat-container" class = "fade-section">
         <section id="contact">
-            <h2>Contact Me about anything here!</h2>
+            <h2>Contact Me (about anything) Here!</h2>
             <form id="contact-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
@@ -70,7 +70,17 @@
             <p id="form-status"></p>
         </section>
     </div>
-        
+     
+    <div id="signature-wall" class="card fade-section">
+  <h2>A Firebase Signature Wall.</h2>
+  <h3>Thanks for visiting! Let me know you were here by signing below</h3>
+  <form id="signature-form">
+    <input type="text" id="name-input" placeholder="Your name" required />
+    <button type="submit">Sign</button>
+  </form>
+  <ul id="signatures-list"></ul>
+</div>
+
     
     
 
@@ -81,7 +91,29 @@
     <script src = "dark-mode.js"></script>
     <script src="fade-scroll.js"></script>
     <script src = "background.js"> </script>
+    
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
+<script>
+  // Your Firebase config here (replace with your actual config)
+  const firebaseConfig = {
+    apiKey: "AIzaSyDIJPe22gLm1UhFREeEvaVBwJWvhdGrYhk",
+    authDomain: "myportfoliosite-jnel.firebaseapp.com",
+    projectId: "myportfoliosite-jnel",
+    storageBucket: "myportfoliosite-jnel.firebasestorage.app",
+    messagingSenderId: "651988131072",
+    appId: "1:651988131072:web:533445bed864e643df27e5"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Initialize Firestore
+  const db = firebase.firestore();
+</script>
+<script src = "signatureDatabase.js"></script>
     
 </body>
 </body>
