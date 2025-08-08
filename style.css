@@ -852,3 +852,20 @@ body.dark-mode .signature-item {
   opacity: 1;
 }
 
+.visitor-card {
+  position: static;           /* keep it in normal flow */
+  margin: 20px auto 0 auto;   /* centers horizontally, adds space above */
+  text-align: center;         /* center text inside */
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.70rem;
+  max-width: 250px;
+  z-index: 999;
+}
+
+.visitor-card h3 {
+  margin-top: 0;
+}
+

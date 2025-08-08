@@ -1,120 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=2">
-    <title>Jon Nelson Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css?v=2">
+  <title>Jon Nelson Portfolio</title>
 </head>
-
-
 <body>
-    <canvas id="backgroundCanvas"></canvas>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Me</a>
-        <a href="projects.html">Projects</a>
-        <a href="experience.html">Experience</a>
-        <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
-    </nav>
-    
-    <div class="content">
-        <img src="img/banner.png" class = "banner">
-        <h2>Explore my skills, projects, and experience in IT, cybersecurity, and software development.</h2>
-        <div class="scroll-indicator">
-            <h3>(Scroll down)</h3>
-            <img src="img/robotScroll.png" class="robotScroll">
-        </div>
+  <canvas id="backgroundCanvas"></canvas>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="experience.html">Experience</a>
+    <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
+  </nav>
 
-        
-        <div class="connect-row fade-section">
-            <div class="connect-item">
-                <h2>Connect with me on Handshake</h2>
-                <p><a href="https://oregonstate.joinhandshake.com/profiles/6pqawc" target="_blank">My Profile</a></p>
-            </div>
-            <div class="connect-item">
-                <h2>Connect with me on LinkedIn</h2>
-                <p><a href="https://www.linkedin.com/in/jon-nelson-78ba631a/" target="_blank">My Profile</a></p>
-            </div>
-        </div>
+  <div class="content">
+    <img src="img/banner.png" class="banner">
+
+   
+
+    <h2>Explore my skills, projects, and experience in IT, cybersecurity, and software development.</h2>
+
+    <div class="scroll-indicator">
+      <h3>(Scroll down)</h3>
+      <img src="img/robotScroll.png" class="robotScroll">
     </div>
 
-
-
-    <div id="chat-container" class = "fade-section">
-            <h3>My personal AI Chatbot. (Ask it questions about me)</h3>
-             <p>Example: Where did Jon Attend University?</p>
-            <div id="chat-box"></div>
-            <input type="text" id="user-input" placeholder="Type a message..." />
-            <!-- HTML -->
-            <button id="send-button" onclick="sendMessage()">Send</button>
-
-        
-        </div>
-
-    <div id="contact-chat-container" class = "fade-section">
-        <section id="contact">
-            <h2>Contact Me (about anything) Here!</h2>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-        
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-        
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-        
-                <button type="submit">Send Message</button>
-            </form>
-            <p id="form-status"></p>
-        </section>
+    <div class="connect-row fade-section">
+      <div class="connect-item">
+        <h2>Connect with me on Handshake</h2>
+        <p><a href="https://oregonstate.joinhandshake.com/profiles/6pqawc" target="_blank">My Profile</a></p>
+      </div>
+      <div class="connect-item">
+        <h2>Connect with me on LinkedIn</h2>
+        <p><a href="https://www.linkedin.com/in/jon-nelson-78ba631a/" target="_blank">My Profile</a></p>
+      </div>
     </div>
-     
-    <div id="signature-wall" class="card fade-section">
-  <h2>A Firebase Signature Wall.</h2>
-  <h3>Thanks for visiting! Let me know you were here by signing below</h3>
-  <form id="signature-form">
-    <input type="text" id="name-input" placeholder="Your name" required />
-    <button type="submit">Sign</button>
-  </form>
-  <ul id="signatures-list"></ul>
-</div>
+  </div>
 
-    
-    
+  <div id="chat-container" class="fade-section">
+    <h3>My personal AI Chatbot. (Ask it questions about me)</h3>
+    <p>Example: Where did Jon Attend University?</p>
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Type a message..." />
+    <button id="send-button" onclick="sendMessage()">Send</button>
+  </div>
 
-    <button id="dark-mode-toggle">🌙 Dark Mode</button>
-    <script type="module" src="site_embeddings.js"></script>
-    <script src="./chatbot.js"></script>
-    <script src = "contact.js"></script>
-    <script src = "dark-mode.js"></script>
-    <script src="fade-scroll.js"></script>
-    <script src = "background.js"> </script>
-    
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <div id="contact-chat-container" class="fade-section">
+    <section id="contact">
+      <h2>Contact Me (about anything) Here!</h2>
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-<script>
-  // Your Firebase config here (replace with your actual config)
-  const firebaseConfig = {
-    apiKey: "AIzaSyDIJPe22gLm1UhFREeEvaVBwJWvhdGrYhk",
-    authDomain: "myportfoliosite-jnel.firebaseapp.com",
-    projectId: "myportfoliosite-jnel",
-    storageBucket: "myportfoliosite-jnel.firebasestorage.app",
-    messagingSenderId: "651988131072",
-    appId: "1:651988131072:web:533445bed864e643df27e5"
-  };
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
 
-  // Initialize Firestore
-  const db = firebase.firestore();
-</script>
-<script src = "signatureDatabase.js"></script>
-    
-</body>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="form-status"></p>
+    </section>
+  </div>
+
+  <div id="signature-wall" class="card fade-section">
+    <h2>A Firebase Signature Wall.</h2>
+    <h3>Thanks for visiting! Let me know you were here by signing below</h3>
+    <form id="signature-form">
+      <input type="text" id="name-input" placeholder="Your name" required />
+      <button type="submit">Sign</button>
+    </form>
+    <ul id="signatures-list"></ul>
+  </div>
+   <!-- Visitor Card -->
+    <div id="visitor-card" class="visitor-card fade-section">
+      <p>Loading your info...</p>
+    </div>
+
+  <!-- Dark mode button -->
+  <button id="dark-mode-toggle">🌙 Dark Mode</button>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- Firebase Initialization -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDIJPe22gLm1UhFREeEvaVBwJWvhdGrYhk",
+      authDomain: "myportfoliosite-jnel.firebaseapp.com",
+      projectId: "myportfoliosite-jnel",
+      storageBucket: "myportfoliosite-jnel.firebasestorage.app",
+      messagingSenderId: "651988131072",
+      appId: "1:651988131072:web:533445bed864e643df27e5"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <!-- Scripts that need Firebase -->
+  <script src="signatureDatabase.js"></script>
+  <script type="module" src="visitorCard.js"></script>
+
+  <!-- Other scripts -->
+  <script type="module" src="site_embeddings.js"></script>
+  <script src="./chatbot.js"></script>
+  <script src="contact.js"></script>
+  <script src="dark-mode.js"></script>
+  <script src="fade-scroll.js"></script>
+  <script src="background.js"></script>
 </body>
 </html>
