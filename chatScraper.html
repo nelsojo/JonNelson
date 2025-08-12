@@ -169,7 +169,7 @@ async function searchKnowledgeBase(queryEmbedding, topK = 10, threshold = 0.15) 
 
       // Slightly favor top-level portfolio folders like /JonNelson/
       if (url.includes("/JonNelson/") && depth <= 2) {
-        score += 0.08;
+        score += 0.16;
       }
 
       // Penalize offsite/external URLs moderately
