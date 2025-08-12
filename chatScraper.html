@@ -170,29 +170,55 @@
 
     // --------- Search Embeddings ---------
     async function searchKnowledgeBase(queryEmbedding, topK = 20, threshold = 0.15) {
-      const scored = siteEmbeddings.map(item => {
-        let score = cosineSimilarity(queryEmbedding, item.embedding);
-        const url = item.metadata.url || "";
+  if (!siteEmbeddings.length) return [];
 
-        try {
-          const parsed = new URL(url);
-          const path = parsed.pathname;
-          const segments = path.split("/").filter(Boolean);
-          const depth = segments.length;
-
-          // Optional: slightly penalize deeper pages overall
-          score -= depth * 0.05;
-
-        } catch (e) {
-          console.warn("Invalid URL in embedding metadata:", url);
-        }
-
-        return { ...item, score };
-      });
-
-      scored.sort((a, b) => b.score - a.score);
-      return scored.filter(item => item.score > threshold).slice(0, topK);
+  // Dynamically detect the main site prefix from the embeddings
+  let mainSitePrefix = "";
+  if (siteEmbeddings.length) {
+    try {
+      const urls = siteEmbeddings.map(e => new URL(e.metadata.url).origin + new URL(e.metadata.url).pathname.split("/").slice(0, 2).join("/"));
+      const counts = {};
+      urls.forEach(u => counts[u] = (counts[u] || 0) + 1);
+      mainSitePrefix = Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+    } catch (e) {
+      console.warn("Could not auto-detect main site prefix:", e);
     }
+  }
+
+  const scored = siteEmbeddings.map(item => {
+    let score = cosineSimilarity(queryEmbedding, item.embedding);
+    const url = item.metadata.url || "";
+
+    try {
+      const parsed = new URL(url);
+      const path = parsed.pathname;
+      const segments = path.split("/").filter(Boolean);
+      const depth = segments.length;
+      const filename = segments[segments.length - 1] || "";
+
+      if (mainSitePrefix && url.startsWith(mainSitePrefix)) {
+        if (filename.match(/index\.html|about|projects|experience/i)) {
+          score += Math.max(0.5 - depth * 0.04, 0);
+        }
+        if (depth <= 2) {
+          score += 0.2;
+        }
+      } else {
+        score -= 0.3;
+      }
+
+      score -= depth * 0.05;
+    } catch (e) {
+      console.warn("Invalid URL in embedding metadata:", url);
+    }
+
+    return { ...item, score };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  return scored.filter(item => item.score > threshold).slice(0, topK);
+}
+
 
     // --------- Chat Message Handler ---------
     async function sendMessage() {
