@@ -174,7 +174,7 @@ async function searchKnowledgeBase(queryEmbedding, topK = 10, threshold = 0.15) 
 
       // Penalize offsite/external URLs moderately
       if (!isInternalLink(baseSiteUrl, url)) {
-        score -= 0.15;  // Adjust penalty as needed
+        score -= 0.25;  // Adjust penalty as needed
       }
     } catch (e) {
       console.warn("Invalid URL in embedding metadata:", url);
