@@ -135,7 +135,19 @@
     }
     
     // --------- Search Embeddings ---------
-    async function searchKnowledgeBase(queryEmbedding, topK = 10, threshold = 0.15) {
+async function searchKnowledgeBase(queryEmbedding, topK = 10, threshold = 0.15) {
+  const baseSiteUrl = "https://nelsojo.github.io/JonNelson";
+
+  function isInternalLink(baseUrl, url) {
+    try {
+      const baseHost = new URL(baseUrl).host;
+      const urlHost = new URL(url).host;
+      return baseHost === urlHost;
+    } catch {
+      return false; // treat as external if URL parsing fails
+    }
+  }
+
   const scored = siteEmbeddings.map(item => {
     let score = cosineSimilarity(queryEmbedding, item.embedding);
     const url = item.metadata.url || "";
@@ -146,14 +158,13 @@
       const segments = path.split("/").filter(Boolean);
       const depth = segments.length;
 
-      // Penalize depth more strongly
+      // Penalize deeper paths more strongly
       score -= depth * 0.08;
 
-      // Boost homepage-like files slightly, but fade with depth
+      // Boost homepage-like files slightly, fading with depth
       const filename = segments[segments.length - 1] || "";
       if (filename.match(/index\.html|about|projects|experience/i)) {
-        const boost = Math.max(0.1 - depth * 0.04, 0);
-        score += boost;
+        score += Math.max(0.1 - depth * 0.04, 0);
       }
 
       // Slightly favor top-level portfolio folders like /JonNelson/
@@ -161,6 +172,10 @@
         score += 0.08;
       }
 
+      // Penalize offsite/external URLs moderately
+      if (!isInternalLink(baseSiteUrl, url)) {
+        score -= 0.15;  // Adjust penalty as needed
+      }
     } catch (e) {
       console.warn("Invalid URL in embedding metadata:", url);
     }
