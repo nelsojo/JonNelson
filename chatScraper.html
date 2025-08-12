@@ -159,7 +159,7 @@ async function searchKnowledgeBase(queryEmbedding, topK = 10, threshold = 0.15) 
       const depth = segments.length;
 
       // Penalize deeper paths more strongly
-      score -= depth * 0.08;
+      //score -= depth * 0.08;
 
       // Boost homepage-like files slightly, fading with depth
       const filename = segments[segments.length - 1] || "";
