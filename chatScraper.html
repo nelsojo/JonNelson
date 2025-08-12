@@ -135,7 +135,7 @@
     }
     
     // --------- Search Embeddings ---------
-  async function searchKnowledgeBase(queryEmbedding, topK = 10, threshold = 0.15) {
+  async function searchKnowledgeBase(queryEmbedding, topK = 20, threshold = 0.15) {
   const mainSitePrefix = "https://nelsojo.github.io/JonNelson";
 
   const scored = siteEmbeddings.map(item => {
