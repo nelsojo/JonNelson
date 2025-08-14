@@ -72,42 +72,35 @@
 
   <script>
     async function uploadAndEmbed() {
-      const input = document.getElementById("fileInput");
-      if (input.files.length === 0) {
-        alert("Please select a JSON file.");
-        return;
-      }
-      const file = input.files[0];
-      const baseNetloc = localStorage.getItem('baseNetloc');
-      const basePathPrefix = localStorage.getItem('basePathPrefix');
+  const input = document.getElementById("fileInput");
+  if (input.files.length === 0) {
+    alert("Please select a JSON file.");
+    return;
+  }
+  const file = input.files[0];
 
-      if (!baseNetloc || !basePathPrefix) {
-        alert("Please scrape a site first to set base domain and path prefix.");
-        return;
-      }
+  const formData = new FormData();
+  formData.append("file", file);
 
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("base_netloc", baseNetloc);
-      formData.append("base_path_prefix", basePathPrefix);
+  const res = await fetch(`${backendURL}/upload`, {
+    method: "POST",
+    body: formData
+  });
 
-      const res = await fetch(`${backendURL}/upload`, {
-        method: "POST",
-        body: formData
-      });
+  if (!res.ok) {
+    const error = await res.json();
+    alert("Error: " + (error.error || "Unknown error"));
+    return;
+  }
 
-      if (!res.ok) {
-        const error = await res.json();
-        alert("Error: " + (error.error || "Unknown error"));
-        return;
-      }
+  const data = await res.json();
 
-      const data = await res.json();
+  // Show only preview
+  const previewText = data.preview.map(e => JSON.stringify(e, null, 2)).join("\n\n");
+  document.getElementById("embeddingOutput").value = previewText;
+  alert(`Embedding generation completed! ${data.count} texts processed.`);
+}
 
-      // Show only a preview of the first few embeddings
-      const preview = data.slice(0, 3).map(e => JSON.stringify(e, null, 2)).join('\n\n');
-      document.getElementById("embeddingOutput").value = preview;
-    }
   </script>
 
   <!-- 🤖 Chatbot Interface -->
