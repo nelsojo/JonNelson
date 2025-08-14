@@ -82,24 +82,34 @@
   const formData = new FormData();
   formData.append("file", file);
 
-  const res = await fetch(`${backendURL}/upload`, {
-    method: "POST",
-    body: formData
+  // Clear previous output
+  const output = document.getElementById("embeddingOutput");
+  output.value = "Uploading and processing...\n";
+
+  // Use fetch + EventSource style via a POST form submission with SSE
+  const sseUrl = `${backendURL}/upload`;
+  const eventSource = new EventSource(sseUrl);
+
+  eventSource.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    if (data.status === "processing") {
+      output.value = `Processed ${data.processed} embeddings...\n` + output.value;
+    } else if (data.status === "completed") {
+      output.value = "✅ Completed!\nPreview:\n" +
+        data.preview.map(e => JSON.stringify(e, null, 2)).join("\n\n");
+      eventSource.close();
+    } else if (data.error) {
+      output.value = "⚠️ Error: " + data.error;
+      eventSource.close();
+    }
+  };
+
+  // Send file via POST
+  fetch(sseUrl, { method: "POST", body: formData }).catch(err => {
+    output.value = "⚠️ Upload failed: " + err.message;
   });
-
-  if (!res.ok) {
-    const error = await res.json();
-    alert("Error: " + (error.error || "Unknown error"));
-    return;
-  }
-
-  const data = await res.json();
-
-  // Show only preview
-  const previewText = data.preview.map(e => JSON.stringify(e, null, 2)).join("\n\n");
-  document.getElementById("embeddingOutput").value = previewText;
-  alert(`Embedding generation completed! ${data.count} texts processed.`);
 }
+
 
   </script>
 
