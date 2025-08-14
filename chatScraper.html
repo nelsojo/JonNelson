@@ -72,29 +72,42 @@
 
   <script>
     async function uploadAndEmbed() {
-    const fileInput = document.getElementById("fileInput");
-    if (!fileInput.files.length) return alert("Please select a file.");
-    const file = fileInput.files[0];
+      const input = document.getElementById("fileInput");
+      if (input.files.length === 0) {
+        alert("Please select a JSON file.");
+        return;
+      }
+      const file = input.files[0];
+      const baseNetloc = localStorage.getItem('baseNetloc');
+      const basePathPrefix = localStorage.getItem('basePathPrefix');
 
-    const formData = new FormData();
-    formData.append('file', file);
+      if (!baseNetloc || !basePathPrefix) {
+        alert("Please scrape a site first to set base domain and path prefix.");
+        return;
+      }
 
-    const response = await fetch(`${backendURL}/upload`, {
-        method: 'POST',
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("base_netloc", baseNetloc);
+      formData.append("base_path_prefix", basePathPrefix);
+
+      const res = await fetch(`${backendURL}/upload`, {
+        method: "POST",
         body: formData
-    });
+      });
 
-    const data = await response.json();
-    console.log('Upload response:', data);
+      if (!res.ok) {
+        const error = await res.json();
+        alert("Error: " + (error.error || "Unknown error"));
+        return;
+      }
 
-    if (data.status === 'started') {
-        alert('Embedding generation started. Check back later for results.');
-    } else if (data.error) {
-        alert('Error: ' + data.error);
+      const data = await res.json();
+
+      // Show only a preview of the first few embeddings
+      const preview = data.slice(0, 3).map(e => JSON.stringify(e, null, 2)).join('\n\n');
+      document.getElementById("embeddingOutput").value = preview;
     }
-}
-
-
   </script>
 
   <!-- 🤖 Chatbot Interface -->
