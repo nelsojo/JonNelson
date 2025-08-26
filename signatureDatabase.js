@@ -35,6 +35,8 @@ form.addEventListener('submit', async e => {
 // === Live wall (skip soft-deleted) ===
 db.collection('signatures').orderBy('timestamp', 'desc')
   .onSnapshot(snapshot => {
+    console.log("Snapshot received:", snapshot.docs.map(d => d.data()));
+
     signaturesList.innerHTML = '';
     snapshot.forEach(doc => {
       const data = doc.data();
@@ -73,4 +75,8 @@ db.collection('signatures').orderBy('timestamp', 'desc')
       li.appendChild(deleteBtn);
       signaturesList.appendChild(li);
     });
+  }, err => {
+    console.error("Snapshot error:", err);
   });
+
+  
