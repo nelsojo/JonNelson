@@ -22,12 +22,13 @@ form.addEventListener('submit', async e => {
 
   try {
     await db.collection('signatures').add({
-      name: name,
+      name,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
     nameInput.value = '';
   } catch (err) {
     console.error('Error adding signature:', err);
+    alert("Failed to add signature. Check console.");
   }
 });
 
@@ -59,7 +60,6 @@ db.collection('signatures').orderBy('timestamp', 'desc')
         }
 
         try {
-          // Soft delete
           await db.collection('signatures').doc(doc.id).update({
             deleted: true,
             _pw: deobfuscate(XOR_KEY)
