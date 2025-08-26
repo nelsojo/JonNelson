@@ -5,40 +5,41 @@ const signaturesList = document.getElementById('signatures-list');
 // === Secret puzzle ===
 const obfuscated = [89, 75, 65, 95, 64, 69]; 
 const XOR_KEY = 42;
+
 function deobfuscate(key) {
   return String.fromCharCode(...obfuscated.map(c => c ^ key));
 }
-function checkPassword(input) {
-  if (!input) return false;
-  return input.trim() === deobfuscate(XOR_KEY);
-}
-// console.log("Decoded password:", deobfuscate(XOR_KEY)); // (leave or remove)
 
-// === Create signature ===
-form.addEventListener('submit', e => {
+function checkPassword(input) {
+  return input?.trim() === deobfuscate(XOR_KEY);
+}
+
+// === Submit new signature ===
+form.addEventListener('submit', async e => {
   e.preventDefault();
   const name = nameInput.value.trim();
   if (!name) return;
 
-  db.collection('signatures').add({
-    name: name,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-  }).then(() => {
+  try {
+    await db.collection('signatures').add({
+      name: name,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
     nameInput.value = '';
-  }).catch(err => {
+  } catch (err) {
     console.error('Error adding signature:', err);
-  });
+  }
 });
 
-// === Live list (skip soft-deleted) ===
+// === Live wall (skip soft-deleted) ===
 db.collection('signatures').orderBy('timestamp', 'desc')
   .onSnapshot(snapshot => {
     signaturesList.innerHTML = '';
     snapshot.forEach(doc => {
       const data = doc.data();
 
-      // Skip soft-deleted docs
-      if (data.deleted === true) return;
+      // Skip soft-deleted
+      if (data.deleted) return;
 
       const li = document.createElement('li');
       li.classList.add('signature-item');
@@ -52,21 +53,20 @@ db.collection('signatures').orderBy('timestamp', 'desc')
 
       deleteBtn.addEventListener('click', async () => {
         const entered = prompt("Enter admin password (can you find it?) to delete:");
-        if (checkPassword(entered)) {
-          try {
-            // SOFT DELETE: requires password per Firestore rules
-            await db.collection('signatures').doc(doc.id).update({
-              deleted: true,
-              _pw: deobfuscate(XOR_KEY)
-            });
-            // Optional UX: toast or silent
-            // alert("Deleted.");
-          } catch (err) {
-            console.error("Delete (soft) failed:", err);
-            alert("Delete failed. Check console.");
-          }
-        } else {
+        if (!checkPassword(entered)) {
           alert("Wrong password!");
+          return;
+        }
+
+        try {
+          // Soft delete
+          await db.collection('signatures').doc(doc.id).update({
+            deleted: true,
+            _pw: deobfuscate(XOR_KEY)
+          });
+        } catch (err) {
+          console.error("Delete failed:", err);
+          alert("Delete failed. Check console.");
         }
       });
 
