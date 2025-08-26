@@ -869,3 +869,4 @@ body.dark-mode .signature-item {
   margin-top: 0;
 }
 
+.signature-item.deleted { display: none; }
