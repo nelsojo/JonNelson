@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css">
   <title>Website Scraper</title>
   <style>
     body { font-family: sans-serif; padding: 20px; }
@@ -9,7 +10,25 @@
   </style>
 </head>
 <body>
+  <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="experience.html">Experience</a>
+        <a href="https://nelsojo.github.io/BeeRingUI/" target="_blank">Bee Ring Project</a>
+        <a href = "chatScraper.html">Chatbot Creator</a>
+    </nav>
   <h1>🔍 Web Page Scraper</h1>
+  <h2>Step 1</h2>
+  <p>Enter a website URL to generate training content
+  or choose one of these examples below:</p>
+  <p>https://nelsojo.github.io/BeeRingUI/</p>
+  <p>https://sierrasniffingcanines.org/</p>
+  <p>https://www.westsideelectricalnw.com/</p>
+  <p>https://www.mlc-music.com/</p>
+  <p>http://philomathcounseling.com/</p>
+  <p>https://nelsojo.github.io/JonNelson/index.html</p>
+  <p>*This generator currently is limited by backend processing power to small websites</p>
   <input type="text" id="url" placeholder="Enter website URL" style="width: 300px;" />
   <button onclick="scrapeSite()">Scrape and Download JSON</button>
 
@@ -63,8 +82,9 @@
       link.click();
     }
   </script>
-
+  <h2>Step 2</h2>
   <h2>📂 Upload Scraped JSON to Generate Embeddings</h2>
+  
   <input type="file" id="fileInput" accept=".json" />
   <button onclick="uploadAndEmbed()">Upload & Embed</button>
 
@@ -104,7 +124,11 @@
   </script>
 
   <!-- 🤖 Chatbot Interface -->
-  <h2>🤖 Chat with Your Site</h2>
+   <h2>Step 3: Refresh the page</h2>
+<button onclick="location.reload()">Refresh Page</button>
+
+  <h2>Step 4 :🤖 Chat with Your Site</h2>
+  <p>Example question: What is this site for?</p>
   <div id="chat-box" style="border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: scroll; margin-bottom: 10px;"></div>
   <input type="text" id="user-input" placeholder="Ask a question..." style="width: 80%;" />
   <button id="send-button">Send</button>
